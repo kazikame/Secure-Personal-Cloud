@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 <body>
 {% extends 'base.html' %}
-
 {% block content %}
+<!-- <div id="example">
+</div>
+	<script type="text/babel">
+		ReactDOM.render(<p>Yo!</p>,document.getElementById('example'));
+	</script> -->
 <h2>Login</h2>
 <form method="post">
   {% csrf_token %}
