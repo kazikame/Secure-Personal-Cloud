@@ -5,11 +5,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         Hey {{ user.username }}!
-        <form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Upload</button>
-</form>
+        <p> Wanna <a href="{% url 'upload' %}">upload</a> ? or would you fancy browsing your <a href="{% url 'browse' %}">folder</a></p>
         <p><a href="{% url 'logout' %}">logout</a></p>
     {% else %}
         <p>You are not logged in</p>

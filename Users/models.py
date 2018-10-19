@@ -4,8 +4,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class SpcUser(AbstractUser):
-    files = models.FileField()
 
     def __str__(self):
         return self.email
-
