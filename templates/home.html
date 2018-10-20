@@ -5,7 +5,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         Hey {{ user.username }}!
-        <p> Wanna <a href="{% url 'upload' %}">upload</a> ? or would you fancy browsing your <a href="{% url 'browse' %}">folder</a></p>
+        <p> Wanna browse your <a href="{% url 'browse' %}">files</a> ?</p>
         <p><a href="{% url 'logout' %}">logout</a></p>
     {% else %}
         <p>You are not logged in</p>

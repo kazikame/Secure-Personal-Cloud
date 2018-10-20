@@ -4,6 +4,7 @@
 
 {% for file in files %}
     <div>
-        <p> FileName : <a href={{ file.file_url }}>{{ file.file_name }}</a></p>
+        <p> FileName : <a href={{ file.file_url }}>{{ file.file.name }}</a></p>
+        <p> md5sum : {{file.md5sum }} </p>
     </div>
 {% endfor %}

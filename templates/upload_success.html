@@ -2,11 +2,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<h1>New Upload</h1>
-<form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Save</button>
-</form>
+<p> Congrats your upload was successful</p>
 {% else %}
 <p> Stop right there. Upload requires login</p>
 <a href="{% url 'login' %}">login</a> |
