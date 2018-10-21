@@ -97,7 +97,7 @@ public class Main {
 //        FileOutputStream fos2 = new FileOutputStream(new File(args[5]));
 
 
-        byte[] block = new byte[245];
+        byte[] block = new byte[256];
         int i;
         while ((i = fin.read(block))!= -1) {
             byte[] decrypted= cipherd.doFinal(Arrays.copyOfRange(block,0,i));
