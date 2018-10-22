@@ -70,7 +70,7 @@ def upload(login_URL,upload_URL,username,password,publickeypath,Base_Folder,To_B
                 'file_path': file_path,
                 'md5sum': md5sum1,
             }
-            f = {"file": open(os.path.join(Base_Folder,file_path,file[0]), 'rb')}
+            f = {"file": open(os.path.join(directory,file_path,file[0]), 'rb')}
             r = client.post(upload_URL, data=payload, files=f, headers=dict(Referer=upload_URL))
             print('.',end='',flush=True)
 
