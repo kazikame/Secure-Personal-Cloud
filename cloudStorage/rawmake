@@ -1,0 +1,32 @@
+LIB_DIR = ./myengine
+SRC_DIR = ./mygame
+
+all: helloworld usespthread libMyEngineStatic.a libMyEngineDynamic.so mygame
+
+helloworld: helloworld.o
+	g++ -g -o helloworld helloworld.o
+
+helloworld.o:
+
+usespthread: usespthread.o
+	g++ -g -o usespthread usespthread.o -lpthread
+
+usespthread.o:
+
+libMyEngineStatic.a: $(LIB_DIR)/myengine.o
+	ar rcs $(LIB_DIR)/libMyEngineStatic.a $(LIB_DIR)/myengine.o
+
+($LIB_DIR)/myengine.o: $(LIB_DIR)/myengine.cpp $(LIB_DIR)/myengine.hpp
+	g++ -O -c $(LIB_DIR)/myengine.cpp
+
+mygame: mygame.o myengine.a
+	g++ -g -o $(SRC_DIR)/mygame $(SRC_DIR)/mygame.o -L/myengine/ -lmyengine
+
+myengine.a:
+
+mygame.o:
+	g++ -c -g $(SRC_DIR)/mygame.cpp 
+
+
+clean:
+	-rm -r *.o *.a helloworld usespthread
