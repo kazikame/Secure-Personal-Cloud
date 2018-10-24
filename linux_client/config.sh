@@ -23,7 +23,6 @@ then
     python3 startup.py observe "$2" "$dic_file"
 fi
 
-
 if [ "$1" == "$sync" ]
 then
     python3 startup.py sync "$dic_file"
