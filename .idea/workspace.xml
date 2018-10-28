@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a703c433-fa45-49f8-b1ab-ed43a09decdf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux_client/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/linux_client/conf.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux_client/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux_client/startup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux_client/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux_client/test.py" afterDir="false" />
-    </list>
+    <list default="true" id="a703c433-fa45-49f8-b1ab-ed43a09decdf" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +57,7 @@
     <session id="-37813859">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.28" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.8" value="1" />
@@ -159,7 +155,7 @@
       <facet id="Project/invalid/Django" />
     </ignored-facets>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="67" />
     <option name="y" value="25" />
     <option name="width" value="1853" />
@@ -248,8 +244,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20601092" />
