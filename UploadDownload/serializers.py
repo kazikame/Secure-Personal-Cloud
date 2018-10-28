@@ -9,7 +9,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('username', 'email', 'url')
 
 
-class FileSerializer(serializers.ModelSerializer):
+class FileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SingleFileUpload
-        fields = ('file', 'file_path', 'md5sum', 'username', 'file_url')
+        fields = ('file_path', 'md5sum')
