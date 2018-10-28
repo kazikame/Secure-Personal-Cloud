@@ -21,12 +21,12 @@ public class KeyEncrypt {
     }
     public static void main(String... args) throws GeneralSecurityException {
         /*
-         *args[0] is the password
-         *args[1] is "encrypt" or "decrypt"
-         *encrypt - the next arguments are:
-         *[1]<key file to encode> [3]<key file path to store encoded file>
-         *decrypt - the next arguments are:
-         *[2]<file to decode> [3]<file path to decoded file>
+         * args[0] is the password
+         * args[1] is "encrypt" or "decrypt"
+         * encrypt - the next arguments are:
+         * [2]<key file to encode> [3]<key file path to store encoded file>
+         * decrypt - the next arguments are:
+         * [2]<file to decode> [3]<file path to decoded file>
          */
         try {
             if(args[1].equals("encrypt"))

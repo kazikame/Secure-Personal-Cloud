@@ -36,12 +36,19 @@ public class FileEncrypt {
                 else if(args[0].equals("TripleDES")) {
                     DESedeEncrypt(keyf, fin, fos);
                 }
-            }else if (args[1].equals("decrypt")) {
+                else if(args[0].equals("Blowfish")) {
+                    BlowfishEncrypt(keyf, fin, fos);
+                }
+            }
+            else if (args[1].equals("decrypt")) {
                 if (args[0].equals("AES")) {
                     AESDecrypt(keyf, fin, fos);
                 }
                 else if(args[0].equals("TripleDES")) {
                     DESedeDecrypt(keyf, fin, fos);
+                }
+                else if(args[0].equals("Blowfish")) {
+                    BlowfishDecrypt(keyf, fin, fos);
                 }
             }
         }
@@ -50,8 +57,15 @@ public class FileEncrypt {
         }
     }
 
+    private static void BlowfishEncrypt(FileInputStream keyFileInputStream, FileInputStream fileInputStream, FileOutputStream fileOutputStream) {
+
+    }
+
+    private static void BlowfishDecrypt(FileInputStream keyFileInputStream, FileInputStream fileInputStream, FileOutputStream fileOutputStream) {
+
+    }
+
     private static void DESedeEncrypt(FileInputStream keyFileInputStream, FileInputStream fileInputStream, FileOutputStream fileOutputStream) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
-        byte[] fileByteArray = new byte[fileInputStream.available()];
         Cipher cipher = Cipher.getInstance("DESede");
         byte[] key = new byte[24];
         keyFileInputStream.read(key);

@@ -30,17 +30,34 @@ public class GenerateKey {
             else if(args[0].equals("TripleDES")) {
                 GenerateDESede(fos);
             }
+            else if(args[0].equals("Blowfish")) {
+                GenerateBlowfish(fos);
+            }
         }
         catch (NoSuchAlgorithmException | IOException e) {
             e.printStackTrace();
         }
+
+        try {
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    private static void GenerateBlowfish(FileOutputStream fileOutputStream) throws NoSuchAlgorithmException, IOException {
+        KeyGenerator keygenerator = KeyGenerator.getInstance("Blowfish");
+        SecretKey secretKey = keygenerator.generateKey();
+        byte[] key = secretKey.getEncoded();
+        fileOutputStream.write(key);
+    }
+
     private static void GenerateAES(FileOutputStream fileOutputStream) throws NoSuchAlgorithmException, IOException {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
         keyGenerator.init(256);
         SecretKey secretKey = keyGenerator.generateKey();
         byte[] key = secretKey.getEncoded();
-//        System.out.println(key.length);
         fileOutputStream.write(key);
     }
     private static void GenerateDESede(FileOutputStream fileOutputStream) throws NoSuchAlgorithmException, IOException {
