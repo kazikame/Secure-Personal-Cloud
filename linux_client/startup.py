@@ -22,55 +22,21 @@ def upload2(username, password, Base_Folder):
     client = requests.Session()
     payload = {'username': username, 'password': password}
     AuthKey = client.post('http://127.0.0.1:8000/api/login/', data=payload)
-
+    algorithm = "AES"
     files = []
     encryptedFiles = []
     for (root, dirnames, filenames) in walk(To_Be_Uploaded):
         for name in filenames:
             files.append((name, (os.path.relpath(root, Base_Folder))))
 
-    for file in files:
-        print("Uploading File: " + file[0])
-        file_path = file[1]
-        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-        md5sum1 = md5sum(f)
-        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-        header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-        print("The Token being sent as a header in POST: " + str(header))
-        payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,}
-        file = {'file': f}
-        r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
-        print("The received JSON file: " + r.text)
-        print()
-
-'''
     with tempfile.TemporaryDirectory() as directory:
-        
-        for (root, dirnames, filenames) in walk(To_Be_Uploaded):
-            tmppath = os.path.join(directory,os.path.relpath(root,Base_Folder))
-            # copypath = os.path.join(Copy_Path,os.path.relpath(root,To_Be_Uploaded))
-            try:
-                os.mkdir(tmppath)
-                # os.mkdir(copypath)
-            except FileExistsError:
-                pass
-            for file in filenames:
-                fpath = os.path.join(root,file)
-                encfpath = os.path.join(tmppath,file)
-                 # decpath = os.path.join(copypath,file)
-                command = encryptFileCommand.format("RSA","encrypt",publickeypath,fpath,encfpath)
-                os.system(command)
-                encryptedFiles.append((file,(os.path.relpath(root,Base_Folder))))
-                command = encryptFileCommand.format("RSA","decrypt",privatekeypath,encfpath,decpath)
-                os.system(command)
-
-
-        for file in encryptedFiles:
+        for file in files:
             print("Uploading File: " + file[0])
             file_path = file[1]
-            f = open(os.path.join(directory, file_path, file[0]), 'rb')
+            tmpfile = os.path.join(directory,file[0])
+            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
             md5sum1 = md5sum(f)
-            f = open(os.path.join(directory, file_path, file[0]), 'rb')
+            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
             header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
             print("The Token being sent as a header in POST: " + str(header))
             payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,}
@@ -78,7 +44,7 @@ def upload2(username, password, Base_Folder):
             r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
             print("The received JSON file: " + r.text)
             print()
-'''
+
 
 def upload(login_URL,upload_URL,username,password,Base_Folder,To_Be_Uploaded):
 
