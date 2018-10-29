@@ -1,13 +1,14 @@
-import json
 import getpass
-import requests
-import sys
-import os
-from os import walk
 import hashlib
+import json
+import sys
 from functools import partial
-import tempfile
+from os import walk
+
+import requests
+
 from .encryption import *
+
 
 def md5sum(f):
     d = hashlib.md5()
@@ -42,10 +43,6 @@ def upload2(username, password, Base_Folder):
         print("The received JSON file: " + r.text)
         print()
 
-# rmdirCommand = "rm -rf " + Encypted_File_Path
-# mkdirCommand = "mkdir " + Encypted_File_Path
-# os.system(rmdirCommand)
-# os.mkdir(os.path.join(To_Be_Uploaded,"."))
 '''
     with tempfile.TemporaryDirectory() as directory:
         
