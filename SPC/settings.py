@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'UploadDownload',
     'rest_framework.authtoken',
     'rest_auth',
-    'directory',
 ]
 
 AUTH_USER_MODEL = 'Authentication.SPCUser'
@@ -132,11 +131,11 @@ STATIC_URL = '/static/'
 CLOUD_DIR = BASE_DIR + '/cloudStorage'
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
+    'PAGE_SIZE': 10
 }

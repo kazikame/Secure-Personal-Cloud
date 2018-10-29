@@ -8,7 +8,8 @@ router.register(r'users', UserViewSet)
 
 
 urlpatterns = [
+    re_path(r'^get_key/$', GetEncryptionKey.as_view(), name='get-key'),
+    re_path(r'^set_key/$', SetEncryptionKey.as_view(), name='set-key'),
     re_path(r'^upload/$', FileView.as_view(), name='file-upload'),
     re_path(r'', include('rest_auth.urls')),
-    #re_path(r'^/download/?P<id>+/?P<filepathT>+', FileDownload.as_view(), name='file-download')
 ]

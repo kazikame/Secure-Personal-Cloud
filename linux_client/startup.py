@@ -18,6 +18,39 @@ def md5sum(f):
 
 
 def upload2(username, password, Base_Folder):
+    """
+    Main Upload function.
+
+    :param username:
+    :param password:
+    :param Base_Folder: The folder being synced/uploaded
+    :return:
+
+    {SITE_URL} = http://127.0.0.1:8000
+
+    Step 1: Get the token by logging in with correct username+password.
+    Step 2: Send a post request to {SITE_URL}/api/get_key with the header
+            {"Authorisation": "Token {INSERT_TOKEN_NO}"}
+
+            It will return
+            {
+                "key": {KEY},
+                "type": {TYPE}
+            }
+
+            IF EMPTY -> Not set -> Go to step 3
+
+    Step 3: Send a post request to {SITE_URL}/api/set_key with the header
+            {"Authorisation": "Token {INSERT_TOKEN_NO}"} and POST data:
+            {
+                "key": {KEY},
+                "type": {TYPE}
+            }
+
+            If correct token and correct data -> HTTP_202 response.
+                                         else -> HTTP_400 error.
+            Repeat Step 2.
+    """
     To_Be_Uploaded = Base_Folder
     client = requests.Session()
     payload = {'username': username, 'password': password}
@@ -31,21 +64,28 @@ def upload2(username, password, Base_Folder):
 
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
-            print("Uploading File: " + file[0])
-            file_path = file[1]
-            tmpfile = os.path.join(directory,file[0])
-            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-            md5sum1 = md5sum(f)
-            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-            print("The Token being sent as a header in POST: " + str(header))
-            payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,}
-            file = {'file': f}
-            r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
-            print("The received JSON file: " + r.text)
-            print()
+        print("Uploading File: " + file[0])
+        file_path = file[1]
+        tmpfile = os.path.join(directory,file[0])
+        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+        md5sum1 = md5sum(f)
+        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+        header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
+        print("The Token being sent as a header in POST: " + str(header))
+        payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,}
+        file = {'file': f}
+        r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
+        print("The received JSON file: " + r.text)
+        print()
 
 
+# rmdirCommand = "rm -rf " + Encypted_File_Path
+# mkdirCommand = "mkdir " + Encypted_File_Path
+# os.system(rmdirCommand)
+# os.mkdir(os.path.join(To_Be_Uploaded,"."))
+
+
+'''
 def upload(login_URL,upload_URL,username,password,Base_Folder,To_Be_Uploaded):
 
     client = requests.Session()
@@ -81,7 +121,7 @@ def upload(login_URL,upload_URL,username,password,Base_Folder,To_Be_Uploaded):
 
     print('Completed')
     print("Upload Successfull")
-
+'''
 
 def set_url(parameter,url,out):
     with open(out) as f:

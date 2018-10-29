@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from Authentication import views
 from django.views.generic.base import TemplateView
 urlpatterns = [
