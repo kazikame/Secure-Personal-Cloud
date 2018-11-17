@@ -7,7 +7,7 @@ from os import walk
 
 import requests
 
-from .encryption import *
+from encryption import *
 
 
 def md5sum(f):
@@ -64,19 +64,19 @@ def upload2(username, password, Base_Folder):
 
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
-        print("Uploading File: " + file[0])
-        file_path = file[1]
-        tmpfile = os.path.join(directory,file[0])
-        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-        md5sum1 = md5sum(f)
-        f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-        header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-        print("The Token being sent as a header in POST: " + str(header))
-        payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,}
-        file = {'file': f}
-        r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
-        print("The received JSON file: " + r.text)
-        print()
+            print("Uploading File: " + file[0])
+            file_path = file[1]
+            tmpfile = os.path.join(directory,file[0])
+            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+            md5sum1 = md5sum(f)
+            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
+            print("The Token being sent as a header in POST: " + str(header))
+            payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,'filename': file[0],}
+            file = {'file': f}
+            r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
+            print("The received JSON file: " + r.text)
+            print()
 
 
 # rmdirCommand = "rm -rf " + Encypted_File_Path
