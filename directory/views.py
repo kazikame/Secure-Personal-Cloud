@@ -11,7 +11,8 @@ try:
 except ImportError:
     from django.utils.module_loading import import_by_path as import_module
 
-#utils functions
+
+# utils functions
 def check_access(request):
     """Returns true if user has access to the directory"""
     access_mode = getattr(settings, 'DIRECTORY_ACCESS_MODE', 'public')
@@ -45,6 +46,7 @@ def get_file_names(directory):
             files.append(item)
     return files
 
+
 def read_file_chunkwise(file_obj):
     """Reads file in 32Kb chunks"""
     while True:
@@ -53,9 +55,11 @@ def read_file_chunkwise(file_obj):
             break
         yield data
 
-#view functions below
+
+# view functions below
 def index(request):
     return HttpResponseRedirect(reverse('directory_list'))
+
 
 def list_directory(request):
     """default view - listing of the directory"""
@@ -67,7 +71,7 @@ def list_directory(request):
         }
         template = getattr(settings, 'DIRECTORY_TEMPLATE', 'directory/list.html')
         return render(request, template, data)
-        
+
     else:
         raise PermissionDenied()
 
@@ -81,7 +85,7 @@ def download_file(request, file_name, *args, **kwargs):
     if request.user.is_authenticated:
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
 
-        #make sure that file exists within current directory
+        # make sure that file exists within current directory
         files = get_file_names(directory)
         if file_name in files:
             file_path = os.path.join(directory, file_name)
