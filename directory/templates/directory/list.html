@@ -1,7 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Your Files{% endblock %}
 {# simplest template for listing the directory #}
+{% block scripts %}
+<script src="{% static 'js/react.min.js' %}"></script>
+<script src="{% static 'js/react-dom.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+{% endblock %}
+{% block content %}
 <h1>{{ directory_name }}</h1>
 <ul>
-{% for file in directory_files %}
-    <li><a href="{% url 'directory_download_file' file %}">{{ file }}</a></li>
-{% endfor %}
+{% for file_tuple in alldata %}
+    <li>
+        <div>
+        {{ file_tuple.0 }}
+        <ol>
+            {% for file in file_tuple.1 %}
+            <li>
+                <a href="{% url 'directory_download_file' file_tuple.0 file %}">{{ file }}</a>
+            </li>
+            {% endfor %}
+        </ol>
+        </div>
+    </li>
+    {% endfor %}
 </ul>
+
+{% endblock %}

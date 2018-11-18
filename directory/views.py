@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import StreamingHttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 
+
 try:
     from django.utils.module_loading import import_string as import_module
 except ImportError:
@@ -65,10 +66,12 @@ def list_directory(request):
     """default view - listing of the directory"""
     if request.user.is_authenticated:
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
-        data = {
-            'directory_name': os.path.basename(directory),
-            'directory_files': get_file_names(directory)
-        }
+        data = {'directory_name': os.path.basename(directory),
+                'alldata': [(os.path.relpath(root, directory), filenames) for (root, dirnames, filenames) in os.walk(directory)]}
+        # data = {
+        #     'directory_name': os.path.basename(directory),
+        #     'directory_files': get_file_names(directory)
+        # }
         template = getattr(settings, 'DIRECTORY_TEMPLATE', 'directory/list.html')
         return render(request, template, data)
 
@@ -76,25 +79,28 @@ def list_directory(request):
         raise PermissionDenied()
 
 
-def download_file(request, file_name, *args, **kwargs):
+def download_file(request, dir_name, file_name="", *args, **kwargs):
     """allows authorized user to download a given file"""
-
+    # dir_name = file_tuple[0]
+    # file_name = file_tuple[1]
+    if file_name == "":
+        file_name = dir_name
+        dir_name = "."
     if os.path.sep in file_name:
         raise PermissionDenied()
 
     if request.user.is_authenticated:
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
-
         # make sure that file exists within current directory
-        files = get_file_names(directory)
-        if file_name in files:
-            file_path = os.path.join(directory, file_name)
+
+        file_path = os.path.join(directory, dir_name, file_name)
+        if os.path.isfile(file_path):
             response = StreamingHttpResponse(content_type='application/octet-stream')
             response['Content-Disposition'] = 'attachment; filename=%s' % file_name
-            file_obj = open(os.path.join(directory, file_name))
+            file_obj = open(file_path)
             response.streaming_content = read_file_chunkwise(file_obj)
             return response
         else:
-            raise Http404
+            raise Http404(file_path)
     else:
         raise Http404
