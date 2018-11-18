@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memes</title>
+  <!-- jQuery -->
+  <script src="static/jquery-3.3.1.min.js"></script>
+  <!-- Materialize - Compiled and minified CSS -->
+  <link rel="stylesheet" href="static/materialize.min.css">
+  <!-- Materialize - Compiled and minified JavaScript -->
+  <script src="static/materialize.min.js"></script>
+
+</head>
+<body>
+  <div class="row" style="margin: 0">
+    <div class="col l3 m3 s3 pink white-text">
+      <h3>Memes are love, Memes are life</h3>
+    </div>
+    <div class="col l6 m6 s6 flow-text grey lighten-2" style="height: 100vh">
+      <h4 style="margin: 0">This section should display all the memes in a list</h4>
+      <ul id="meme-list">
+      </ul>
+    </div>
+    <div class="col l3 m3 s3">
+      <div class="row">
+        <div class="input-field col l8 m8 s8">
+          <input id="meme-fetch-size" value="1" type="number">
+          <label class="active" for="meme-fetch-size">Number of memes to fetch</label>
+          <button id="meme-fetch-btn" class="btn pink white-text">Bring me memes!</button>
+          <p>The number input field above gives the number of memes to fetch</p>
+          <p>Clicking on <b>Bring me memes!</b> should fetch that many number of memes and append it to the middle section</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  
+    function appendMeme(author, content, timestamp) {
+      // this function creates a meme with the given attributes and appends meme-list
+      // add your code here
+      
+
+
+
+
+
+      // end of your code
+    }
+
+    function ajaxCall() {
+      // implement
+      // 1. getting value from input field
+      // 2. valdating it
+      // 3. ajax call if validation successful
+      // 4. ajax callback to append parse response and call appendMeme() on all memes
+      
+
+
+
+      // end of your code
+    }
+
+    $(document).ready(function() {
+
+      // add a onclick listener to the meme-fetch-btn
+      
+      
+      
+      // end of your code
+    });
+
+  </script>
+
+</body>
+</html>

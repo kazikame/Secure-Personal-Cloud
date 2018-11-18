@@ -10,7 +10,7 @@ int main()
 	long long sum = 0;
 	int max_el;
 	int el1, el2;
-	cin>>T; //blah
+	cin>>T;
 
 	while(T--)
 	{

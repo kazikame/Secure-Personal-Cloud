@@ -97,7 +97,7 @@ def download_file(request, dir_name, file_name="", *args, **kwargs):
         if os.path.isfile(file_path):
             response = StreamingHttpResponse(content_type='application/octet-stream')
             response['Content-Disposition'] = 'attachment; filename=%s' % file_name
-            file_obj = open(file_path)
+            file_obj = open(file_path, 'rb')
             response.streaming_content = read_file_chunkwise(file_obj)
             return response
         else:
