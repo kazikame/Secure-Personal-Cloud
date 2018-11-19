@@ -18,7 +18,11 @@
         <ol>
             {% for file in file_tuple.1 %}
             <li>
-                <a href="{% url 'directory_download_file' file_tuple.0 file %}">{{ file }}</a>
+                <div>
+                    <a href="{% url 'directory_download_file' file_tuple.0 file %}">Download {{ file }}</a>
+                    <br>
+                    <a href="{% url 'directory_view_file' file_tuple.0 file %}">View {{ file }}</a>
+                </div>
             </li>
             {% endfor %}
         </ol>
