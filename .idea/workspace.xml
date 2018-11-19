@@ -109,7 +109,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="C++" value="7" />
-          <entry key="HTML" value="1633" />
+          <entry key="HTML" value="1650" />
           <entry key="JSX Harmony" value="498" />
           <entry key="PLAIN_TEXT" value="40" />
           <entry key="Python" value="3240" />
@@ -118,7 +118,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="cpp" value="7" />
-          <entry key="html" value="1633" />
+          <entry key="html" value="1650" />
           <entry key="jsx" value="511" />
           <entry key="py" value="3267" />
         </counts>
@@ -188,8 +188,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/directory/templates/directory/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="46" column="71" lean-forward="true" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
+            <state relative-caret-position="477">
+              <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -403,12 +403,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.20601092" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.20601092" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.33081082" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.33081082" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.3299933" />
       <window_info anchor="bottom" id="Message" order="3" />
@@ -671,8 +670,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/directory/templates/directory/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="46" column="71" lean-forward="true" selection-start-line="46" selection-start-column="71" selection-end-line="46" selection-end-column="71" />
+        <state relative-caret-position="477">
+          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
         </state>
       </provider>
     </entry>
