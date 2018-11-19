@@ -9,26 +9,41 @@
 <script src="{% static 'js/browser.min.js' %}"></script>
 {% endblock %}
 {% block content %}
-<h1>{{ directory_name }}</h1>
+<h1>{{ user }}</h1>
+<!--<ul>-->
+<!--{% for file_tuple in alldata %}-->
+    <!--<li>-->
+        <!--<div>-->
+        <!--{{ file_tuple.0 }}-->
+        <!--<ol>-->
+            <!--{% for file in file_tuple.1 %}-->
+            <!--<li>-->
+                <!--<div>-->
+                    <!--<a href="{% url 'directory_download_file' file_tuple.0 file %}">Download {{ file }}</a>-->
+                    <!--<br>-->
+                    <!--<a href="{% url 'directory_view_file' file_tuple.0 file %}">View {{ file }}</a>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--{% endfor %}-->
+        <!--</ol>-->
+        <!--</div>-->
+    <!--</li>-->
+    <!--{% endfor %}-->
+<!--</ul>-->
 <ul>
-{% for file_tuple in alldata %}
+    {% for subdir in subdirs %}
     <li>
-        <div>
-        {{ file_tuple.0 }}
-        <ol>
-            {% for file in file_tuple.1 %}
-            <li>
-                <div>
-                    <a href="{% url 'directory_download_file' file_tuple.0 file %}">Download {{ file }}</a>
-                    <br>
-                    <a href="{% url 'directory_view_file' file_tuple.0 file %}">View {{ file }}</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ol>
-        </div>
+        {% with directory_name|add:subdir as totaldir %}
+        <a href="{% url 'directory_list' totaldir %}">Directory-{{ subdir }}</a>
+        {% endwith %}
+    </li>
+    {% endfor %}
+    {% for file in files %}
+    <li>
+        <a href="{% url 'directory_download_file' directory_name file %}">Download {{ file }}</a>
     </li>
     {% endfor %}
 </ul>
-
+<!--<p><a href="{% url 'directory_list' directory_name %}">Go to parent</a></p>-->
+<input type=button value="Go to parent" onClick="javascript:history.go(-1);">
 {% endblock %}

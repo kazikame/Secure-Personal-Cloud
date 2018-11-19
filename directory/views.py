@@ -59,15 +59,18 @@ def read_file_chunkwise(file_obj):
 
 # view functions below
 def index(request):
-    return HttpResponseRedirect(reverse('directory_list'))
+    return HttpResponseRedirect(reverse('directory_list', args=(".",)))
 
 
-def list_directory(request):
+def list_directory(request, d_name="."):
     """default view - listing of the directory"""
     if request.user.is_authenticated:
-        directory = os.path.join(settings.CLOUD_DIR, request.user.username)
-        data = {'directory_name': os.path.basename(directory),
-                'alldata': [(os.path.relpath(root, directory), filenames) for (root, dirnames, filenames) in os.walk(directory)]}
+        directory = os.path.join(settings.CLOUD_DIR, request.user.username, d_name)
+        data = {'user': request.user.username, 'directory_name': d_name,
+                'files': [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))],
+                'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if not os.path.isfile(os.path.join(directory, d))]
+                }
+                # 'alldata': [(os.path.relpath(root, directory), filenames) for (root, dirnames, filenames) in os.walk(directory)]
         # data = {
         #     'directory_name': os.path.basename(directory),
         #     'directory_files': get_file_names(directory)
@@ -106,7 +109,7 @@ def download_file(request, dir_name, file_name="", *args, **kwargs):
         raise Http404
 
 
-def view_file(request, dir_name, file_name="",*args, **kwargs):
+def view_file(request, dir_name, file_name="", *args, **kwargs):
     """allows user to view the file"""
     if file_name == "":
         file_name = dir_name
@@ -118,7 +121,7 @@ def view_file(request, dir_name, file_name="",*args, **kwargs):
     if request.user.is_authenticated:
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
 
-        file_path = os.path.join(directory,dir_name,file_name)
+        file_path = os.path.join(directory, dir_name, file_name)
         if os.path.isfile(file_path):
             file_obj = open(file_path, 'rb')
             response = HttpResponse(file_obj.read(), content_type='application/txt')

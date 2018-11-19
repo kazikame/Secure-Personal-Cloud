@@ -1,7 +1,9 @@
 import getpass
 import hashlib
 import json
+import os
 import sys
+import tempfile
 from functools import partial
 from os import walk
 
@@ -123,6 +125,7 @@ def upload(login_URL,upload_URL,username,password,Base_Folder,To_Be_Uploaded):
     print("Upload Successfull")
 '''
 
+
 def set_url(parameter,url,out):
     with open(out) as f:
         data = json.load(f)
@@ -154,6 +157,7 @@ def empty_json(out):
     data = {}
     with open(out, 'w') as outfile:
         json.dump(data, outfile)
+
 
 def sync(out):
     with open(out) as f:
