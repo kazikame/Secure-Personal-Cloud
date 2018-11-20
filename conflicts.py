@@ -13,8 +13,7 @@ def delete(base,files):
         os.remove(os.path.join(base,x[2:]));
         
 
-def resolve_conflicts(cloud_dict):  # return [upload,download,delete]
-    local_dir = '/home/parikshit/Downloads/cs213_lab/'
+def resolve_conflicts(cloud_dict,local_dir):  # return [upload,download,delete]
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):
         for name in filenames:
