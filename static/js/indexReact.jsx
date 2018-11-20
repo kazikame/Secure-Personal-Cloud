@@ -1,6 +1,6 @@
 // first creating the main component, a file icon, i guess
 
-var FileIcon = React.createClass({
+var File = React.createClass({
     getInitialState: function() {
         return {customText: ""}
     },
@@ -19,6 +19,6 @@ var FileIcon = React.createClass({
 });
 
 ReactDOM.render(
-    <FileIcon/>,
+    <File/>,
     document.getElementById('list_of_files')
 );
