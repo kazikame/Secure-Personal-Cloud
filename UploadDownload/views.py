@@ -1,12 +1,13 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import FormParser, FileUploadParser
+from rest_framework.parsers import FormParser, FileUploadParser, MultiPartParser
 from rest_framework import status, viewsets
 from .serializers import FileSerializer, UserSerializer
 from Authentication.models import SpcUser
 from SPC import settings
 from .models import *
 from django.db.models.base import ObjectDoesNotExist
+from django.db import IntegrityError
 # Create your views here.
 
 
@@ -19,16 +20,20 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class FileView(APIView):
-    parser_classes = (FileUploadParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser)
 
-    def post(self, request, filename, format=None):
+    def post(self, request, format=None):
         if request.user.is_authenticated:
-            file_serializer = FileSerializer(data=request.FILES['file'])
+            file_serializer = FileSerializer(data=request.data)
             if file_serializer.is_valid():
-                post = file_serializer.save(commit=False)
-                post.user = request.user.username
-                post.file_url = os.path.join(settings.CLOUD_DIR, post.user, post.file_path, str(post.file))
-                post.save()
+                try:
+                    file_serializer.save(file=request.FILES['file'], username=request.user.username,
+                                         file_url=os.path.join(settings.CLOUD_DIR,
+                                                               request.user.username,
+                                                               file_serializer.validated_data['file_path'],
+                                                               request.data['filename']))
+                except IntegrityError as e:
+                    return Response({'Error':'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
                 return Response(file_serializer.data, status=status.HTTP_201_CREATED)
             else:
                 return Response(file_serializer.errors, status=status.HTTP_403_FORBIDDEN)

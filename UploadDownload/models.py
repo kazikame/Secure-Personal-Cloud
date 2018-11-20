@@ -6,13 +6,15 @@ from django.conf import settings
 
 class SingleFileUpload(models.Model):
     def loc_func(self, filename):
-        return os.path.join(settings.CLOUD_DIR, self.user, self.file_path, str(self.file))
+        return os.path.join(settings.CLOUD_DIR, self.username, self.file_path, str(self.file))
     file_path = models.CharField(max_length=100)
     file = models.FileField(upload_to=loc_func, max_length=1000)
-    name = models.CharField(max_length=200)
     md5sum = models.CharField(max_length=200)
     file_url = models.CharField(max_length=200)
     username = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = (("username", "md5sum", "file_path"), )
 
     def __str__(self):
         return self.file.name+'@'+self.user+'md5'+self.md5sum

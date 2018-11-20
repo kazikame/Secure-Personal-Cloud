@@ -53,17 +53,19 @@ def upload2(username, password, Base_Folder):
                                          else -> HTTP_400 error.
             Repeat Step 2.
     """
+    print('in upload!')
     To_Be_Uploaded = Base_Folder
     client = requests.Session()
     payload = {'username': username, 'password': password}
     AuthKey = client.post('http://127.0.0.1:8000/api/login/', data=payload)
+    print(AuthKey.text)
     algorithm = "AES"
     files = []
     encryptedFiles = []
     for (root, dirnames, filenames) in walk(To_Be_Uploaded):
         for name in filenames:
             files.append((name, (os.path.relpath(root, Base_Folder))))
-
+    print(files)
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
             print("Uploading File: " + file[0])
@@ -72,9 +74,9 @@ def upload2(username, password, Base_Folder):
             f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
             md5sum1 = md5sum(f)
             f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
+            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),}
             print("The Token being sent as a header in POST: " + str(header))
-            payloadUpload = {'file_path': file_path, 'md5sum': md5sum1,'filename': file[0],}
+            payloadUpload = {'file_path': file_path, 'md5sum': md5sum1, 'filename': file[0], }
             file = {'file': f}
             r = client.post('http://127.0.0.1:8000/api/upload/', data=payloadUpload, files=file, headers=header)
             print("The received JSON file: " + r.text)
@@ -162,11 +164,13 @@ def empty_json(out):
 def sync(out):
     with open(out) as f:
         data = json.load(f)
+        print('done!')
+        print(data)
     #upload(data['server_url']+'accounts/login/',data['server_url']+'upload/test/',data['username'],data['password'],data['home_dir'],data['home_dir'])
     upload2(data['username'],data['password'],data['home_dir'])
 
 
-if (sys.argv[1] == 'config'):
+if sys.argv[1] == 'config':
     config_edit(sys.argv[2])
 if (sys.argv[1] == 'set_server'):
     set_url('server_url',sys.argv[2],sys.argv[3])
