@@ -9,6 +9,8 @@ from os import walk, path
 from urllib.error import *
 import requests
 from encryption import *
+from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
+from tqdm import tqdm
 
 # CONFIG OPTIONS
 config_file = 'conf.json'
@@ -111,6 +113,16 @@ def md5sum(f):
     return d.hexdigest()
 
 
+pbar = None
+
+
+completed = 0
+def progress_update(monitor):
+    global completed
+    pbar.update(monitor.bytes_read - completed)
+    completed = monitor.bytes_read
+
+
 def upload2(Base_Folder):
     """
     Main Upload function.
@@ -150,25 +162,39 @@ def upload2(Base_Folder):
     algorithm = "AES"
     files = []
     encryptedFiles = []
+    size = 0
+    upload_success = 0
+    upload_failed = 0
     for (root, dirnames, filenames) in walk(To_Be_Uploaded):
         for name in filenames:
             files.append((name, (os.path.relpath(root, Base_Folder))))
-    print(files)
+            size += os.path.getsize(os.path.join(Base_Folder, root, name))
+    global pbar
+    pbar = tqdm(total=size*1.003, ncols=80, unit='B', unit_scale=True, unit_divisor=1024)
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
-            print("Uploading File: " + file[0])
             file_path = file[1]
             tmpfile = os.path.join(directory, file[0])
+
             f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
             md5sum1 = md5sum(f)
+
             f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
-            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-            print("The Token being sent as a header in POST: " + str(header))
-            payloadUpload = {'file_path': file_path, 'md5sum': md5sum1, 'filename': file[0], }
-            file = {'file': f}
-            r = client.post(server_url + 'api/upload/', data=payloadUpload, files=file, headers=header)
-            print("The received JSON file: " + r.text)
-            print()
+
+            payloadUpload = MultipartEncoder(fields={'file_path': file_path, 'md5sum': md5sum1,
+                                                     'file': (file[0], f, 'application/octet-stream')})
+            header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),
+                      'Content-Type': payloadUpload.content_type}
+            global completed
+            completed = 0
+            monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
+            r = client.post(server_url + 'api/upload/', data=monitor,  headers=header)
+            if (r.status_code == 201):
+                upload_success +=1
+            else:
+                upload_failed +=1
+
+    tqdm.write('Uploaded ' + str(upload_success) + ' files successfully. ' + str(upload_failed) + ' uploads failed.')
 
 
 def set_url(parameter,url,out):
@@ -179,9 +205,9 @@ def set_url(parameter,url,out):
         json.dump(data, outfile)
 
 
-def empty_json(out):
+def empty_json():
     data = {}
-    with open(out, 'w') as outfile:
+    with open(config_file, 'w') as outfile:
         json.dump(data, outfile)
 
 
@@ -230,4 +256,4 @@ if sys.argv[1] == 'observe':
 if sys.argv[1] == 'sync':
     sync(config_file)
 if sys.argv[1] == 'empty_json':
-    empty_json(sys.argv[2])
+    empty_json(config_file)

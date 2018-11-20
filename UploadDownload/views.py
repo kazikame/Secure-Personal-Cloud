@@ -28,17 +28,18 @@ class FileView(APIView):
             file_serializer = FileSerializer(data=request.data)
             if file_serializer.is_valid():
                 try:
+                    print(request.data)
                     file_serializer.save(username=request.user.username,
                                          file_url=os.path.join(settings.CLOUD_DIR,
                                                                request.user.username,
                                                                file_serializer.validated_data['file_path'],
-                                                               request.data['filename']),
-                                         name=request.data['filename'])
+                                                               str(request.data['file'])),
+                                         name=str(request.data['file']))
                     print(request.FILES)
-                    file_serializer.save(file=request.FILES['file'])
+                    file_serializer.save(file=request.data['file'])
                 except IntegrityError as e:
                     return Response({'Error':'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
-                return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+                return Response({'detail':'Success'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(file_serializer.errors, status=status.HTTP_403_FORBIDDEN)
 
