@@ -2,24 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a703c433-fa45-49f8-b1ab-ed43a09decdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/UploadDownload/migrations/0004_auto_20181120_1326.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/admin/migrations/0002_auto_20181120_1503.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0002_auto_20181120_1503.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentication/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Authentication/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authentication/migrations/0002_auto_20181029_0004.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UploadDownload/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/UploadDownload/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UploadDownload/migrations/0002_auto_20181024_1403.py" beforeDir="false" afterPath="$PROJECT_DIR$/UploadDownload/migrations/0002_singlefileupload_name.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UploadDownload/migrations/0003_auto_20181029_0735.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UploadDownload/migrations/0004_auto_20181120_1326.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/UploadDownload/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/UploadDownload/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UploadDownload/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/UploadDownload/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UploadDownload/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/UploadDownload/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/lol/bar/memeClient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/lol/test.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/lol/tut 10 solutions.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/memeClient.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/test.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/test1.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/testing/0acb95ab-1654-4985-bc07-4a29c4cd6ef1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloudStorage/saksham47/testing/Sample.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux_client/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/linux_client/conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux_client/conf.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/linux_client/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/linux_client/startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/admin/migrations/0002_logentry_remove_auto_add.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/contrib/admin/migrations/0003_logentry_add_action_flag_choices.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/authtoken/migrations/0002_auto_20160226_1747.py" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -164,10 +163,10 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="5" />
-          <entry key="json" value="1" />
+          <entry key="json" value="16" />
           <entry key="jsx" value="1" />
-          <entry key="py" value="12" />
-          <entry key="sh" value="1" />
+          <entry key="py" value="22" />
+          <entry key="sh" value="2" />
           <entry key="sh#" value="1" />
           <entry key="sql" value="1" />
           <entry key="txt" value="1" />
@@ -175,12 +174,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="1" />
+          <entry key="Bash" value="2" />
           <entry key="HTML" value="5" />
-          <entry key="JSON" value="1" />
+          <entry key="JSON" value="16" />
           <entry key="JSX Harmony" value="1" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="12" />
+          <entry key="Python" value="22" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -195,18 +194,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="Django Console" value="250" />
           <entry key="json" value="16" />
-          <entry key="py" value="822" />
-          <entry key="py@Project" value="61" />
+          <entry key="py" value="5288" />
+          <entry key="py@Project" value="274" />
           <entry key="txt" value="129" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CommandLine" value="61" />
+          <entry key="CommandLine" value="265" />
           <entry key="JSON" value="16" />
-          <entry key="PLAIN_TEXT" value="129" />
-          <entry key="Python" value="822" />
+          <entry key="PLAIN_TEXT" value="138" />
+          <entry key="Python" value="5538" />
         </counts>
       </usages-collector>
     </session>
@@ -216,60 +216,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/linux_client/startup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-345">
-              <caret line="78" column="81" lean-forward="true" selection-start-line="78" selection-start-column="81" selection-end-line="78" selection-end-column="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UploadDownload/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UploadDownload/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+            <state relative-caret-position="307">
+              <caret line="248" column="17" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="17" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1542737194936" expanded="true" signature="2861:2864" ph="..." />
+                <marker date="1542737194936" expanded="true" signature="2878:2883" ph="..." />
+                <marker date="1542737194936" expanded="true" signature="7342:7530" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UploadDownload/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <marker date="1542700567556" expanded="true" signature="550:622" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/linux_client/conf.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="118" selection-start-column="118" selection-end-column="118" />
             </state>
           </provider>
         </entry>
@@ -277,8 +231,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/directory/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="124" column="36" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
+            <state relative-caret-position="187">
+              <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UploadDownload/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UploadDownload/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+                <marker date="1542729384139" expanded="true" signature="3401:3402" ph="..." />
+                <marker date="1542729384139" expanded="true" signature="3401:3406" ph="..." />
+                <marker date="1542729384139" expanded="true" signature="4281:4286" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1542728697712" expanded="true" signature="608:680" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SPC/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SPC/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -286,15 +291,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/directory/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+            <state relative-caret-position="90">
+              <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/directory/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -317,9 +317,11 @@
       <find>scri[ts</find>
       <find>setting</find>
       <find>settings</find>
+      <find>'http://127.0.0.1:8000/</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;&quot;&quot;</replace>
+      <replace>server_url + '</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -361,10 +363,11 @@
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/directory/views.py" />
         <option value="$PROJECT_DIR$/directory/templates/directory/list.html" />
-        <option value="$PROJECT_DIR$/linux_client/conf.json" />
-        <option value="$PROJECT_DIR$/linux_client/startup.py" />
         <option value="$PROJECT_DIR$/UploadDownload/models.py" />
         <option value="$PROJECT_DIR$/UploadDownload/views.py" />
+        <option value="$PROJECT_DIR$/UploadDownload/urls.py" />
+        <option value="$PROJECT_DIR$/linux_client/conf.json" />
+        <option value="$PROJECT_DIR$/linux_client/startup.py" />
       </list>
     </option>
   </component>
@@ -414,17 +417,6 @@
             <path>
               <item name="251Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="251Project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="251Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="251Project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="registration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="251Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="251Project" type="462c0819:PsiDirectoryNode" />
               <item name="UploadDownload" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -435,12 +427,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="replace&#9;ACTION&#9;Replace" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/SPC/settings.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/cloudStorage/saksham47/testing" />
       <recent name="$PROJECT_DIR$/cloudStorage/saksham47/lol" />
       <recent name="$PROJECT_DIR$/cloudStorage/saksham47" />
@@ -501,13 +495,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.30769232" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.24847814" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="manage.py@Project" order="0" weight="0.32969433" />
-      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5008301" side_tool="true" weight="0.33006537" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.4991699" visible="true" weight="0.32969433" />
+      <window_info anchor="bottom" id="manage.py@Project" order="0" sideWeight="0.4997233" weight="0.32969433" />
+      <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5002767" side_tool="true" weight="0.32969433" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.4986165" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.32969433" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32972974" />
@@ -518,7 +513,7 @@
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="11" weight="0.32969433" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.32969433" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -541,14 +536,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixes upload 'filename argument missing' error&#10;&#10;&#10;Upload works fine.&#10;Same file uploaded twice is NOT detected." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/upload/models.py" />
-    <entry file="file://$PROJECT_DIR$/linux_client/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="882">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/linux_client/keyEncrypt.py" />
     <entry file="file://$PROJECT_DIR$/linux_client/keys.txt" />
     <entry file="file://$PROJECT_DIR$/linux_client/encryption.py">
@@ -582,9 +569,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/UploadDownload/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SPC/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Authentication/urls.py">
@@ -660,13 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SPC/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="145" column="37" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/directory/templates/directory/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="477">
@@ -700,13 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/linux_client/config.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/linux_client/xD.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -714,23 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="70" selection-start-line="7" selection-start-column="70" selection-end-line="7" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SPC/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directory/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directory/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -744,69 +697,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/fields/files.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/directory/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="124" column="36" selection-start-line="124" selection-start-column="36" selection-end-line="124" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/linux_client/conf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="118" selection-start-column="118" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e51d94e2-9485-4696-be20-0192da0dd47e/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/db/models/fields/files.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <marker date="1542700567556" expanded="true" signature="550:622" ph="..." />
-          </folding>
+        <state relative-caret-position="675">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directory/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-743">
+          <caret line="426" column="47" selection-start-line="426" selection-start-column="47" selection-end-line="426" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UploadDownload/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPC/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="129" column="52" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPC/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SPC/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directory/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="64" column="4" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1542728697712" expanded="true" signature="608:680" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UploadDownload/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+        <state relative-caret-position="442">
+          <caret line="104" column="41" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
+            <marker date="1542729384139" expanded="true" signature="3401:3402" ph="..." />
+            <marker date="1542729384139" expanded="true" signature="3401:3406" ph="..." />
+            <marker date="1542729384139" expanded="true" signature="4281:4286" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/rest_auth/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UploadDownload/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        <state relative-caret-position="165">
+          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/directory/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="48" selection-start-line="7" selection-start-column="48" selection-end-line="7" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/linux_client/config.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/linux_client/conf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/linux_client/startup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-345">
-          <caret line="78" column="81" lean-forward="true" selection-start-line="78" selection-start-column="81" selection-end-line="78" selection-end-column="81" />
+        <state relative-caret-position="307">
+          <caret line="248" column="17" selection-start-line="248" selection-start-column="17" selection-end-line="248" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1542737194936" expanded="true" signature="2861:2864" ph="..." />
+            <marker date="1542737194936" expanded="true" signature="2878:2883" ph="..." />
+            <marker date="1542737194936" expanded="true" signature="7342:7530" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
