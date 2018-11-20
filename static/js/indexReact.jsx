@@ -11,13 +11,14 @@ var FileIcon = React.createClass({
     render: function () {
         return (
             <div>
-                <button onClick={this.fileClicked}>Hello</button>
+                Fuck off!
             </div>
         )
+
     }
 });
 
 ReactDOM.render(
     <FileIcon/>,
-    document.getElementById('xyz')
+    document.getElementById('list_of_files')
 );

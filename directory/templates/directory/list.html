@@ -30,7 +30,7 @@
     <!--</li>-->
     <!--{% endfor %}-->
 <!--</ul>-->
-<ul>
+<ul id="list_of_files">
     {% for subdir in subdirs %}
     <li>
         {% with directory_name|add:subdir as totaldir %}
@@ -43,6 +43,7 @@
         <a href="{% url 'directory_download_file' directory_name file %}">Download {{ file }}</a>
     </li>
     {% endfor %}
+    <script src="{% static 'js/indexReact.jsx' %}" type="text/babel"></script>
 </ul>
 <!--<p><a href="{% url 'directory_list' directory_name %}">Go to parent</a></p>-->
 <input type=button value="Go to parent" onClick="javascript:history.go(-1);">

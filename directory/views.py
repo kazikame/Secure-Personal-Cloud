@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.http import StreamingHttpResponse, Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 
-
 try:
     from django.utils.module_loading import import_string as import_module
 except ImportError:
@@ -68,13 +67,8 @@ def list_directory(request, d_name="."):
         directory = os.path.join(settings.CLOUD_DIR, request.user.username, d_name)
         data = {'user': request.user.username, 'directory_name': d_name,
                 'files': [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))],
-                'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if not os.path.isfile(os.path.join(directory, d))]
+                'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
                 }
-                # 'alldata': [(os.path.relpath(root, directory), filenames) for (root, dirnames, filenames) in os.walk(directory)]
-        # data = {
-        #     'directory_name': os.path.basename(directory),
-        #     'directory_files': get_file_names(directory)
-        # }
         template = getattr(settings, 'DIRECTORY_TEMPLATE', 'directory/list.html')
         return render(request, template, data)
 
