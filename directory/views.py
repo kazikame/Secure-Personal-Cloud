@@ -66,6 +66,9 @@ def list_directory(request, d_name="."):
     """default view - listing of the directory"""
     if request.user.is_authenticated:
         directory = os.path.join(settings.CLOUD_DIR, request.user.username, d_name)
+        if not os.path.exists(directory):
+            template = getattr(settings, 'DEFAULT_DIR_TEMPLATE', 'directory/default.html')
+            return render(request, template)
         data = {'user': request.user.username, 'directory_name': d_name,
                 'files': [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))],
                 'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if not os.path.isfile(os.path.join(directory, d))]
