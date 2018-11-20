@@ -197,13 +197,15 @@
         <counts>
           <entry key="json" value="16" />
           <entry key="py" value="822" />
-          <entry key="py@Project" value="57" />
+          <entry key="py@Project" value="61" />
+          <entry key="txt" value="129" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CommandLine" value="57" />
+          <entry key="CommandLine" value="61" />
           <entry key="JSON" value="16" />
+          <entry key="PLAIN_TEXT" value="129" />
           <entry key="Python" value="822" />
         </counts>
       </usages-collector>
@@ -211,11 +213,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/linux_client/startup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="76" column="81" selection-start-line="76" selection-start-column="81" selection-end-line="76" selection-end-column="81" />
+            <state relative-caret-position="-345">
+              <caret line="78" column="81" lean-forward="true" selection-start-line="78" selection-start-column="81" selection-end-line="78" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -229,11 +231,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/UploadDownload/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
-              <caret line="35" column="104" lean-forward="true" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+              <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -254,7 +256,7 @@
         <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+              <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <marker date="1542700567556" expanded="true" signature="550:622" ph="..." />
@@ -322,6 +324,7 @@
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -474,6 +477,14 @@
       <workItem from="1542560352028" duration="268000" />
       <workItem from="1542561760025" duration="1573000" />
     </task>
+    <task id="LOCAL-00001" summary="fixes upload 'filename argument missing' error&#10;&#10;&#10;Upload works fine.&#10;Same file uploaded twice is NOT detected.">
+      <created>1542701607323</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1542701607323</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -490,14 +501,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.30769232" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="manage.py@Project" order="0" visible="true" weight="0.32969433" />
+      <window_info anchor="bottom" id="manage.py@Project" order="0" weight="0.32969433" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5008301" side_tool="true" weight="0.33006537" />
-      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4991699" weight="0.32969433" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="2" sideWeight="0.4991699" visible="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.32969433" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32972974" />
@@ -524,6 +534,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="fixes upload 'filename argument missing' error&#10;&#10;&#10;Upload works fine.&#10;Same file uploaded twice is NOT detected." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes upload 'filename argument missing' error&#10;&#10;&#10;Upload works fine.&#10;Same file uploaded twice is NOT detected." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/upload/models.py" />
@@ -753,24 +768,10 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e51d94e2-9485-4696-be20-0192da0dd47e/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/linux_client/startup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="76" column="81" selection-start-line="76" selection-start-column="81" selection-end-line="76" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UploadDownload/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UploadDownload/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1542700567556" expanded="true" signature="550:622" ph="..." />
@@ -788,10 +789,24 @@
     <entry file="file://$PROJECT_DIR$/UploadDownload/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
-          <caret line="35" column="104" lean-forward="true" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+          <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UploadDownload/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/linux_client/startup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-345">
+          <caret line="78" column="81" lean-forward="true" selection-start-line="78" selection-start-column="81" selection-end-line="78" selection-end-column="81" />
         </state>
       </provider>
     </entry>
