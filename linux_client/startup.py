@@ -145,12 +145,8 @@ def upload2(Base_Folder):
                                          else -> HTTP_400 error.
             Repeat Step 2.
     """
-    print('in upload!')
     To_Be_Uploaded = Base_Folder
     client = requests.Session()
-    payload = {'username': username, 'password': password}
-    AuthKey = client.post(server_url + 'api/login/', data=payload)
-    print(AuthKey.text)
     algorithm = "AES"
     files = []
     encryptedFiles = []
@@ -183,29 +179,6 @@ def set_url(parameter,url,out):
         json.dump(data, outfile)
 
 
-def config_edit():
-    with open(config_file) as f:
-        data = json.load(f)
-    data['username'] = input('Username : ')
-    temp = getpass.getpass(prompt='Password : ', stream=None)
-    temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
-    if (temp == temp1) :
-        data['password'] = temp
-    else :
-        while (temp != temp1) :
-            print ("The Passwords didn't match. Kindly try again.")
-            temp = getpass.getpass(prompt='Password : ', stream=None)
-            temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
-        data['password'] = temp
-    print("Your configurations have been updated.")
-    with open(config_file, 'w') as outfile:
-        json.dump(data, outfile)
-    global username
-    username = data['username']
-    global password
-    password = data['password']
-
-
 def empty_json(out):
     data = {}
     with open(out, 'w') as outfile:
@@ -215,7 +188,7 @@ def empty_json(out):
 def sync(out):
     with open(out) as f:
         data = json.load(f)
-    if 'home_dir' not in data:
+    if 'home_dir' not in data or data['home_dir']=='':
         print("No directory being observed.")
         exit(-1)
     upload2(data['home_dir'])
@@ -223,8 +196,6 @@ def sync(out):
 
 def delete_files(file_list, md5_list):
     client = requests.Session()
-    payload = {'username': username, 'password': password}
-    AuthKey = client.post(server_url + 'api/login/', data=payload)
     print(AuthKey.text)
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     payloadDelete = {'file_path': ','.join(file_list), 'md5sum': ','.join(md5_list)}
@@ -237,7 +208,6 @@ def delete_files(file_list, md5_list):
 
     except HTTPError as e:
         print(e.strerror)
-
 
 
 def get_index():
