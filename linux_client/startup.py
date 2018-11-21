@@ -420,3 +420,4 @@ if sys.argv[1] == 'sync':
     sync(config_file)
 if sys.argv[1] == 'empty_json':
     empty_json()
+

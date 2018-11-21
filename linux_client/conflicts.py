@@ -12,10 +12,10 @@ def md5(fname):
 
 def delete(base, files):
     for x in files:
-        os.remove(os.path.join(base, x[2:]))
+        os.remove(os.path.join(base, x))
 
 
-def uploadall(cloud_dict,local_dir):
+def uploadall(cloud_dict, local_dir):
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):
         for name in filenames:
@@ -89,7 +89,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to deal with them individually.\n")
+                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_cloud:
                         print(x)
@@ -97,6 +97,9 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 to_delete = to_delete + only_cloud
             elif (i == "D"):
                 to_download = to_download + only_cloud
+            elif i == "S":
+                print("sync terminated.")
+                exit(0)
             else:
                 print(
                     "For all the files displayed, enter one of the options \nR to delete from cloud.\nD to download from cloud.\n")
@@ -114,7 +117,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to deal with them individually\n")
+                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_local:
                         print(x)
@@ -122,6 +125,9 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 local_delete = local_delete + only_local
             elif (i == "U"):
                 to_upload = to_upload + only_local
+            elif i == "S":
+                print("sync terminated.")
+                exit(0)
             else:
                 print(
                     "For all the files displayed, enter one of the options \nR to delete from local.\nU to upload to cloud.")
@@ -164,7 +170,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                     else:
                         to_upload.append(x)
                         to_delete.append(x)
-        delete(local_dir, local_delete);
+        print(to_download)
+        delete(local_dir, local_delete)
         #        print (to_upload,to_download,to_delete)
         return [to_upload, to_download, to_delete]
 
