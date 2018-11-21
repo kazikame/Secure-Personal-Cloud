@@ -15,7 +15,7 @@ def delete(base, files):
         os.remove(os.path.join(base, x[2:]));
 
 def uploadall(cloud_dict,local_dir):
-local_dict = {}
+    local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):
         for name in filenames:
             md5e = md5(os.path.join(root, name))
