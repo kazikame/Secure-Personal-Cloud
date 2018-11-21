@@ -56,11 +56,18 @@ def sync(out):
         exit(-1)
     except NoHomeDirException as e:
         logging.exception(e)
-        print("error: Invalid home directory. Please point to a valid home directory using\n\nspc observe <home-dir>")
+        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
         exit(-1)
-    delete_files(server_url, AuthKey, delete)
-    download_files(server_url, AuthKey, download, home_dir)
-    upload_files(server_url, AuthKey, home_dir, upload)
+    del_bool = delete_files(server_url, AuthKey, delete)
+    down_bool = download_files(server_url, AuthKey, download, home_dir)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload)
+
+    if (delete and del_bool) and (download and down_bool) and (upload and up_bool):
+        print('Sync Successful')
+    elif not (delete and download and upload):
+        pass
+    else:
+        print('Sync Unsuccessful. Check SPC.logs for more details.')
 
 
 def get_server_url():
@@ -148,13 +155,15 @@ def get_auth_key(server_url, username, password):
         return AuthKey
 
 
-def config_edit(server_url):
+def config_edit(server_url = None):
     data = {}
     with open(config_file) as f:
         try:
             data = json.load(f)
         except Exception as e:
             pass
+    if server_url is None:
+        server_url = get_server_url()
     data['username'] = input('Username : ')
     temp = getpass.getpass(prompt='Password : ', stream=None)
     temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
@@ -232,9 +241,13 @@ def upload_files(server_url, AuthKey, home_dir, files):
     client = requests.Session()
     algorithm = "AES"
     encryptedFiles = []
+
     size = 0
     upload_success = 0
     upload_failed = 0
+    md5fail = 0
+
+    retryUploads = []
     for i in files:
         size += os.path.getsize(os.path.join(home_dir, i))
     global pbar
@@ -261,11 +274,25 @@ def upload_files(server_url, AuthKey, home_dir, files):
             if r.status_code == 201:
                 upload_success += 1
                 tqdm.write(filename + ' uploaded')
+            elif r.status_code == 406:
+                upload_failed += 1
+                md5fail += 1
+                retryUploads.append(file)
+                logging.warn(r.text)
+                tqdm.write(filename + ' failed md5 checksum')
             else:
                 upload_failed += 1
                 tqdm.write(filename + ' failed to upload')
 
-    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck logs for more details.')
+    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
+    if md5fail > 0:
+        i = input(str(md5fail) + 'files uploaded incorrectly, would you like to retry sync? (MD5 checksum fail) [Y/n]')
+        if i == 'y' or i == 'Y':
+            upload_files(server_url, AuthKey, home_dir, retryUploads)
+        else:
+            return False
+    else:
+        return True
 
 
 def download_files(server_url, AuthKey, file_list, home_dir):
@@ -281,15 +308,30 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         return
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'), }
+    retryDownloads = []
     for f in file_list:
         split_path = os.path.split(f)
         payLoad = {'file_path': split_path[0], 'name': split_path[1]}
         r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
         values, params = cgi.parse_header(r.headers['Content-Disposition'])
-        with open(home_dir + params['filename'], 'wb') as f:
+        [filename, md5] = params['filename'].split('```')
+        with open(home_dir + filename, 'wb') as ff:
             for chunk in r.iter_content(chunk_size=8192):
-                f.write(chunk)
-            print(params['filename'] + ' downloaded successfully.')
+                ff.write(chunk)
+            if md5sum(ff) != md5:
+                print(filename + ' failed MD5 checksum.')
+                retryDownloads.append(f)
+            else:
+                print(params['filename'] + ' downloaded successfully.')
+
+    if len(retryDownloads) > 0:
+        i = input(str(len(retryDownloads)) + ' failed MD5 checksum. Would you like to try to re-download them? [Y/n]: ')
+        if i == 'y' or i == 'Y':
+            download_files(server_url, AuthKey, retryDownloads, home_dir)
+        else:
+            return False
+    else:
+        return True
 
 
 def set_home_dir(parameter, dir, out):
@@ -329,8 +371,11 @@ def delete_files(server_url, AuthKey, file_list):
         else:
             print('Delete on cloud unsuccessful. Check logs for more details.')
             logging.warn(r.text)
+            return False
     except HTTPError as e:
         logging.exception(e.strerror)
+        return False
+    return True
 
 
 def get_index(server_url, AuthKey):
@@ -349,7 +394,7 @@ def get_index(server_url, AuthKey):
 if sys.argv[1] == 'config':
     config_edit()
 if sys.argv[1] == 'set_server':
-    set_url('server_url',sys.argv[2],config_file)
+    set_url('server_url', sys.argv[2], config_file)
 if sys.argv[1] == 'observe':
     set_home_dir('home_dir', sys.argv[2], config_file)
 if sys.argv[1] == 'sync':

@@ -9,6 +9,8 @@ from .models import *
 from django.db.models.base import ObjectDoesNotExist
 from django.db import IntegrityError
 from django.http import FileResponse
+import hashlib
+from functools import partial
 
 # Create your views here.
 
@@ -29,17 +31,20 @@ class FileView(APIView):
             file_serializer = FileSerializer(data=request.data)
             if file_serializer.is_valid():
                 try:
-                    print(request.data)
                     file_serializer.save(username=request.user.username,
                                          file_url=os.path.join(settings.CLOUD_DIR,
                                                                request.user.username,
                                                                file_serializer.validated_data['file_path'],
                                                                str(request.data['file'])),
                                          name=str(request.data['file']))
-                    print(request.FILES)
-                    file_serializer.save(file=request.data['file'])
+                    instance = file_serializer.save(file=request.data['file'])
+                    f = open(instance.file_url, 'rb')
+                    md5 = md5sum(f)
+                    if md5 != instance.md5sum:
+                        instance.delete()
+                        return Response({'Error': "MD5 don't match."}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 except IntegrityError as e:
-                    return Response({'Error':'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({'Error': 'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
                 return Response({'detail':'Success'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(file_serializer.errors, status=status.HTTP_403_FORBIDDEN)
@@ -107,9 +112,11 @@ class DownloadFile(APIView):
 
                 instance = SingleFileUpload.objects.filter(username=request.user.username, file_path=dfile_path, name=dfile_name)
                 if instance.count() > 0:
-                    file_url = instance.all()[:1].get().file_url
+                    obj = instance.all()[:1].get()
+                    file_url = obj.file_url
+                    md5 = obj.md5sum
                     f = open(file_url, 'rb')
-                    response = FileResponse(f, filename=dfile_name, as_attachment=True)
+                    response = FileResponse(f, filename=dfile_name + '```' + md5, as_attachment=True)
                     return response
                 else:
                     return Response({'error': 'file not found'})
@@ -130,3 +137,9 @@ class FileIndex(APIView):
 
         return Response({'index': index})
 
+
+def md5sum(f):
+    d = hashlib.md5()
+    for buf in iter(partial(f.read, 128), b''):
+        d.update(buf)
+    return d.hexdigest()
