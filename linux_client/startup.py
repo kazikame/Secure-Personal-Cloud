@@ -283,6 +283,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
             else:
                 upload_failed += 1
                 tqdm.write(filename + ' failed to upload')
+                logging.warn(r.text)
 
     tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
     if md5fail > 0:
@@ -318,6 +319,7 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         with open(home_dir + filename, 'wb') as ff:
             for chunk in r.iter_content(chunk_size=8192):
                 ff.write(chunk)
+        with open(home_dir + filename, 'rb') as ff:
             if md5sum(ff) != md5:
                 print(filename + ' failed MD5 checksum.')
                 retryDownloads.append(f)

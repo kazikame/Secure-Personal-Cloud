@@ -36,16 +36,17 @@ class FileView(APIView):
                                                                request.user.username,
                                                                file_serializer.validated_data['file_path'],
                                                                str(request.data['file'])),
-                                         name=str(request.data['file']))
+                                         name=request.data['file'].name)
                     instance = file_serializer.save(file=request.data['file'])
-                    f = open(instance.file_url, 'rb')
-                    md5 = md5sum(f)
-                    if md5 != instance.md5sum:
-                        instance.delete()
-                        return Response({'Error': "MD5 don't match."}, status=status.HTTP_406_NOT_ACCEPTABLE)
+                    if os.path.isfile(os.path.abspath(instance.file_url)):
+                        f = open(os.path.abspath(instance.file_url), 'rb')
+                        md5 = md5sum(f)
+                        if md5 != instance.md5sum:
+                            instance.delete()
+                            return Response({'Error': "MD5 don't match."}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 except IntegrityError as e:
                     return Response({'Error': 'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
-                return Response({'detail':'Success'}, status=status.HTTP_201_CREATED)
+                return Response({'detail': 'Success'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(file_serializer.errors, status=status.HTTP_403_FORBIDDEN)
 
@@ -89,10 +90,8 @@ class DeleteFile(APIView):
                 print(name_list)
                 print(file_path)
                 instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, name__in=name_list)
-                if instance.count() > 0:
-                    instance.delete()
-                else:
-                    return Response({'error': 'No such files exist.'})
+                instance.delete()
+                instance.get().delete()
                 return Response({'detail': 'Successful!'}, status=status.HTTP_200_OK)
             except Exception as e:
                 print(e)
