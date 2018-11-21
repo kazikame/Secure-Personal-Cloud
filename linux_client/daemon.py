@@ -21,6 +21,6 @@ def Daemon():
         cloud_dict = get_cloud_dict();
         local_dir = get_local_dir();
         upload(uploadall(cloud_dict,local_dir))
-        sleep(86,400)
+        sleep(86400)
 
 Daemon()
