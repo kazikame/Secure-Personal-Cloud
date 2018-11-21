@@ -14,7 +14,38 @@ def delete(base, files):
     for x in files:
         os.remove(os.path.join(base, x[2:]));
 
+def uploadall(cloud_dict,local_dir):
+local_dict = {}
+    for (root, dirnames, filenames) in walk(local_dir):
+        for name in filenames:
+            md5e = md5(os.path.join(root, name))
+            local_dict[os.path.join(os.path.relpath(root, local_dir), name)] = md5e
+    if local_dict == cloud_dict:
+        return [[], [], []]
+    else:
 
+        only_cloud = []
+        only_local = []
+        modified = []
+        unmodified = []
+        to_upload = []
+        to_delete = []
+        to_download = []
+        local_delete = []
+        print(cloud_dict)
+        for x in cloud_dict.keys():
+            if local_dict.get(x) is None:
+                only_cloud.append(x)
+            elif local_dict[x] != cloud_dict[x]:
+                modified.append(x)
+            else:
+                unmodified.append(x)
+
+        for x in local_dict.keys():
+            if (cloud_dict.get(x) == None):
+                only_local.append(x);
+        return [only_local+modified,,only_cloud+modified]
+    
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):
