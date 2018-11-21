@@ -16,9 +16,11 @@ def Daemon():
     except OSError, error:
         print 'Unable to fork. Error: %d (%s)' % (error.errno, error.strerror)
         os._exit(1)
-
-    cloud_dict = get_cloud_dict();
-    local_dir = get_local_dir();
-    upload(uploadall(cloud_dict,local_dir))
+        
+    while (True):
+        cloud_dict = get_cloud_dict();
+        local_dir = get_local_dir();
+        upload(uploadall(cloud_dict,local_dir))
+        sleep(86,400)
 
 Daemon()
