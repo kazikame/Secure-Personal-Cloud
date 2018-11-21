@@ -33,7 +33,7 @@ fi
 
 if [ "$1" == "$daemon" ]
 then
-    pid=$(ps -aux | grep "python daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
+    pid=$(ps -aux | grep "python3.6 daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
     kill -9 $pid
     echo Daemon Terminated
 fi

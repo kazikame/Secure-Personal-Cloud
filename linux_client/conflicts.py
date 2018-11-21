@@ -12,7 +12,8 @@ def md5(fname):
 
 def delete(base, files):
     for x in files:
-        os.remove(os.path.join(base, x[2:]));
+        os.remove(os.path.join(base, x[2:]))
+
 
 def uploadall(cloud_dict,local_dir):
     local_dict = {}
@@ -45,7 +46,7 @@ def uploadall(cloud_dict,local_dir):
             if (cloud_dict.get(x) == None):
                 only_local.append(x);
         return [only_local+modified,[],only_cloud+modified]
-    
+
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):

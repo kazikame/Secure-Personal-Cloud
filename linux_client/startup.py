@@ -61,6 +61,23 @@ def uploadlocal():
     up_bool = upload_files(server_url, AuthKey, home_dir, upload)
 
 
+def uploadlocal():
+    try:
+        server_url = get_server_url()
+        AuthKey = check_user_pass(server_url)
+        home_dir = check_home_dir()
+        [upload, download, delete] = conflicts.uploadall(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    except NoHomeDirException as e:
+        logging.exception(e)
+        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
+        exit(-1)
+    del_bool = delete_files(server_url, AuthKey, delete)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload)  
+  
 def sync(out):
     try:
         server_url = get_server_url()
@@ -300,6 +317,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
             else:
                 upload_failed += 1
                 tqdm.write(filename + ' failed to upload')
+                logging.warn(r.text)
 
     tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
     if md5fail > 0:
@@ -335,6 +353,7 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         with open(home_dir + filename, 'wb') as ff:
             for chunk in r.iter_content(chunk_size=8192):
                 ff.write(chunk)
+        with open(home_dir + filename, 'rb') as ff:
             if md5sum(ff) != md5:
                 print(filename + ' failed MD5 checksum.')
                 retryDownloads.append(f)
