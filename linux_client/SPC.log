@@ -34635,3 +34635,128 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8
 11/21/2018 08:59:37 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
 11/21/2018 08:59:37 PM Resetting dropped connection: 127.0.0.1
 11/21/2018 08:59:37 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:19:20 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:19:20 PM HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f409e165748>: Failed to establish a new connection: [Errno 111] Connection refused',))
+Traceback (most recent call last):
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connection.py", line 171, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 79, in create_connection
+    raise err
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 69, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connection.py", line 196, in connect
+    conn = self._new_conn()
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connection.py", line 180, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f409e165748>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/yashs20/.local/lib/python3.6/site-packages/requests/adapters.py", line 445, in send
+    timeout=timeout
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/home/yashs20/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f409e165748>: Failed to establish a new connection: [Errno 111] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "startup.py", line 50, in sync
+    AuthKey = check_user_pass(server_url)
+  File "startup.py", line 129, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "startup.py", line 151, in get_auth_key
+    AuthKey = client.post(urlp.urljoin(server_url, 'api/login/'), data=payload)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/requests/sessions.py", line 559, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/requests/sessions.py", line 512, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/requests/sessions.py", line 622, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/yashs20/.local/lib/python3.6/site-packages/requests/adapters.py", line 513, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f409e165748>: Failed to establish a new connection: [Errno 111] Connection refused',))
+11/21/2018 09:19:59 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:20:02 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:20:03 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/21/2018 09:20:03 PM 
+Traceback (most recent call last):
+  File "startup.py", line 51, in sync
+    home_dir = check_home_dir()
+  File "startup.py", line 143, in check_home_dir
+    raise NoHomeDirException
+NoHomeDirException
+11/21/2018 09:21:20 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:21:21 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/21/2018 09:21:41 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:21:42 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/21/2018 09:21:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:21:42 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 12
+11/21/2018 09:22:16 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 09:22:17 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:17 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:18 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:18 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:18 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:18 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:19 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:19 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:19 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:19 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:20 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:20 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:20 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:20 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:20 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:20 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:21 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:21 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:21 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:21 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:21 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:21 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:22 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:22 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:22 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:22 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:22 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:22 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:26 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:26 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:27 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:27 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:27 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:27 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:28 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/21/2018 09:22:28 PM Resetting dropped connection: 127.0.0.1
+11/21/2018 09:22:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20

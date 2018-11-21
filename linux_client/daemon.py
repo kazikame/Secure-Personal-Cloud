@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os, time
-from conflicts import uploadall
-from startup import *
+from .conflicts import uploadall
+from .startup import *
 
 def Daemon():
 
