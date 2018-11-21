@@ -1,0 +1,29 @@
+11/21/2018 05:22:47 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 05:22:47 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 500 22340
+11/21/2018 05:23:23 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 05:23:23 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 400 68
+11/21/2018 05:23:23 PM 
+Traceback (most recent call last):
+  File "startup.py", line 122, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "startup.py", line 146, in get_auth_key
+    raise AuthenticationException
+AuthenticationException
+11/21/2018 05:23:26 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/21/2018 05:23:26 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 400 68
+11/21/2018 05:23:26 PM 
+Traceback (most recent call last):
+  File "startup.py", line 122, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "startup.py", line 146, in get_auth_key
+    raise AuthenticationException
+AuthenticationException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "startup.py", line 172, in config_edit
+    AuthKey = get_auth_key(server_url, username, password)
+  File "startup.py", line 146, in get_auth_key
+    raise AuthenticationException
+AuthenticationException
