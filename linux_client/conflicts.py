@@ -45,7 +45,7 @@ def uploadall(cloud_dict,local_dir):
         for x in local_dict.keys():
             if (cloud_dict.get(x) == None):
                 only_local.append(x);
-        return [only_local+modified,only_cloud+modified]
+        return [only_local+modified,[],only_cloud+modified]
 
 
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
