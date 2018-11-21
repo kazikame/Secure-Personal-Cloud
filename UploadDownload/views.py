@@ -8,6 +8,7 @@ from SPC import settings
 from .models import *
 from django.db.models.base import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.http import FileResponse
 
 # Create your views here.
 
@@ -78,11 +79,11 @@ class DeleteFile(APIView):
     def post(self, request):
         if request.user.is_authenticated:
             try:
-                file_path = request.data['file_path'].split(',')
-                md5 = request.data['md5sum'].split(',')
-                print(md5)
+                file_path = request.data['file_path'].split('```')
+                name_list = request.data['name_list'].split('```')
+                print(name_list)
                 print(file_path)
-                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, md5sum__in=md5)
+                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, name__in=name_list)
                 if instance.count() > 0:
                     instance.delete()
                 else:
@@ -93,6 +94,30 @@ class DeleteFile(APIView):
                 return Response({'detail': 'Unknown Error!'})
         else:
             return Response({'detail': "Authentication credentials were invalid."})
+
+
+class DownloadFile(APIView):
+    parser_classes = (FormParser, )
+
+    def post(self, request):
+        if request.user.is_authenticated:
+            try:
+                dfile_path = request.data['file_path']
+                dfile_name = request.data['name']
+
+                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path=dfile_path, name=dfile_name)
+                if instance.count() > 0:
+                    file_url = instance.all()[:1].get().file_url
+                    f = open(file_url, 'rb')
+                    response = FileResponse(f, filename=dfile_name, as_attachment=True)
+                    return response
+                else:
+                    return Response({'error': 'file not found'})
+            except Exception as e:
+                print(e)
+                return Response({'error': 'Unknown error'})
+        else:
+            return Response({'detail': 'Authentication credentials were invalid.'})
 
 
 class FileIndex(APIView):

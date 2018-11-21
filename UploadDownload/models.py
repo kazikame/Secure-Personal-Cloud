@@ -29,8 +29,8 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     """
     print(instance.file)
     if instance.file:
-        if os.path.isfile(instance.file.path):
-            os.remove(instance.file.path)
+        if os.path.isfile(instance.file_url):
+            os.remove(instance.file_url)
 
 @receiver(models.signals.pre_save, sender=SingleFileUpload)
 def auto_delete_file_on_change(sender, instance, **kwargs):
@@ -50,5 +50,5 @@ def auto_delete_file_on_change(sender, instance, **kwargs):
     new_file = instance.file
     if old_file:
         if not old_file == new_file:
-            if os.path.isfile(old_file.path):
-                os.remove(old_file.path)
+            if os.path.isfile(old_file.file_url):
+                os.remove(old_file.file_url)

@@ -11,13 +11,22 @@ import requests
 from encryption import *
 from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
 from tqdm import tqdm
+import logging
+import re
+import cgi
+
+sys.path.append('.')
+import conflicts
 
 # CONFIG OPTIONS
 config_file = 'conf.json'
-AuthKey = None
-username = ''           # Don't change.
-password = ''           # Don't change.
-server_url = ''         # Don't change.
+
+# Log Settings
+logging.basicConfig(filename='SPC.log',
+                    level=logging.DEBUG,
+                    format='%(asctime)s %(message)s',
+                    datefmt='%m/%d/%Y %I:%M:%S %p')
+
 
 if len(sys.argv) == 1:
     print("Secure Personal Cloud.")
@@ -26,18 +35,122 @@ if len(sys.argv) == 1:
     exit(0)
 
 
-def get_auth_key():
+class AuthenticationException(Exception):
+    pass
+
+
+class NoHomeDirException(Exception):
+    pass
+
+
+def sync(out):
+    try:
+        server_url = get_server_url()
+        AuthKey = check_user_pass(server_url)
+        home_dir = check_home_dir()
+        [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    except NoHomeDirException as e:
+        logging.exception(e)
+        print("error: Invalid home directory. Please point to a valid home directory using\n\nspc observe <home-dir>")
+        exit(-1)
+    print(upload)
+    print(download)
+    print(delete)
+    delete_files(server_url, AuthKey, delete)
+    download_files(server_url, AuthKey, download, home_dir)
+    upload_files(server_url, AuthKey, home_dir, upload)
+
+
+def get_server_url():
+    if not path.isfile(config_file):
+        f = open(config_file, 'w')
+        data = {'username': '', 'password': '', 'server_url': '', 'home_dir': ''}
+        json.dump(data, f)
+
+    with open(config_file, 'r') as f:
+        data = json.load(f)
+    if 'server_url' not in data or data['server_url'] == '':
+        u = input('Input Server URL: ')
+        u = set_url('server_url', u, config_file)
+        return u
+    else:
+        return data['server_url']
+
+
+def set_url(parameter,url,out):
+    regex = re.compile(
+        r'^(?:http|ftp)s?://'  # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
+        r'localhost|'  # localhost...
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'
+        r'(?::\d+)?'  # optional port
+        r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
+    while True:
+        if re.match(regex, url) is not None:
+            with open(out) as f:
+                data = json.load(f)
+                data[parameter] = url
+            with open(out, 'w') as outfile:
+                json.dump(data, outfile)
+            break
+        else:
+            url = input("Invalid URL. Please enter a valid server URL: ")
+
+    return url
+
+
+def check_user_pass(server_url):
+    if not path.isfile(config_file):
+        f = open(config_file, 'w')
+        data = {'username': '', 'password': '', 'server_url': '', 'home_dir': ''}
+        json.dump(data, f)
+
+    data = {}
+    with open(config_file) as f:
+        try:
+            data = json.load(f)
+        except Exception as e:
+            pass
+    if ('username' not in data or data['username'] == '') or ('password' not in data or data['password'] == ''):
+        f.close()
+        return config_edit(server_url)
+    else:
+        try:
+            AuthKey = get_auth_key(server_url, data['username'], data['password'])
+            return AuthKey
+        except AuthenticationException as e:
+            logging.exception(e)
+            print("Username/Password incorrect. Please input the correct credentials")
+            return config_edit(server_url)
+
+
+def check_home_dir():
+    with open(config_file) as f:
+        data = json.load(f)
+    if 'home_dir' not in data or data['home_dir']=='':
+        raise NoHomeDirException
+    elif not os.path.isdir(data['home_dir']):
+        raise NoHomeDirException
+    else:
+        return data['home_dir']
+
+
+def get_auth_key(server_url, username, password):
     client = requests.Session()
     payload = {'username': username, 'password': password}
-    global AuthKey
     AuthKey = client.post(server_url + 'api/login/', data=payload)
     if AuthKey.json().get('key', '0') == '0':
-        return False
+        raise AuthenticationException
     else:
-        return True
+        return AuthKey
 
 
-def config_edit():
+def config_edit(server_url):
     data = {}
     with open(config_file) as f:
         try:
@@ -59,51 +172,14 @@ def config_edit():
     global password
     password = data['password']
 
-    if get_auth_key():
+    try:
+        AuthKey = get_auth_key(server_url, username, password)
         print("Authorization credentials successfully updated.")
-    else:
+        return AuthKey
+    except AuthenticationException as e:
+        logging.exception(e)
         print("Username/Password incorrect. Please input the correct credentials")
-        config_edit()
-
-
-if not path.isfile(config_file):
-    f = open(config_file, 'w')
-    data = {'username': '', 'password': '', 'server_url': '', 'home_dir': ''}
-    json.dump(data, f)
-
-with open(config_file, 'r') as f:
-    data = {}
-    try:
-        data = json.load(f)
-    except Exception as e:
-        pass
-    if 'server_url' not in data or data['server_url'] == '':
-        data['server_url'] = 'http://127.0.0.1:8000/'
-        f.close()
-        with open(config_file, 'w') as f:
-            json.dump(data, f)
-    server_url = data['server_url']
-
-
-with open(config_file, 'r') as f:
-    data = {}
-    try:
-        data = json.load(f)
-    except Exception as e:
-        pass
-    if ('username' not in data or data['username'] == '') or ('password' not in data or data['password'] == ''):
-        f.close()
-        config_edit()
-    else:
-        username = data['username']
-        password = data['password']
-
-if not AuthKey:
-    if get_auth_key():
-        pass
-    else:
-        print("Username/Password incorrect. Please input the correct credentials")
-        config_edit()
+        return config_edit(server_url)
 
 
 def md5sum(f):
@@ -114,8 +190,6 @@ def md5sum(f):
 
 
 pbar = None
-
-
 completed = 0
 def progress_update(monitor):
     global completed
@@ -123,7 +197,7 @@ def progress_update(monitor):
     completed = monitor.bytes_read
 
 
-def upload2(Base_Folder):
+def upload_files(server_url, AuthKey, home_dir, files):
     """
     Main Upload function.
 
@@ -157,52 +231,79 @@ def upload2(Base_Folder):
                                          else -> HTTP_400 error.
             Repeat Step 2.
     """
-    To_Be_Uploaded = Base_Folder
     client = requests.Session()
     algorithm = "AES"
-    files = []
     encryptedFiles = []
     size = 0
     upload_success = 0
     upload_failed = 0
-    for (root, dirnames, filenames) in walk(To_Be_Uploaded):
-        for name in filenames:
-            files.append((name, (os.path.relpath(root, Base_Folder))))
-            size += os.path.getsize(os.path.join(Base_Folder, root, name))
+    for i in files:
+        size += os.path.getsize(os.path.join(home_dir, i))
     global pbar
     pbar = tqdm(total=size*1.003, ncols=80, unit='B', unit_scale=True, unit_divisor=1024)
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
-            file_path = file[1]
-            tmpfile = os.path.join(directory, file[0])
+            file_path = os.path.split(file)[0]
+            filename = os.path.split(file)[1]
+            tmpfile = os.path.join(directory, filename)
 
-            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+            f = open(os.path.join(home_dir, file_path, filename), 'rb')
             md5sum1 = md5sum(f)
 
-            f = open(os.path.join(Base_Folder, file_path, file[0]), 'rb')
+            f = open(os.path.join(home_dir, file_path, filename), 'rb')
 
             payloadUpload = MultipartEncoder(fields={'file_path': file_path, 'md5sum': md5sum1,
-                                                     'file': (file[0], f, 'application/octet-stream')})
+                                                     'file': (filename, f, 'application/octet-stream')})
             header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),
                       'Content-Type': payloadUpload.content_type}
             global completed
             completed = 0
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
             r = client.post(server_url + 'api/upload/', data=monitor,  headers=header)
-            if (r.status_code == 201):
-                upload_success +=1
+            if r.status_code == 201:
+                upload_success += 1
+                tqdm.write(filename + ' uploaded')
             else:
-                upload_failed +=1
+                upload_failed += 1
+                tqdm.write(filename + ' failed to upload')
 
-    tqdm.write('Uploaded ' + str(upload_success) + ' files successfully. ' + str(upload_failed) + ' uploads failed.')
+    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck logs for more details.')
 
 
-def set_url(parameter,url,out):
-    with open(out) as f:
-        data = json.load(f)
-    data[parameter] = url
-    with open(out, 'w') as outfile:
-        json.dump(data, outfile)
+def download_files(server_url, AuthKey, file_list, home_dir):
+    """
+    Utility to download files from cloud.
+
+    :param server_url:
+    :param AuthKey: Authentication Token
+    :param file_list: List of (relative) file (paths) to be downloaded
+    """
+
+    if len(file_list) == 0:
+        return
+    client = requests.Session()
+    header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'), }
+    for f in file_list:
+        split_path = os.path.split(f)
+        payLoad = {'file_path': split_path[0], 'name': split_path[1]}
+        r = client.post(server_url+'api/download/', data=payLoad, headers=header, stream=True)
+        print(r.headers)
+        values, params = cgi.parse_header(r.headers['Content-Disposition'])
+        with open(home_dir + params['filename'], 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+
+
+def set_home_dir(parameter, dir, out):
+    if os.path.exists(dir):
+        with open(out) as f:
+            data = json.load(f)
+        data[parameter] = dir
+        with open(out, 'w') as outfile:
+            json.dump(data, outfile)
+    else:
+        print("Directory doesn't exist!")
+        exit(-1)
 
 
 def empty_json():
@@ -211,32 +312,29 @@ def empty_json():
         json.dump(data, outfile)
 
 
-def sync(out):
-    with open(out) as f:
-        data = json.load(f)
-    if 'home_dir' not in data or data['home_dir']=='':
-        print("No directory being observed.")
-        exit(-1)
-    upload2(data['home_dir'])
-
-
-def delete_files(file_list, md5_list):
+def delete_files(server_url, AuthKey, file_list):
+    if len(file_list) == 0:
+        return
     client = requests.Session()
     print(AuthKey.text)
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-    payloadDelete = {'file_path': ','.join(file_list), 'md5sum': ','.join(md5_list)}
+    name_list = []
+    for i in range(0, len(file_list)):
+        split_path = os.path.split(file_list[i])
+        file_list[i] = split_path[0]
+        name_list.append(split_path[1])
+
+    payloadDelete = {'file_path': '```'.join(file_list), 'name_list': '```'.join(name_list)}
     print(payloadDelete)
 
     try:
         r = client.post(server_url + 'api/delete/', data=payloadDelete, headers=header)
         print(r.text)
-        r.raise_for_status()
-
     except HTTPError as e:
-        print(e.strerror)
+        logging.exception(e.strerror)
 
 
-def get_index():
+def get_index(server_url, AuthKey):
     """
     Returns ALL the filenames of the user and their md5sums
     """
@@ -244,7 +342,10 @@ def get_index():
     print(AuthKey.text)
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     r = client.post(server_url + 'api/get-index/', headers=header)
-    print(r.json())
+    index_dict = {}
+    for i in r.json()['index']:
+        index_dict[i['file_path']] = i['md5sum']
+    return index_dict
 
 
 if sys.argv[1] == 'config':
@@ -252,8 +353,8 @@ if sys.argv[1] == 'config':
 if sys.argv[1] == 'set_server':
     set_url('server_url',sys.argv[2],config_file)
 if sys.argv[1] == 'observe':
-    set_url('home_dir', sys.argv[2], config_file)
+    set_home_dir('home_dir', sys.argv[2], config_file)
 if sys.argv[1] == 'sync':
     sync(config_file)
 if sys.argv[1] == 'empty_json':
-    empty_json(config_file)
+    empty_json()

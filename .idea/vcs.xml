@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cloudStorage/saksham47/CS-215-Assignment-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cloudStorage/saksham48/CS-215-Assignment-3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/cloudStorage/saksham99/CS-215-Assignment-3" vcs="Git" />
   </component>
 </project>
