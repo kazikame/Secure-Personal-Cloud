@@ -5,7 +5,7 @@ import os
 import sys
 import tempfile
 from functools import partial
-from os import walk, path
+from os import path
 from urllib.error import *
 import requests
 from encryption import *
@@ -14,6 +14,7 @@ from tqdm import tqdm
 import logging
 import re
 import cgi
+import urllib.parse as urlp
 
 sys.path.append('.')
 import conflicts
@@ -140,7 +141,7 @@ def check_home_dir():
 def get_auth_key(server_url, username, password):
     client = requests.Session()
     payload = {'username': username, 'password': password}
-    AuthKey = client.post(server_url + 'api/login/', data=payload)
+    AuthKey = client.post(urlp.urljoin(server_url, 'api/login/'), data=payload)
     if AuthKey is None or AuthKey.json().get('key', '0') == '0':
         raise AuthenticationException
     else:
@@ -256,7 +257,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
             global completed
             completed = 0
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
-            r = client.post(server_url + 'api/upload/', data=monitor,  headers=header)
+            r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor,  headers=header)
             if r.status_code == 201:
                 upload_success += 1
                 tqdm.write(filename + ' uploaded')
@@ -283,7 +284,7 @@ def download_files(server_url, AuthKey, file_list, home_dir):
     for f in file_list:
         split_path = os.path.split(f)
         payLoad = {'file_path': split_path[0], 'name': split_path[1]}
-        r = client.post(server_url+'api/download/', data=payLoad, headers=header, stream=True)
+        r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
         values, params = cgi.parse_header(r.headers['Content-Disposition'])
         with open(home_dir + params['filename'], 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192):
@@ -322,7 +323,7 @@ def delete_files(server_url, AuthKey, file_list):
 
     payloadDelete = {'file_path': '```'.join(file_list), 'name_list': '```'.join(name_list)}
     try:
-        r = client.post(server_url + 'api/delete/', data=payloadDelete, headers=header)
+        r = client.post(urlp.urljoin(server_url, 'api/delete/'), data=payloadDelete, headers=header)
         if r.status_code == 200:
             print('Deleted ' + str(len(file_list)) + ' file(s) on the cloud successfully.')
         else:
@@ -338,7 +339,7 @@ def get_index(server_url, AuthKey):
     """
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-    r = client.post(server_url + 'api/get-index/', headers=header)
+    r = client.post(urlp.urljoin(server_url, 'api/get-index/'), headers=header)
     index_dict = {}
     for i in r.json()['index']:
         index_dict[i['file_path']] = i['md5sum']
