@@ -3,7 +3,7 @@
 
 import os, time
 from conflicts import uploadall
-from cloud_dict import get_cloud_dict, get_local_dict,upload
+from startup import *
 
 def Daemon():
 
@@ -20,7 +20,17 @@ def Daemon():
     while (True):
         cloud_dict = get_cloud_dict();
         local_dir = get_local_dir();
-        upload(uploadall(cloud_dict,local_dir))
+        [upload,download,delete] = uploadall(startup.get_index(startup.server_url, startup.AuthKey), startup.home_dir)
+        except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    except NoHomeDirException as e:
+        logging.exception(e)
+        print("error: Invalid home directory. Please point to a valid home directory using\n\nspc observe <home-dir>")
+        exit(-1)
+        startup.upload_files(startup.server_url,startup.AuthKey,startup.home_dir,upload)
+        startup.delete_files(startup.server_url,startup.AuthKey,startup.home_dir,delete)
         sleep(86400)
 
 Daemon()
