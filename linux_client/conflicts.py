@@ -89,7 +89,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to deal with them individually.\nS to cancel sync.\n")
+                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to "
+                    "deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_cloud:
                         print(x)
@@ -102,7 +103,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 exit(0)
             else:
                 print(
-                    "For all the files displayed, enter one of the options \nR to delete from cloud.\nD to download from cloud.\n")
+                    "For all the files displayed, enter one of the options \nR to delete from cloud.\nD to download "
+                    "from cloud.\n")
                 for x in only_cloud:
                     i = input(x + "\n")
                     while (i != "D" and i != "R"):
@@ -117,7 +119,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to deal with them individually.\nS to cancel sync.\n")
+                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to "
+                    "deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_local:
                         print(x)
@@ -130,7 +133,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 exit(0)
             else:
                 print(
-                    "For all the files displayed, enter one of the options \nR to delete from local.\nU to upload to cloud.")
+                    "For all the files displayed, enter one of the options \nR to delete from local.\nU to upload to "
+                    "cloud.")
                 for x in only_local:
                     i = input(x + "\n")
                     while (i != "U" and i != "R"):
@@ -170,7 +174,6 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                     else:
                         to_upload.append(x)
                         to_delete.append(x)
-        print(to_download)
         delete(local_dir, local_delete)
         #        print (to_upload,to_download,to_delete)
         return [to_upload, to_download, to_delete]

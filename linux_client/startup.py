@@ -76,6 +76,7 @@ def sync(out):
         print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
         exit(-1)
     del_bool = delete_files(server_url, AuthKey, delete)
+    print(download)
     down_bool = download_files(server_url, AuthKey, download, home_dir)
     up_bool = upload_files(server_url, AuthKey, home_dir, upload)
 
@@ -213,6 +214,8 @@ def md5sum(f):
 
 pbar = None
 completed = 0
+
+
 def progress_update(monitor):
     global completed
     pbar.update(monitor.bytes_read - completed)
@@ -223,9 +226,10 @@ def upload_files(server_url, AuthKey, home_dir, files):
     """
     Main Upload function.
 
-    :param username:
-    :param password:
-    :param Base_Folder: The folder being synced/uploaded
+    :param files: list of file path strings relative to home_dir
+    :param home_dir: base dir
+    :param AuthKey: string
+    :param server_url: string
     :return:
 
     {SITE_URL} = http://127.0.0.1:8000
