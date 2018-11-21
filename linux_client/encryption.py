@@ -43,6 +43,45 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
         return True
 
 
+def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=None):
+    """
+    Takes all file paths (relative to base) and encrypts with the same name onto encrypted_base
+    :param files: list of files in base
+    :param key_file: string - path to key file, not provided if user will give input
+    :param encrypted_base: to store encrypted files
+    :param algorithm: AES / TripleDES
+    :return: boolean for success
+    """
+    if os.path.normpath(encrypted_base) == os.path.normpath(encrypted_base):
+        print("The path to files given are the same. Please try again")
+        exit(1)
+    if algorithm == "AES":
+        if key_file is None:
+            print("Please enter the key and IV given on generation")
+            while True:
+                key = input("Key: ").upper()
+                iv = input("IV: ").upper()
+                try:
+                    x = int(key, 16)
+                    x = int(iv, 16)
+                except ValueError:
+                    print("Please enter a valid hexadecimal key/iv")
+                    continue
+                break
+        else:
+            with open(key_file, 'rb') as f:
+                keys = pickle.load(f)
+                key = keys["key"].decode('utf-8').upper()
+                iv = keys["iv"].decode('utf-8').upper()
+        command = "openssl enc -asc-256-ctr -d -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
+        for file in files:
+            inp = os.path.join(encrypted_base, file)
+            output = os.path.join(decrypted_base, file)
+            os.system(command.format(inp, output, key, iv))
+        print("Files encrypted successfully.")
+        return True
+
+
 # def decrypt_key(encryptedKeyFile, password, decryptedFilePath):
 #     """
 #     :param encryptedKeyFile: str - complete path of encrypted key
@@ -76,6 +115,7 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
 #         tempKey = os.path.join(d, "temp.key")
 #         decrypt_key(keyFile, oldpass, tempKey)
 #         encrypt_key(tempKey, newpass, keyFile)
+
 
 
 def generate_key(encryption_schema, key_file=None):
