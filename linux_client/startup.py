@@ -43,7 +43,41 @@ class AuthenticationException(Exception):
 class NoHomeDirException(Exception):
     pass
 
+def uploadlocal():
+    try:
+        server_url = get_server_url()
+        AuthKey = check_user_pass(server_url)
+        home_dir = check_home_dir()
+        [upload, download, delete] = conflicts.uploadall(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    except NoHomeDirException as e:
+        logging.exception(e)
+        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
+        exit(-1)
+    del_bool = delete_files(server_url, AuthKey, delete)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload)
 
+
+def uploadlocal():
+    try:
+        server_url = get_server_url()
+        AuthKey = check_user_pass(server_url)
+        home_dir = check_home_dir()
+        [upload, download, delete] = conflicts.uploadall(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    except NoHomeDirException as e:
+        logging.exception(e)
+        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
+        exit(-1)
+    del_bool = delete_files(server_url, AuthKey, delete)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload)  
+  
 def sync(out):
     try:
         server_url = get_server_url()

@@ -47,7 +47,6 @@ def uploadall(cloud_dict,local_dir):
                 only_local.append(x);
         return [only_local+modified,[],only_cloud+modified]
 
-
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):

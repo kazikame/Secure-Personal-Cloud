@@ -1,0 +1,305 @@
+\documentclass{article}
+\usepackage[a4paper,bottom = 0.6in,left = 0.75in,right = 0.75in,top = 0.6in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+%\usepackage{array}
+\usepackage{enumitem}
+%\usepackage{wrapfig}
+\usepackage{titlesec}
+%\usepackage[colorlinks=false]{hyperref}
+%\usepackage{verbatim}
+%\usepackage{hyperref}
+%\usepackage{xcolor}
+%\usepackage{csquotes}
+\usepackage{microtype}
+\usepackage{textcomp}
+\newcommand{\xfilll}[2][1ex]{
+\dimen0=#2\advance\dimen0 by #1
+\leaders\hrule height \dimen0 depth -#1\hfill}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}
+\renewcommand\labelitemi{\raisebox{0.4ex}{\tiny$\bullet$}}
+\renewcommand{\labelitemii}{$\cdot$}
+\pagenumbering{gobble}
+\begin{document}
+
+%*******************************************************
+%			BEGIN DOCUMENT
+%*******************************************************
+%\vspace*{6.32cm}
+%\vspace{-20pt}
+\hspace{-4pt}
+\section*{}
+\vspace{-60pt}
+\begin{tabular}{p{10.5cm} p{5cm}}
+    \hspace{-8pt}{\Huge{Kumar Saurav}} & \LARGE{IIT Bombay} \raisebox{-.2\height}{\includegraphics[width=1cm]{iitb.png}}\hspace*{\fill}
+    \\[2pt]
+    \hspace{-7pt}Email : krsrv@cse.iitb.ac.in & Computer Science \& Engineering\hspace*{\fill}\\[1pt]
+    \hspace{-7pt}Website   : \verb|https://www.cse.iitb.ac.in/~krsrv/| & {$3^{rd}$} Year Undergraduate\hspace*{\fill}\\[1pt]
+    \hspace{-7pt}LinkedIn : \verb|https://www.linkedin.com/in/krsaurav/| & \textbf{CPI : 9.0 / 10}\hspace*{\fill}\\[1pt]
+\end{tabular}
+
+%*******************************************************
+%			Education
+%*******************************************************
+% \vspace{-10pt}
+% \section*{\LARGE Education\xfilll[0pt]{0.5pt}}
+% \vspace{-6pt}
+
+% \hspace{-4pt}
+% \textbf{Indian Institute of Technology, Bombay} \hfill{[May 2016 - May 2020]}\\
+% \vspace{-17pt}
+% \begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+% 	\item Enrolled in \textbf{B. Tech.} and pursuing Honors in Computer Science and Engineering Department \hfill{CPI: 9.0/10.0}
+% \end{itemize}
+
+%*******************************************************
+%			Key Projects and Internships
+%*******************************************************
+\vspace*{0pt}
+\section*{\LARGE Key Projects and Internships\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+\hspace{-4pt}
+\textbf{Automatic Grayscale Image Colorisation} \hfill{\sl Autumn 2018}\\
+{\it Guide: Prof. Suyash Awate}\hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Implementing fully automatic approach using feed-forward pass in CNN to produce vibrant, realistic colorisations
+	\item Exploiting problem as a classification task and using class-rebalancing at test time to increase diversity of colors
+\end{itemize}
+\vspace{2pt}
+
+
+\hspace{-14pt}\textbf{Ensuring Database Integrity via Blockchains} \hfill{\sl Autumn 2018}\\
+{\it Guide: Prof. S. Sudarshan}\hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Creating blockchain based distributed tamper-resistant ledger with minimal changes to existing database schema
+	\item Performing integrity checks on the database on each query using blockchain ledger to detect insider attacks
+\end{itemize}
+\vspace{2pt}
+
+
+\hspace{-14pt}\textbf{Proof of Concept for 5G I-RAN Architecture} \hfill{\sl Summer 2018}\\
+{\it Guide: Prof. Chan Mun Choon}\hfill{\sl Research Internship, NUS}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item \textbf{Virtualised data plane} of Cloud RAN to allow \textbf{flexibility} in cellular networks for newer internet use-cases
+	\item \textbf{Parallelised} over \textbf{70\%} of the processing in OpenAir Interface code to slice the network from the physical layer
+	\item Worked on LTE stack of the Cloud RAN and FlexRAN architectures in RAN to \textbf{improve QoS requirements}
+\end{itemize}
+\vspace{2pt}
+
+\hspace{-14pt}\textbf{RobotHerd - Swarm Robotics} \hfill{\sl Summer 2017}\\
+{\it Institute Technical Summer Project} \hfill{\sl Electronics and Robotics Club, IIT Bombay}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Produced \textbf{small} and \textbf{low-budget}, Arduino based \textbf{swarm bots}, each fitted with 12 infrared sensors onboard
+	%\item Implemented algorithm to make bots follow a specified leader among the herd
+	\item Developed a custom algorithm for robots to determine heirarchy, \textbf{take feedback} and \textbf{synchronise movements}
+\end{itemize}
+\vspace{2pt}
+
+%*******************************************************
+%			Other Projects
+%*******************************************************
+\vspace*{-10pt}
+\section*{\LARGE Other Projects\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+\hspace{-4pt}
+\textbf{Communicating Railway Signal Controller} \hfill{\sl Spring 2017}\\
+{\it Guide: Prof. Supratik Chakraborty}\hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Implemented railway grid signal controller over multiple FPGA boards with \textbf{encrypted channels} using VHDL
+	\item Enable communication through UART and FPGA Comm link for backend and inter-controller \textbf{synchronisation}
+\end{itemize}
+\vspace{2pt}
+
+
+\hspace{-14pt}\textbf{Wirespace - Local file hosting and sharing} \hfill{\sl Autumn 2017}\\
+{\it Guide: Prof. Kavi Arya} \hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Created a software which facilitates quick and easy two-way file sync and share system over \textbf{local networks}
+	\item Implemented the software in \textbf{Django} and employed \textbf{ReactJS} make the sites dynamic for an improved UX
+	%\item Outsourced editing to default apps to increase functionality
+\end{itemize}
+\vspace{2pt}
+
+\hspace{-14pt}\textbf{Visualing Glasgow Haskell Compiler Core} \hfill{\sl Summer 2017}\\
+{\it Guide: Prof. Amitabha Sanyal}\\%\hfill{\sl IIT Bombay}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Filtered and displayed the core components of a Haskell program converted to the \textbf{Haskell Core} language
+	\item Created a directed graph over Haskell Core dump to visualise and understand the conversion to Core language
+\end{itemize}
+\vspace{2pt}
+
+\hspace{-14pt}\textbf{Simulation of Game of Life} \hfill{\sl Spring 2017}\\
+{\it Guide: Prof. Amitabha Sanyal} \hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Simulated Conway's Game of Life to observe \textbf{propagation of life} in universes following pre-determined rules
+	\item Implemented \textbf{Hashlife} algorithm to exploit spatial and temporal redundancy to speed up program by \textbf{1000\%}
+	\item Explored affect of various initialisation parameters on certain patterns at \textbf{large-time depths} of the simulation
+\end{itemize}
+\vspace{2pt}
+
+\hspace{-14pt}\textbf{Cryptographic Suite} \hfill{\sl Autumn 2016}\\
+{\it Guide: Prof. Bernard Menezes} \hfill{\sl Course Project}\\
+\vspace{-17pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Implemented \textbf{RSA}, \textbf{Diffie-Hellman} key exchange over prime, binary fields in \textbf{Elliptic Curve Cryptography}
+	\item Implemented algorithms like \textbf{Miler-Rabin Test}, \textbf{Baby-Step-Giant-Step} algorithm, Discrete Log using GMP
+	%\item Implemented Miler-Rabin Test, Baby-Step-Giant-Step algorithm, Diffie-Hellman Key Exchange etc.
+\end{itemize}
+\newpage
+%*******************************************************
+%			Technical Skills
+%*******************************************************
+\vspace*{-10pt}
+\section*{\LARGE Technical Skills\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+\begin{tabular}{p{3.2cm} p{13.8cm}}
+  \textbf{Programming} & C/C++, Python, Bash, Haskell, Java, SWI-Prolog\\
+  \textbf{Development} & \LaTeX, HTML, CSS, Django, Git, PHP, JavaScript\\
+  \textbf{Computation} & NumPy, MATLAB, OpenGL\\
+\end{tabular}
+\vspace{-5pt}
+
+%*******************************************************
+%			Courses
+%*******************************************************
+\section*{\LARGE Key Courses Undertaken\xfilll[0pt]{0.5pt}}
+\vspace{-4pt}
+ \begin{tabular}{p{35mm} p{13.0cm}}
+  \textbf{Data Analysis \& ML} & Data Analysis and Interpretation, Digital Image Processing*, Computer Graphics*, Fundamentals of Machine Learning, Machine Learning and AI** \\[3pt]
+  \textbf{Algorithms \& Data Structures} & Design and Analysis of Algorithms, Data Structures and Algorithms, Discrete Structures, Abstractions and Paradigms for Computer Programming\\[3pt]
+  \textbf{Others} & Computer Networks, Digital Logic Design, Logic for Computer Science\\
+ \end{tabular}\\[5pt]
+{\sl *{\it to be completed by Nov. 2018}}
+\hspace{1cm}{\sl **{\it to be completed by Apr. 2018}}
+
+%*******************************************************
+%			Scholastic Achievements
+%*******************************************************
+\section*{{\LARGE Scholastic Achievements}\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\renewcommand{\emph}{\textbf}
+	\item All India Rank \textbf{163} in {JEE Advanced} among 150,000 aspirants \hfill{[2016]}
+	\item All India Rank \textbf{14} and \textbf{11} in Nationwide Education and Scholarship Test (NEST)\hfill{[2017,18]}
+	\item Qualified for \textbf{Indian National Astronomy Olympiad Camp}, among 24 of 29,000 students\hfill{[2016]}
+	\item \textbf{Kishore Vaigyanik Protsahan Yojna} (KVPY) fellowship by \emph{Government of India}\hfill{[2015]}
+	\item \textbf{Indian National Mathematics Olympiad Certificate of Merit} (among Top 90 nationwide)\hfill{[2015]}
+	\item \textbf{NTSE scholarship} by \emph{Government of India} after screening over \emph{500,000} students\hfill{[2015]}
+	\item \textbf{University of South Wales gold medal} for ranking \emph{first} in Science across \emph{57 countries} in IAIS\hfill{[2010]}
+% 	\item \textbf{Award of Excellence} by \emph{Royal Australian Chemical Institute} for achieving \emph{100\%} marks\hfill{[2010,12]}
+% 	\item \textbf{High Distinction} among top 10\% in ANCQ conducted by Royal Australian Chemical Institute\hfill{[2010-15]}
+% 	\item \textbf{Academic Distinction} for seven consecutive years of outstanding academic performance\hfill{[2009-15]}
+\end{itemize}
+\vspace{-10pt}
+
+%*******************************************************
+%			Extracurriculars
+%*******************************************************
+\section*{\LARGE Extracurriculars\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+% *************  Sports  ***************
+\subsection*{\large Sports}
+\vspace{-6pt}
+\begin{itemize}[itemsep = -0.7 mm, leftmargin=*]
+	\item Represented IIT Bombay in the \textbf{Inter IIT Sport Meet 2017} for lawn tennis
+	\item \textbf{Gold}, Lawn Tennis General Championship\hfill{[2017]}
+	\item \textbf{Sportsperson of the Year} of Hostel 2 as a sophomore among students of all years\hfill{[2017]}
+	%\item \textbf{Bronze}, Lawn Tennis Freshie Open\hfill{[2016]}
+	\item \textbf{Represented state twice} in lawn tennis in \textbf{Nationals}, School Games Federation of India\hfill{[2011,12]}
+% 	\item \textbf{Silver}, Triathlon General Championship\hfill{[2016}]
+	%\item \textbf{Gold} in Cross country run twice\hfill{[2016]}
+\end{itemize}
+\vspace{-15pt}
+% *************  Community Service  ***************
+\subsection*{\large Community Service}
+\vspace{-4pt}
+\begin{itemize}[itemsep = -0.7 mm, leftmargin=*]
+	\item Assisted \textbf{Citizen's Foundation} (NGO) in review of settlement plan, public awareness meetings and comparative assessment of DPs for the Loknayak Ganga Path project, a 20.5km proposed driveway along the river Ganges
+	\item Participant, \textbf{Rural Immersion Programme} to observe, analyse and improve life in countryside\hfill{[2015]}
+	\item Organised survey of VIP road for \textbf{BalaJanaagraha} (NGO) in a program to improve urban life quality\hfill{[2012]}
+	\item Promoted donation drives for \textbf{Red Cross} as a part of school project La Benovelat \hfill{[2010]}
+\end{itemize}
+\vspace{-15pt}
+% *************  Technical  ***************
+% \subsection*{\large Technical}
+% \vspace{-4pt}
+% \begin{itemize}[itemsep = -0.7 mm, leftmargin=*]
+%     \item RC Plane, remote controlled plane out of coroplast with partially symmetric, dihedral airfoil
+% 	\item XLR8, a remote-driven, bluetooth enabled toy car
+% 	\item Wrestle.AI, a multi-functional bot capable of following lines and walls, traversing a maze and wrestling
+% \end{itemize}
+% \vspace{-20pt}
+% ************** Misc. *****************
+\subsection*{\large Miscellaneous}
+\vspace{-4pt}
+\begin{itemize}[itemsep = -0.7 mm, leftmargin=*]
+	\item \textbf{Runner-up} in \textbf{Design Championship} as a freshman, across students of all years in IIT\hfill{[2016]}
+	\item Top 4 at \textbf{National CBSE Cryptic Crossword Contest} \hfill{[2015]}
+	\item All India Rank \textbf{4} in Technothlon, conducted by IIT Guwahati\hfill{[2014]}
+% 	\item Attended Vijyoshi Camp, organised by IISER Kolkata\hfill{[2015]}
+	\item Currently pursuing A1 course in German language
+	\item Gaining proficiency in playing Hindustani bamboo flute
+\end{itemize}
+
+%*******************************************************
+%			Positions of Responsibility
+%*******************************************************
+\section*{\LARGE Positions of Responsibility\xfilll[0pt]{0.5pt}}
+\vspace{-6pt}
+
+\hspace{1pt}\textbf{Department Academic Mentor}, {\it CSE Department, IIT Bombay}\hfill{May 2018 - Present}\\
+%\hfill\\
+\vspace{-19pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Responsible for mentoring a group of 6 sophomores of the department with their various academic as well as general concerns
+\end{itemize}
+
+\hspace{-14pt}\textbf{Technical Head,} {\it Institute Sports Council, IIT Bombay}\hfill{May 2018 - Present}\\
+%\hfill\\
+\vspace{-19pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Part of a 22 member team spearheading all the sporting activities, catering to over 10000 people
+	\item Leading team for planning and development of mobile sports app for the institute
+\end{itemize}
+
+\hspace{-14pt}\textbf{Teaching Assistant,} {\it Linear Algebra}\hfill{Jan. 2018 - Mar. 2018}\\
+%\hfill\\
+\vspace{-19pt}
+\begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+	\item Conducting one-on-one help sessions for students to clear their doubts
+	\item Member of an experimental outreach program for students to provide a friendly environment for course discussion
+\end{itemize}
+
+% \hspace{-14pt}\textbf{Design and Creatives Convenor,} {\it Institute Sports Council, IIT Bombay} \hfill{Apr. 2017 - Mar. 2018}\\
+% %\hfill\\
+% \vspace{-19pt}
+% \begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+% 	\item Responsible for publicity of over 150 events spread out over the year catering to the students of the institute
+% 	\item Delivering innovative ideas to increase sports participation among institute citizens
+% \end{itemize}
+
+% \hspace{-14pt}\textbf{Marketing Coordinator,} {\it Mood Indigo}\hfill{Apr. 2017 - Dec. 2017}\\
+% %\hfill\\
+% \vspace{-19pt}
+% \begin{itemize}[itemsep = -0.75 mm, leftmargin=*]
+% 	\item Working to raise revenue through corporate sponsorship for Asia's largest college cultural festival
+% 	\item Conceptualizing brand integration strategies across multiple events
+% \end{itemize}
+
+%\hspace{4pt}
+
+\end{document}
