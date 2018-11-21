@@ -34,7 +34,6 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
         to_delete = []
         to_download = []
         local_delete = []
-        print(cloud_dict)
         for x in cloud_dict.keys():
             if local_dict.get(x) is None:
                 only_cloud.append(x)

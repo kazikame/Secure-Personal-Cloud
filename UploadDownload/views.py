@@ -88,7 +88,7 @@ class DeleteFile(APIView):
                     instance.delete()
                 else:
                     return Response({'error': 'No such files exist.'})
-                return Response({'detail': 'Successful!'})
+                return Response({'detail': 'Successful!'}, status=status.HTTP_200_OK)
             except Exception as e:
                 print(e)
                 return Response({'detail': 'Unknown Error!'})

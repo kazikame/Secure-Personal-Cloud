@@ -57,9 +57,6 @@ def sync(out):
         logging.exception(e)
         print("error: Invalid home directory. Please point to a valid home directory using\n\nspc observe <home-dir>")
         exit(-1)
-    print(upload)
-    print(download)
-    print(delete)
     delete_files(server_url, AuthKey, delete)
     download_files(server_url, AuthKey, download, home_dir)
     upload_files(server_url, AuthKey, home_dir, upload)
@@ -144,7 +141,7 @@ def get_auth_key(server_url, username, password):
     client = requests.Session()
     payload = {'username': username, 'password': password}
     AuthKey = client.post(server_url + 'api/login/', data=payload)
-    if AuthKey.json().get('key', '0') == '0':
+    if AuthKey is None or AuthKey.json().get('key', '0') == '0':
         raise AuthenticationException
     else:
         return AuthKey
@@ -167,9 +164,7 @@ def config_edit(server_url):
     data['password'] = temp
     with open(config_file, 'w') as outfile:
         json.dump(data, outfile)
-    global username
     username = data['username']
-    global password
     password = data['password']
 
     try:
@@ -231,6 +226,8 @@ def upload_files(server_url, AuthKey, home_dir, files):
                                          else -> HTTP_400 error.
             Repeat Step 2.
     """
+    if len(files) == 0:
+        return
     client = requests.Session()
     algorithm = "AES"
     encryptedFiles = []
@@ -287,11 +284,11 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         split_path = os.path.split(f)
         payLoad = {'file_path': split_path[0], 'name': split_path[1]}
         r = client.post(server_url+'api/download/', data=payLoad, headers=header, stream=True)
-        print(r.headers)
         values, params = cgi.parse_header(r.headers['Content-Disposition'])
         with open(home_dir + params['filename'], 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
+            print(params['filename'] + ' downloaded successfully.')
 
 
 def set_home_dir(parameter, dir, out):
@@ -316,7 +313,6 @@ def delete_files(server_url, AuthKey, file_list):
     if len(file_list) == 0:
         return
     client = requests.Session()
-    print(AuthKey.text)
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     name_list = []
     for i in range(0, len(file_list)):
@@ -325,11 +321,13 @@ def delete_files(server_url, AuthKey, file_list):
         name_list.append(split_path[1])
 
     payloadDelete = {'file_path': '```'.join(file_list), 'name_list': '```'.join(name_list)}
-    print(payloadDelete)
-
     try:
         r = client.post(server_url + 'api/delete/', data=payloadDelete, headers=header)
-        print(r.text)
+        if r.status_code == 200:
+            print('Deleted ' + str(len(file_list)) + ' file(s) on the cloud successfully.')
+        else:
+            print('Delete on cloud unsuccessful. Check logs for more details.')
+            logging.warn(r.text)
     except HTTPError as e:
         logging.exception(e.strerror)
 
@@ -339,7 +337,6 @@ def get_index(server_url, AuthKey):
     Returns ALL the filenames of the user and their md5sums
     """
     client = requests.Session()
-    print(AuthKey.text)
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     r = client.post(server_url + 'api/get-index/', headers=header)
     index_dict = {}
