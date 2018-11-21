@@ -86,7 +86,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
 
         if (len(only_cloud) != 0):
             print("The files only on Cloud Storage.")
-            i = "V";
+            i = "V"
             while (i == "V"):
                 i = input(
                     "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to deal with them individually.\n")

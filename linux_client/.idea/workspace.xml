@@ -6,6 +6,10 @@
       <change beforePath="$PROJECT_DIR$/FileEncrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/FileEncrypt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GenerateKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateKey.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GenerateKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPC.log" beforeDir="false" afterPath="$PROJECT_DIR$/SPC.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conflicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/conflicts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encryption.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +86,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="293" />
     <option name="y" value="53" />
     <option name="width" value="1400" />
@@ -139,7 +143,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" />

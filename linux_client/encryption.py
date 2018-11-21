@@ -3,7 +3,7 @@ import os
 import tempfile
 
 
-def encryptFile(algorithm, keyFile, fpath, encfpath):
+def encrypt_file(algorithm, keyFile, fpath, encfpath):
 
     encryptFileCommand = "java FileEncrypt {0} {1} {2} {3} {4}"
     command = encryptFileCommand.format(algorithm, "encrypt", keyFile, fpath, encfpath)
@@ -11,7 +11,7 @@ def encryptFile(algorithm, keyFile, fpath, encfpath):
     return True
 
 
-def decryptKey(encryptedKeyFile, password, decryptedFilePath):
+def decrypt_key(encryptedKeyFile, password, decryptedFilePath):
     """
     :param encryptedKeyFile: str - complete path of encrypted key
     :param password: str
@@ -22,7 +22,7 @@ def decryptKey(encryptedKeyFile, password, decryptedFilePath):
     os.system(command.format(password,encryptedKeyFile,decryptedFilePath))
 
 
-def encryptKey(decryptedKeyFile, password, encryptedFilePath):
+def encrypt_key(decryptedKeyFile, password, encryptedFilePath):
     """
     :param decryptedKeyFile: str - complete path of encrypted key
     :param password: str
@@ -33,7 +33,7 @@ def encryptKey(decryptedKeyFile, password, encryptedFilePath):
     os.system(command.format(password,decryptedKeyFile,encryptedFilePath))
 
 
-def changePass(keyFile,oldpass,newpass):
+def change_pass(keyFile,oldpass,newpass):
     """
     :param keyFile: str - path to current (encrypted) key file
     :param oldpass: str
@@ -42,5 +42,5 @@ def changePass(keyFile,oldpass,newpass):
     """
     with tempfile.TemporaryDirectory as d:
         tempKey = os.path.join(d,"temp.key")
-        decryptKey(keyFile, oldpass, tempKey)
-        encryptKey(tempKey, newpass, keyFile)
+        decrypt_key(keyFile, oldpass, tempKey)
+        encrypt_key(tempKey, newpass, keyFile)
