@@ -7,6 +7,7 @@ import pickle
 def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
     """
     Takes all file paths (relative to base) and encrypts with the same name onto encrypted_base
+    :param base: home_dir for decrypted files
     :param files: list of files in base
     :param key_file: string - path to key file, not provided if user will give input
     :param encrypted_base: to store encrypted files
@@ -46,9 +47,10 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
 def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=None):
     """
     Takes all file paths (relative to base) and encrypts with the same name onto encrypted_base
+    :param decrypted_base: path to store files
     :param files: list of files in base
     :param key_file: string - path to key file, not provided if user will give input
-    :param encrypted_base: to store encrypted files
+    :param encrypted_base: where encrypted files are stored
     :param algorithm: AES / TripleDES
     :return: boolean for success
     """
@@ -115,7 +117,6 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
 #         tempKey = os.path.join(d, "temp.key")
 #         decrypt_key(keyFile, oldpass, tempKey)
 #         encrypt_key(tempKey, newpass, keyFile)
-
 
 
 def generate_key(encryption_schema, key_file=None):
