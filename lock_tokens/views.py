@@ -9,21 +9,23 @@ from lock_tokens.exceptions import AlreadyLockedError
 from lock_tokens.models import LockToken
 from lock_tokens.settings import API_CSRF_EXEMPT
 from lock_tokens.utils import get_oldest_valid_tokens_datetime
+from rest_framework.views import APIView
+from Authentication.models import SpcUser
 
 
 def lock_tokens_csrf_exempt(view):
     return csrf_exempt(view) if API_CSRF_EXEMPT else view
 
 
-class LockTokenBaseView(View):
+class LockTokenBaseView(APIView):
 
-    @method_decorator(lock_tokens_csrf_exempt)
+    # @method_decorator(lock_tokens_csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(LockTokenBaseView, self).dispatch(*args, **kwargs)
 
     def get_contenttype_or_404(self, app_label, model):
         try:
-            return ContentType.objects.get(app_label=app_label, model=model)
+            return ContentType.objects.get(app_label='Authentication', model='spcuser')
         except ContentType.DoesNotExist:
             raise Http404("There is no model named %s with app_label %s" % (model,
                                                                             app_label))
@@ -37,6 +39,7 @@ class LockTokenBaseView(View):
 
     def get_valid_lock_token_or_error(self, app_label, model, object_id, token):
         contenttype = self.get_contenttype_or_404(app_label, model)
+        print(contenttype)
         try:
             lock_token = LockToken.objects.get(locked_object_content_type=contenttype,
                                                locked_object_id=object_id,
@@ -50,8 +53,9 @@ class LockTokenBaseView(View):
 
 class LockTokenListView(LockTokenBaseView):
 
-    def post(self, request, app_label, model, object_id):
-        obj = self.get_object_or_404(app_label, model, object_id)
+    def post(self, request):
+        object_id = SpcUser.objects.filter(username=request.user.username).get().id
+        obj = self.get_object_or_404('Authentication', 'spcuser', object_id)
         try:
             lock_token = LockToken.objects.create(locked_object=obj)
         except AlreadyLockedError:
@@ -62,19 +66,23 @@ class LockTokenListView(LockTokenBaseView):
 
 class LockTokenDetailView(LockTokenBaseView):
 
-    def get(self, request, app_label, model, object_id, token):
-        lock_token = self.get_valid_lock_token_or_error(app_label, model, object_id,
+    def get(self, request, token):
+        object_id = SpcUser.objects.filter(username=request.user.username).get().id
+        lock_token = self.get_valid_lock_token_or_error('Authentication', 'spcuser', object_id,
                                                         token)
         return JsonResponse(lock_token.serialize())
 
     def patch(self, request, app_label, model, object_id, token):
-        lock_token = self.get_valid_lock_token_or_error(app_label, model, object_id,
+        object_id = SpcUser.objects.filter(username=request.user.username).get().id
+        lock_token = self.get_valid_lock_token_or_error('Authentication', 'spcuser', object_id,
                                                         token)
         lock_token.renew()
         return JsonResponse(lock_token.serialize())
 
-    def delete(self, request, app_label, model, object_id, token):
-        lock_token = self.get_valid_lock_token_or_error(app_label, model, object_id,
+    def delete(self, request, token):
+        print(token)
+        object_id = SpcUser.objects.filter(username=request.user.username).get().id
+        lock_token = self.get_valid_lock_token_or_error('Authentication', 'spcuser', object_id,
                                                         token)
         lock_token.delete()
         return JsonResponse({}, status=204)

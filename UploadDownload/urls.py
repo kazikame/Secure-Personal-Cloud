@@ -14,5 +14,6 @@ urlpatterns = [
     re_path(r'^delete/$', DeleteFile.as_view(), name='file-delete'),
     re_path(r'^download/$', DownloadFile.as_view(), name='file-download'),
     re_path(r'^get-index/$', FileIndex.as_view(), name='file-index'),
+    url(r'^lock_tokens/', include('lock_tokens.urls', namespace='lock-tokens')),
     re_path(r'', include('rest_auth.urls')),
 ]
