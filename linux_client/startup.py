@@ -20,6 +20,7 @@ import pickle
 
 sys.path.append('.')
 import conflicts
+from encryption import *
 
 # CONFIG OPTIONS
 config_file = 'conf.json'
@@ -45,6 +46,24 @@ class AuthenticationException(Exception):
 class NoHomeDirException(Exception):
     pass
 
+def status ():
+    server_url = get_server_url()
+    AuthKey = check_user_pass(server_url)
+    home_dir = check_home_dir()
+    [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
+    print ("The files on both server and local (unmodified): ")
+    for x in unmodified:
+        print (x)
+    print("The files on both server and local (modified): ")
+    for x in modified:
+        print(x)
+    print("The files only on server : ")
+    for x in cloud:
+        print(x)
+    print("The files only on local : ")
+    for x in local:
+        print(x)
+    pass
 
 def sync(paramalgo, paramkey):
     with open(config_file) as f:
@@ -53,6 +72,7 @@ def sync(paramalgo, paramkey):
         server_url = get_server_url()
         AuthKey = check_user_pass(server_url)
         home_dir = check_home_dir()
+        [schema, en_key] = get_en_key()
         [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
     except requests.exceptions.ConnectionError as e:
         logging.exception(e)
@@ -63,8 +83,8 @@ def sync(paramalgo, paramkey):
         print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
         exit(-1)
     del_bool = delete_files(server_url, AuthKey, delete)
-    down_bool = download_files(server_url, AuthKey, download, home_dir, data[paramalgo], data[paramkey])
-    up_bool = upload_files(server_url, AuthKey, home_dir, upload, data[paramalgo], data[paramkey])
+    down_bool = download_files(server_url, AuthKey, download, home_dir, schema, en_key)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload, schema, en_key)
 
     if (delete and del_bool) and (download and down_bool) and (upload and up_bool):
         print('Sync Successful')
@@ -159,6 +179,19 @@ def get_auth_key(server_url, username, password):
         return AuthKey
 
 
+def get_en_key():
+    data = {}
+    with open(config_file) as f:
+        try:
+            data = json.load(f)
+        except Exception as e:
+            pass
+    if ('encryption_schema' not in data) or ('key' not in data):
+        return set_key('encryption_schema', 'key')
+    else:
+        return [data['encryption_schema'], data['key']]
+
+
 def config_edit(server_url = None):
     data = {}
     with open(config_file) as f:
@@ -245,40 +278,62 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
                                          else -> HTTP_400 error.
             Repeat Step 2.
     """
+    # Return if no files to be uploaded
     if len(files) == 0:
         return
+
+    # Make request client
     client = requests.Session()
 
+    # Initialize Default var
     size = 0
     upload_success = 0
     upload_failed = 0
     md5fail = 0
-
     retryUploads = []
-    for i in files:
-        size += os.path.getsize(os.path.join(home_dir, i))
-    global pbar
-    pbar = tqdm(total=size*1.003, ncols=80, unit='B', unit_scale=True, unit_divisor=1024)
     num = len(files)
+
     with tempfile.TemporaryDirectory() as directory:
         encrypt_files(algorithm, home_dir, directory, files, key_file)
+        old_home = home_dir
+        home_dir = directory
+        for i in files:
+            size += os.path.getsize(os.path.join(home_dir, i))
+        global pbar
+        pbar = tqdm(total=size * 1.003, ncols=80, unit='B', unit_scale=True, unit_divisor=1024)
         for file in files:
             file_path = os.path.split(file)[0]
             filename = os.path.split(file)[1]
-            tmpfile = os.path.join(directory, file)
-            f = open(os.path.join(home_dir, file), 'rb')
+
+            # Get MD5 of encrypted file
+            f = open(os.path.join(home_dir, file_path, filename), 'rb')
             md5sum1 = md5sum(f)
             f.close()
 
-            f = open(tmpfile, 'rb')
+            # Get MD5 of original file
+            f_orig = open(os.path.join(old_home, file_path, filename), 'rb')
+            md5sum_orig = md5sum(f_orig)
+            f_orig.close()
 
-            payloadUpload = MultipartEncoder(fields={'file_path': file_path, 'md5sum': md5sum1,
+            # File to be uploaded
+            f = open(os.path.join(home_dir, file_path, filename), 'rb')
+
+            # Payload
+            payloadUpload = MultipartEncoder(fields={'file_path': file_path,
+                                                     'md5sum': md5sum1,
+                                                     'md5sum_o': md5sum_orig,
                                                      'file': (filename, f, 'application/octet-stream')})
+
+            # Header
             header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),
                       'Content-Type': payloadUpload.content_type, 'num': str(num)}
+
+            # Progress Bar stuff
             global completed
             completed = 0
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
+
+            # Response received
             r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor,  headers=header)
             if r.status_code == 201:
                 upload_success += 1
@@ -317,35 +372,45 @@ def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", ke
     :param file_list: List of (relative) file (paths) to be downloaded
     """
 
+    # Return if no files
     if len(file_list) == 0:
         return
+
+    # Make a request client
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'), }
     retryDownloads = []
+    old_dir = home_dir
     with tempfile.TemporaryDirectory() as tempdir:
         for f in file_list:
             split_path = os.path.split(f)
             payLoad = {'file_path': split_path[0], 'name': split_path[1]}
             r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
             values, params = cgi.parse_header(r.headers['Content-Disposition'])
-            [filename, md5] = params['filename'].split('```')
+
+            md5 = params['filename']
+            filename = f
+
             pathlib.Path(os.path.split(os.path.join(home_dir, filename))[0]).mkdir(parents=True, exist_ok=True)
             print(os.path.join(home_dir, filename))
+
             if not os.path.isdir(os.path.dirname(os.path.join(tempdir, f))):
-                os.mkdir(os.path.dirname(os.path.join(tempdir, f)))
-            with open(os.path.join(tempdir, f), 'wb') as xx:
+                pathlib.Path(os.path.dirname(os.path.join(tempdir, f))).mkdir(parents=True, exist_ok=True)
+
+            home_dir = tempdir
+            with open(os.path.join(home_dir, filename), 'wb') as xx:
                 for chunk in r.iter_content(chunk_size=8192):
                     xx.write(chunk)
 
-            with open(os.path.join(tempdir, f), 'rb') as ff:
+            with open(os.path.join(home_dir, filename), 'rb') as ff:
                 md5c = md5sum(ff)
                 if md5c != md5:
-                    print(f + ' failed MD5 checksum.')
+                    print(filename + ' failed MD5 checksum.')
                     retryDownloads.append(f)
                 else:
-                    print(f + ' downloaded successfully.')
+                    print(filename + ' downloaded successfully.')
         newfilelist = [f for f in file_list if f not in retryDownloads]
-        decrypt_files(algorithm, tempdir, home_dir, newfilelist, key_file)
+        decrypt_files(algorithm, home_dir, old_dir, newfilelist, key_file)
 
     if len(retryDownloads) > 0:
         i = input(str(len(retryDownloads)) + ' failed MD5 checksum. Would you like to try to re-download them? [Y/n]: ')
@@ -438,7 +503,7 @@ def get_index(server_url, AuthKey):
         exit(0)
     index_dict = {}
     for i in r.json()['index']:
-        index_dict[i['file_path']] = i['md5sum']
+        index_dict[i['file_path']] = i['md5sum_o']
     return index_dict
 
 
@@ -457,6 +522,32 @@ def get_status():
         print('Your local directory is not in sync with the cloud. To sync, use \n\nspc sync')
 
 
+def set_key(paramalgo, paramkey):
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    with open(config_file, 'w') as fhand:
+        algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES\n2. TripleDES\n3. (tbd)\n")
+        if '1' in algoselected:
+            data[paramalgo] = "AES"
+            keyFile = input("Enter a valid file path where you want the key to be stored."
+                            "Enter 'print' if you want the key to be printed out to terminal (not recommended)")
+            if keyFile == "print":
+                keyFile = None
+            else:
+                if not os.path.isdir(os.path.dirname(keyFile)):
+                    print('Directory not found. Try again')
+                    exit(0)
+            x = generate_key("AES", keyFile)
+            if not x:
+                print("Error generating key. Try again")
+                exit(1)
+            else:
+                data[paramkey] = keyFile
+        json.dump(data, fhand)
+
+    return [data[paramalgo], data[paramkey]]
+
+
 if len(sys.argv) > 1:
     if sys.argv[1] == 'config':
         config_edit()
@@ -472,3 +563,5 @@ if len(sys.argv) > 1:
         get_status()
     elif sys.argv[1] == 'generate_key':
         set_key('encryption_schema', 'key')
+    elif sys.argv[1] == 'status':
+        status()

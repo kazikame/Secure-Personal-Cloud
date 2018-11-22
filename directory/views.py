@@ -119,11 +119,10 @@ def view_file(request, dir_name, file_name="", *args, **kwargs):
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
 
         file_path = os.path.join(directory, dir_name, file_name)
-        if os.path.isfile(file_path):
-            file_obj = open(file_path, 'rb')
-            response = HttpResponse(file_obj.read(), content_type='application/txt')
-            response['Content-Disposition'] = 'inline; filename=%s' % file_name
-            return response
+        if os.path.isfile(file_path) and os.path.getsize(file_path) < 10**8:
+            file_obj = open(file_path, 'rw')
+            b64_str = file_obj.read()
+            return render(request, 'view.html', {'file_str': b64_str, 'file_name': file_name})
         else:
             raise Http404(file_path)
     else:

@@ -2,6 +2,7 @@ import os
 import tempfile
 import binascii
 import pickle
+import pathlib
 
 
 def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
@@ -35,12 +36,12 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
                 keys = pickle.load(f)
                 key = keys["key"].decode('utf-8').upper()
                 iv = keys["iv"].decode('utf-8').upper()
-        command = "openssl enc -aes-256-ctr -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
+        command = "openssl enc -aes-256-ctr -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
         for file in files:
             inp = os.path.join(base, file)
             output = os.path.join(encrypted_base, file)
             if not os.path.isdir(os.path.dirname(output)):
-                os.mkdir(os.path.dirname(output))
+                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
             os.system(command.format(inp, output, key, iv))
         print("Files encrypted successfully.")
         return True
@@ -77,12 +78,12 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
                 keys = pickle.load(f)
                 key = keys["key"].decode('utf-8').upper()
                 iv = keys["iv"].decode('utf-8').upper()
-        command = "openssl enc -aes-256-ctr -d -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
+        command = "openssl enc -aes-256-ctr -d -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
         for file in files:
             inp = os.path.join(encrypted_base, file)
             output = os.path.join(decrypted_base, file)
             if not os.path.isdir(os.path.dirname(output)):
-                os.mkdir(os.path.dirname(output))
+                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
             os.system(command.format(inp, output, key, iv))
         print("Files decrypted successfully.")
         return True
