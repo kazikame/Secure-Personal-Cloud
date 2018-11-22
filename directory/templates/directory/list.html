@@ -11,30 +11,12 @@
 <script src="{% static 'CryptoJS/rollups/tripledes.js' %}"></script>
 <script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
 <script src="{% static 'CryptoJS/components/mode-ecb.js' %}"></script>
+<script src="{% static 'CryptoJS/components/pad-nopadding.js' %}"></script>
 
 {% endblock %}
 {% block content %}
 <h1>{{ user }}</h1>
-<!--<ul>-->
-<!--{% for file_tuple in alldata %}-->
-    <!--<li>-->
-        <!--<div>-->
-        <!--{{ file_tuple.0 }}-->
-        <!--<ol>-->
-            <!--{% for file in file_tuple.1 %}-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="{% url 'directory_download_file' file_tuple.0 file %}">Download {{ file }}</a>-->
-                    <!--<br>-->
-                    <!--<a href="{% url 'directory_view_file' file_tuple.0 file %}">View {{ file }}</a>-->
-                <!--</div>-->
-            <!--</li>-->
-            <!--{% endfor %}-->
-        <!--</ol>-->
-        <!--</div>-->
-    <!--</li>-->
-    <!--{% endfor %}-->
-<!--</ul>-->
+
 <ul id="list_of_files">
     {% for subdir in subdirs %}
     <li>

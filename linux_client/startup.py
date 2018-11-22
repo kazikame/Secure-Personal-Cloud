@@ -8,6 +8,7 @@ from functools import partial
 from os import path
 from urllib.error import *
 import requests
+from encryption import encrypt_files, decrypt_files, generate_key
 from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
 from tqdm import tqdm
 import logging
@@ -15,6 +16,7 @@ import re
 import cgi
 import urllib.parse as urlp
 import pathlib
+import pickle
 
 sys.path.append('.')
 import conflicts
@@ -44,8 +46,28 @@ class AuthenticationException(Exception):
 class NoHomeDirException(Exception):
     pass
 
+def status ():
+    server_url = get_server_url()
+    AuthKey = check_user_pass(server_url)
+    home_dir = check_home_dir()
+    [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
+    print ("The files on both server and local (unmodified): ")
+    for x in unmodified:
+        print (x)
+    print("The files on both server and local (modified): ")
+    for x in modified:
+        print(x)
+    print("The files only on server : ")
+    for x in cloud:
+        print(x)
+    print("The files only on local : ")
+    for x in local:
+        print(x)
+    pass
 
-def sync():
+def sync(paramalgo, paramkey):
+    with open(config_file) as f:
+        data = json.load(f)
     try:
         server_url = get_server_url()
         AuthKey = check_user_pass(server_url)
@@ -211,6 +233,8 @@ def md5sum(f):
 
 pbar = None
 completed = 0
+
+
 def progress_update(monitor):
     global completed
     pbar.update(monitor.bytes_read - completed)
@@ -221,9 +245,12 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
     """
     Main Upload function.
 
-    :param username:
-    :param password:
-    :param Base_Folder: The folder being synced/uploaded
+    :param key_file:
+    :param algorithm:
+    :param files: list of file path strings relative to home_dir
+    :param home_dir: base dir
+    :param AuthKey: string
+    :param server_url: string
     :return:
 
     {SITE_URL} = http://127.0.0.1:8000
@@ -337,7 +364,9 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
 def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", key_file=None):
     """
     Utility to download files from cloud.
-
+    :param key_file:
+    :param algorithm: AES / TripleDES
+    :param home_dir:
     :param server_url:
     :param AuthKey: Authentication Token
     :param file_list: List of (relative) file (paths) to be downloaded
@@ -358,6 +387,7 @@ def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", ke
             payLoad = {'file_path': split_path[0], 'name': split_path[1]}
             r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
             values, params = cgi.parse_header(r.headers['Content-Disposition'])
+
             md5 = params['filename']
             filename = f
 
@@ -402,6 +432,30 @@ def set_home_dir(parameter, dir, out):
     else:
         print("Directory doesn't exist!")
         exit(-1)
+
+
+def set_key(paramalgo, paramkey):
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    with open(config_file, 'w') as fhand:
+        algoselected = input("Select an enctyption schema (enter choice 1, 2, or 3)\n1. AES\n2. TripleDES\n3. (tbd)\n")
+        if '1' in algoselected:
+            data[paramalgo] = "AES"
+            keyFile = input("Enter a valid file path where you want the key to be stored."
+                            "Enter 'print' if you want the key to be printed out to terminal (not recommended)")
+            if keyFile == "print":
+                keyFile = None
+            else:
+                if not os.path.isdir(os.path.dirname(keyFile)):
+                    print('Directory not found. Try again')
+                    exit(0)
+            x = generate_key("AES", keyFile)
+            if not x:
+                print("Error generating key. Try again")
+                exit(1)
+            else:
+                data[paramkey] = keyFile
+        json.dump(data, fhand)
 
 
 def empty_json():
@@ -502,10 +556,12 @@ if len(sys.argv) > 1:
     elif sys.argv[1] == 'observe':
         set_home_dir('home_dir', sys.argv[2], config_file)
     elif sys.argv[1] == 'sync':
-        sync()
+        sync('encryption_schema', 'key')
     elif sys.argv[1] == 'empty_json':
         empty_json()
     elif sys.argv[1] == 'status':
         get_status()
     elif sys.argv[1] == 'generate_key':
         set_key('encryption_schema', 'key')
+    elif sys.argv[1] == 'status':
+        status()

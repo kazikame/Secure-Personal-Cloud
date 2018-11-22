@@ -7,6 +7,9 @@ sync="sync"
 daemon="stop_daemon"
 setkey="set_key"
 
+
+status="status"
+
 # cd $SPC_PATH
 
 if [ "$1" == "$server" ]
@@ -30,6 +33,9 @@ then
 elif [ "$1" == "$setkey" ]
 then
     python3.6 startup.py generate_key
+elif [ "$1" == "$status" ]
+then
+    python3.6 startup.py status
 else
     echo "spc $1 -- command not found. For help look at the man page"
 fi

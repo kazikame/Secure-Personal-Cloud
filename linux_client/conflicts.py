@@ -43,6 +43,34 @@ def uploadall(cloud_dict, local_dir):
                 only_local.append(x)
         return [only_local+modified, [], only_cloud+modified]
 
+def status(cloud_dict, local_dir):
+    local_dict = {}
+    for (root, dirnames, filenames) in walk(local_dir):
+        for name in filenames:
+            md5e = md5(os.path.join(root, name))
+            local_dict[os.path.join(os.path.relpath(root, local_dir), name)] = md5e
+    if local_dict == cloud_dict:
+        return [[], local_dict.keys() ,[], []]
+    else:
+
+        only_cloud = []
+        only_local = []
+        modified = []
+        unmodified = []
+
+        for x in cloud_dict.keys():
+            if local_dict.get(x) is None:
+                only_cloud.append(x)
+            elif local_dict[x] != cloud_dict[x]:
+                modified.append(x)
+            else:
+                unmodified.append(x)
+
+        for x in local_dict.keys():
+            if cloud_dict.get(x) == None:
+                only_local.append(x)
+        return [modified,unmodified, only_cloud,only_local]
+
 
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
     local_dict = {}
@@ -73,7 +101,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
 
         for x in local_dict.keys():
             if (cloud_dict.get(x) == None):
-                only_local.append(x);
+                only_local.append(x)
 
         print("There are some Merge conflicts.\n\nYou have :")
         print(len(modified), " modified files")

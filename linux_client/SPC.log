@@ -955,3 +955,66 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8
 11/22/2018 06:03:09 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10637
 11/22/2018 06:03:12 PM Starting new HTTP connection (1): 127.0.0.1:8000
 11/22/2018 06:03:12 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 24
+11/22/2018 06:36:21 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 06:36:21 PM HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f85587b3400>: Failed to establish a new connection: [Errno 111] Connection refused',))
+Traceback (most recent call last):
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 80, in create_connection
+    raise err
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/util/connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f85587b3400>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/parikshit/.local/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/home/parikshit/.local/lib/python3.6/site-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f85587b3400>: Failed to establish a new connection: [Errno 111] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "daemon.py", line 48, in uploadlocal
+    AuthKey = check_user_pass(server_url)
+  File "daemon.py", line 118, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "daemon.py", line 139, in get_auth_key
+    AuthKey = client.post(urlp.urljoin(server_url, 'api/login/'), data=payload)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/requests/sessions.py", line 581, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/parikshit/.local/lib/python3.6/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f85587b3400>: Failed to establish a new connection: [Errno 111] Connection refused',))
