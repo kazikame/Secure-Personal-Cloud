@@ -8,6 +8,8 @@ daemon="stop_daemon"
 
 dic_file="conf.json"
 
+cd $SPC_PATH
+
 if [ "$1" == "$server" ]
 then
     python3.6 startup.py empty_json "$dic_file"
@@ -27,5 +29,8 @@ then
     sudo kill -9 $pid
     echo Daemon Terminated
 else
-    echo "spc $1 -- command not found."
+    echo "spc $1 -- command not found. For help look at the man page"
 fi
+
+cd - > /dev/null
+
