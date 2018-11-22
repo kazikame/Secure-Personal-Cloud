@@ -15,6 +15,7 @@ import logging
 import re
 import cgi
 import urllib.parse as urlp
+import pathlib
 
 sys.path.append('.')
 import conflicts
@@ -43,42 +44,8 @@ class AuthenticationException(Exception):
 class NoHomeDirException(Exception):
     pass
 
-def uploadlocal():
-    try:
-        server_url = get_server_url()
-        AuthKey = check_user_pass(server_url)
-        home_dir = check_home_dir()
-        [upload, download, delete] = conflicts.uploadall(get_index(server_url, AuthKey), home_dir)
-    except requests.exceptions.ConnectionError as e:
-        logging.exception(e)
-        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
-        exit(-1)
-    except NoHomeDirException as e:
-        logging.exception(e)
-        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
-        exit(-1)
-    del_bool = delete_files(server_url, AuthKey, delete)
-    up_bool = upload_files(server_url, AuthKey, home_dir, upload)
 
-
-def uploadlocal():
-    try:
-        server_url = get_server_url()
-        AuthKey = check_user_pass(server_url)
-        home_dir = check_home_dir()
-        [upload, download, delete] = conflicts.uploadall(get_index(server_url, AuthKey), home_dir)
-    except requests.exceptions.ConnectionError as e:
-        logging.exception(e)
-        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
-        exit(-1)
-    except NoHomeDirException as e:
-        logging.exception(e)
-        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
-        exit(-1)
-    del_bool = delete_files(server_url, AuthKey, delete)
-    up_bool = upload_files(server_url, AuthKey, home_dir, upload)  
-  
-def sync(out):
+def sync():
     try:
         server_url = get_server_url()
         AuthKey = check_user_pass(server_url)
@@ -286,6 +253,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
         size += os.path.getsize(os.path.join(home_dir, i))
     global pbar
     pbar = tqdm(total=size*1.003, ncols=80, unit='B', unit_scale=True, unit_divisor=1024)
+    num = len(files)
     with tempfile.TemporaryDirectory() as directory:
         for file in files:
             file_path = os.path.split(file)[0]
@@ -300,7 +268,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
             payloadUpload = MultipartEncoder(fields={'file_path': file_path, 'md5sum': md5sum1,
                                                      'file': (filename, f, 'application/octet-stream')})
             header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),
-                      'Content-Type': payloadUpload.content_type}
+                      'Content-Type': payloadUpload.content_type, 'num': str(num)}
             global completed
             completed = 0
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
@@ -318,6 +286,7 @@ def upload_files(server_url, AuthKey, home_dir, files):
                 upload_failed += 1
                 tqdm.write(filename + ' failed to upload')
                 logging.warn(r.text)
+            num -= 1
 
     tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
     if md5fail > 0:
@@ -350,15 +319,19 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
         values, params = cgi.parse_header(r.headers['Content-Disposition'])
         [filename, md5] = params['filename'].split('```')
-        with open(home_dir + filename, 'wb') as ff:
+        pathlib.Path(os.path.split(os.path.join(home_dir, filename))[0]).mkdir(parents=True, exist_ok=True)
+        print(os.path.join(home_dir, filename))
+        with open(os.path.join(home_dir, filename), 'wb') as xx:
             for chunk in r.iter_content(chunk_size=8192):
-                ff.write(chunk)
-        with open(home_dir + filename, 'rb') as ff:
-            if md5sum(ff) != md5:
+                xx.write(chunk)
+
+        with open(os.path.join(home_dir, filename), 'rb') as ff:
+            md5c = md5sum(ff)
+            if md5c != md5:
                 print(filename + ' failed MD5 checksum.')
                 retryDownloads.append(f)
             else:
-                print(params['filename'] + ' downloaded successfully.')
+                print(filename + ' downloaded successfully.')
 
     if len(retryDownloads) > 0:
         i = input(str(len(retryDownloads)) + ' failed MD5 checksum. Would you like to try to re-download them? [Y/n]: ')
@@ -421,19 +394,41 @@ def get_index(server_url, AuthKey):
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     r = client.post(urlp.urljoin(server_url, 'api/get-index/'), headers=header)
+
+    if r.status_code == 400:
+        print('Account already in use by some other client. Please try again later.')
+        exit(0)
     index_dict = {}
     for i in r.json()['index']:
         index_dict[i['file_path']] = i['md5sum']
     return index_dict
 
 
-if sys.argv[1] == 'config':
-    config_edit()
-if sys.argv[1] == 'set_server':
-    set_url('server_url', sys.argv[2], config_file)
-if sys.argv[1] == 'observe':
-    set_home_dir('home_dir', sys.argv[2], config_file)
-if sys.argv[1] == 'sync':
-    sync(config_file)
-if sys.argv[1] == 'empty_json':
-    empty_json()
+def get_status():
+    try:
+        server_url = get_server_url()
+        AuthKey = check_user_pass(server_url)
+        home_dir = check_home_dir()
+        [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.ConnectionError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        exit(-1)
+    print('Current directory being observed: ' + home_dir)
+    if upload or download or delete:
+        print('Your local directory is not in sync with the cloud. To sync, use \n\nspc sync')
+
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == 'config':
+        config_edit()
+    elif sys.argv[1] == 'set_server':
+        set_url('server_url', sys.argv[2], config_file)
+    elif sys.argv[1] == 'observe':
+        set_home_dir('home_dir', sys.argv[2], config_file)
+    elif sys.argv[1] == 'sync':
+        sync()
+    elif sys.argv[1] == 'empty_json':
+        empty_json()
+    elif sys.argv[1] == 'status':
+        get_status()

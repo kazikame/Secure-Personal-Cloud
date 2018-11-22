@@ -11,6 +11,7 @@ from django.db import IntegrityError
 from django.http import FileResponse
 import hashlib
 from functools import partial
+from Authentication.models import SpcUser
 
 # Create your views here.
 
@@ -38,6 +39,10 @@ class FileView(APIView):
                                                                str(request.data['file'])),
                                          name=request.data['file'].name)
                     instance = file_serializer.save(file=request.data['file'])
+                    #if request.META['HTTP_NUM'] == 1:
+                        # x = SpcUser.objects.filter(username=request.user.username).get()
+                        # x.syncLock = 0
+                        # x.save()
                     if os.path.isfile(os.path.abspath(instance.file_url)):
                         f = open(os.path.abspath(instance.file_url), 'rb')
                         md5 = md5sum(f)
@@ -46,6 +51,13 @@ class FileView(APIView):
                             return Response({'Error': "MD5 don't match."}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 except IntegrityError as e:
                     return Response({'Error': 'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
+                except Exception as e:
+                    # Remove lock
+                    print('Caught it!')
+                    # x = SpcUser.objects.filter(username=request.user.username).get()
+                    # x.syncLock = 0
+                    # x.save()
+                    return Response({'error': 'unexpected error, please try again.'})
                 return Response({'detail': 'Success'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(file_serializer.errors, status=status.HTTP_403_FORBIDDEN)
@@ -89,7 +101,7 @@ class DeleteFile(APIView):
                 name_list = request.data['name_list'].split('```')
                 print(name_list)
                 print(file_path)
-                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, name__in=name_list)
+                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, name__in=name_list).delete()
                 instance.delete()
                 instance.get().delete()
                 return Response({'detail': 'Successful!'}, status=status.HTTP_200_OK)
@@ -115,7 +127,7 @@ class DownloadFile(APIView):
                     file_url = obj.file_url
                     md5 = obj.md5sum
                     f = open(file_url, 'rb')
-                    response = FileResponse(f, filename=dfile_name + '```' + md5, as_attachment=True)
+                    response = FileResponse(f, filename=os.path.join(dfile_path, dfile_name) + '```' + md5, as_attachment=True)
                     return response
                 else:
                     return Response({'error': 'file not found'})
@@ -128,6 +140,12 @@ class DownloadFile(APIView):
 
 class FileIndex(APIView):
     def post(self, request):
+        #x = SpcUser.objects.filter(username=request.user.username).get()
+        #if x.syncLock == 1:
+            #return Response({'error': 'In use'}, status=status.HTTP_400_BAD_REQUEST)
+        #else:
+           # x.syncLock = 1
+           # x.save()
         indexSet = list(SingleFileUpload.objects.filter(username=request.user.username).values('file_path', 'name', 'md5sum'))
 
         index = []

@@ -34635,3 +34635,869 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8
 11/21/2018 08:59:37 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
 11/21/2018 08:59:37 PM Resetting dropped connection: 127.0.0.1
 11/21/2018 08:59:37 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 11:22:27 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:22:27 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:22:27 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:22:27 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 22025
+11/22/2018 11:22:32 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:22:32 AM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 11:22:32 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:22:32 AM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 11:22:32 AM Resetting dropped connection: 127.0.0.1
+11/22/2018 11:22:32 AM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 11:22:32 AM Resetting dropped connection: 127.0.0.1
+11/22/2018 11:22:32 AM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 11:24:52 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:24:52 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:24:52 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:24:52 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:32:31 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:32:31 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:32:31 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:32:31 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:32:59 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:32:59 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:32:59 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:32:59 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:33:31 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:33:32 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:33:32 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:33:32 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:34:03 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:03 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:34:03 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:03 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:34:17 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:17 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:34:17 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:17 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:34:38 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:38 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:34:38 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:38 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:34:39 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:34:39 AM http://127.0.0.1:8000 "POST /api/download/ HTTP/1.1" 200 17
+11/22/2018 11:37:02 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:37:02 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:37:02 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:37:02 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:37:03 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:37:03 AM http://127.0.0.1:8000 "POST /api/download/ HTTP/1.1" 200 17
+11/22/2018 11:37:45 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:37:45 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:37:45 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:37:45 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:38:20 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:38:20 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:38:20 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:38:20 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:39:45 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:39:46 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:39:46 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:39:46 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 11:39:47 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:39:47 AM http://127.0.0.1:8000 "POST /api/download/ HTTP/1.1" 200 17
+11/22/2018 11:41:16 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:41:16 AM HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcead7fae48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/connection.py", line 80, in create_connection
+    raise err
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fcead7fae48>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcead7fae48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "startup.py", line 51, in sync
+    AuthKey = check_user_pass(server_url)
+  File "startup.py", line 130, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "startup.py", line 152, in get_auth_key
+    AuthKey = client.post(urlp.urljoin(server_url, 'api/login/'), data=payload)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 572, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 524, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 637, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcead7fae48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+11/22/2018 11:41:17 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:41:17 AM HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc252cbe48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/connection.py", line 80, in create_connection
+    raise err
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/connection.py", line 70, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 354, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/usr/lib/python3.6/http/client.py", line 1239, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1285, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1234, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.6/http/client.py", line 1026, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.6/http/client.py", line 964, in send
+    self.connect()
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 181, in connect
+    conn = self._new_conn()
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connection.py", line 168, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fcc252cbe48>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc252cbe48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "startup.py", line 51, in sync
+    AuthKey = check_user_pass(server_url)
+  File "startup.py", line 130, in check_user_pass
+    AuthKey = get_auth_key(server_url, data['username'], data['password'])
+  File "startup.py", line 152, in get_auth_key
+    AuthKey = client.post(urlp.urljoin(server_url, 'api/login/'), data=payload)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 572, in post
+    return self.request('POST', url, data=data, json=json, **kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 524, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/sessions.py", line 637, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/saksham/Documents/CS251/SPC/venv/lib/python3.6/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc252cbe48>: Failed to establish a new connection: [Errno 111] Connection refused',))
+11/22/2018 11:41:31 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:41:31 AM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:41:31 AM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:41:31 AM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:00:11 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:11 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:00:11 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:11 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:00:14 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:14 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:00:14 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:14 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:00:23 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:24 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:00:24 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:24 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:00:29 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:00:29 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:34 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:35 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:35 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:36 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:00:36 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:00:43 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:43 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:00:43 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:43 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10366
+11/22/2018 12:00:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:45 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:00:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:58 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:00:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:00:58 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:07:01 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:01 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:07:01 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:01 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 12
+11/22/2018 12:07:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:04 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:04 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:21 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:21 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:07:21 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:22 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:07:26 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:26 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:07:26 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:26 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:26 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:26 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:26 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:26 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:27 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:27 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:28 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:28 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:29 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:29 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:30 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:30 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:31 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:31 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:32 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:32 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:33 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:33 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:07:34 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:07:39 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:40 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:07:40 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:07:40 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10366
+11/22/2018 12:08:01 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:08:02 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:08:02 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:08:02 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10366
+11/22/2018 12:10:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:10:45 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:10:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:10:45 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10366
+11/22/2018 12:10:47 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:10:47 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:11:10 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:10 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:11:10 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:10 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10366
+11/22/2018 12:11:14 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:14 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:11:24 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:24 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:11:24 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:24 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:11:37 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:37 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:11:37 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:37 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:11:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:45 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:11:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:45 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 82
+11/22/2018 12:11:50 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:50 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:11:50 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:11:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:11:50 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:11:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:11:50 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:11:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:04 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:12:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:04 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 220
+11/22/2018 12:12:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:12:09 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:09 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:09 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:10 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:10 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:11 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:11 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:12 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:12 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:13 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:13 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:14 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:14 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:15 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:15 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:16 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:16 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:16 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:16 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:16 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:16 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:16 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:16 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:16 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:23 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:23 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 12:12:23 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:23 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 10157
+11/22/2018 12:12:39 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:39 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 27
+11/22/2018 12:12:39 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 12:12:39 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:39 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:39 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/22/2018 12:12:39 PM Resetting dropped connection: 127.0.0.1
+11/22/2018 12:12:39 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20

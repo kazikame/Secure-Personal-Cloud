@@ -340,7 +340,6 @@ def Daemon():
     try:
         pid = os.fork()
 
-        print(pid)
         if pid > 0:
             os._exit(0)
 
@@ -350,5 +349,7 @@ def Daemon():
     while True:
         uploadlocal()
         sleep(86400)
+
+os.chdir('/home/parikshit/PycharmProjects/251Project/linux_client/')
 
 Daemon()
