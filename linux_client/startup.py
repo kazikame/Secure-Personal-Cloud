@@ -46,41 +46,48 @@ class AuthenticationException(Exception):
 class NoHomeDirException(Exception):
     pass
 
+
 def status ():
     server_url = get_server_url()
     AuthKey = check_user_pass(server_url)
     home_dir = check_home_dir()
     [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
-    print ("The files on both server and local (unmodified): ")
-    for x in unmodified:
-        print (x)
-    print("The files on both server and local (modified): ")
+    print ("You have "+len(modified)+" files on the local directory along with "+len(local)+" new files and "+len(cloud)+" deleted files")
+    print ("Modified: ")
     for x in modified:
-        print(x)
-    print("The files only on server : ")
+        print ("\t"+x)
+    print ("Deleted: ")
     for x in cloud:
-        print(x)
-    print("The files only on local : ")
+        print("\t"+x)
+    print ("New: ")
     for x in local:
-        print(x)
+        print("\t"+x)
     pass
 
-def sync(paramalgo, paramkey):
-    with open(config_file) as f:
-        data = json.load(f)
+
+def sync():
     try:
         server_url = get_server_url()
         AuthKey = check_user_pass(server_url)
+        # print(AuthKey.text)
         home_dir = check_home_dir()
         [schema, en_key] = get_en_key()
+        token = check_if_unlocked(server_url, AuthKey)
+        print("Sync locked successfully!")
         [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
+    except requests.exceptions.HTTPError as e:
+        logging.exception(e)
+        print("error: Sync locked. Another user is using it, please try again later.")
+        exit(0)
     except requests.exceptions.ConnectionError as e:
         logging.exception(e)
         print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+        unlock_sync(server_url, AuthKey, token)
         exit(-1)
     except NoHomeDirException as e:
         logging.exception(e)
         print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
+        unlock_sync(server_url, AuthKey, token)
         exit(-1)
     del_bool = delete_files(server_url, AuthKey, delete)
     down_bool = download_files(server_url, AuthKey, download, home_dir, schema, en_key)
@@ -92,6 +99,28 @@ def sync(paramalgo, paramkey):
         pass
     else:
         print('Sync Unsuccessful. Check SPC.logs for more details.')
+    unlock_sync(server_url, AuthKey, token)
+
+
+def check_if_unlocked(server_url, AuthKey):
+    client = requests.Session()
+    header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
+    r = client.post(urlp.urljoin(server_url, 'api/lock_tokens/') ,headers=header)
+    if r.status_code == 404 or r.status_code == 403 or r.status_code==409:
+        raise requests.exceptions.HTTPError
+    else:
+        return r.json().get('token', 0)
+
+
+def unlock_sync(server_url, AuthKey, token):
+    client = requests.Session()
+    header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
+    r = client.delete(urlp.urljoin(server_url, 'api/lock_tokens/' + token), headers=header)
+    if not (r == 404 or r == 403):
+        print("Sync unlocked successfully.")
+    else:
+        print("Sync couldn't be unlocked!")
+        logging.warn(r.text)
 
 
 def get_server_url():
@@ -556,7 +585,7 @@ if len(sys.argv) > 1:
     elif sys.argv[1] == 'observe':
         set_home_dir('home_dir', sys.argv[2], config_file)
     elif sys.argv[1] == 'sync':
-        sync('encryption_schema', 'key')
+        sync()
     elif sys.argv[1] == 'empty_json':
         empty_json()
     elif sys.argv[1] == 'status':

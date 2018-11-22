@@ -6,9 +6,10 @@ observe="observe"
 sync="sync"
 daemon="stop_daemon"
 setkey="set_key"
-
-
+version_req="version"
+version="version 1.01"
 status="status"
+help="help"
 
 cd $SPC_PATH
 
@@ -22,6 +23,16 @@ then
 elif [ "$1" == "$observe" ]
 then
     python3.6 startup.py observe "$2"
+elif [ "$1" == "$version_req" ]
+then
+    echo "$version"
+elif [ "$1" == "$help" ]
+then
+    echo config_edit - configure your username and password for easier access
+    echo set_url [URL] - set the url for your server
+    echo observe [HOME_DIR] - set the directorly to be monitored
+    echo sync - synchronise local and cloud copy. They are identical after this command
+    echo See man page for further information
 elif [ "$1" == "$sync" ]
 then
     python3.6 startup.py sync
