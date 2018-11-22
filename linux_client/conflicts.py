@@ -29,11 +29,7 @@ def uploadall(cloud_dict, local_dir):
         only_local = []
         modified = []
         unmodified = []
-        to_upload = []
-        to_delete = []
-        to_download = []
-        local_delete = []
-        print(cloud_dict)
+
         for x in cloud_dict.keys():
             if local_dict.get(x) is None:
                 only_cloud.append(x)
@@ -43,9 +39,10 @@ def uploadall(cloud_dict, local_dir):
                 unmodified.append(x)
 
         for x in local_dict.keys():
-            if (cloud_dict.get(x) == None):
-                only_local.append(x);
-        return [only_local+modified,[],only_cloud+modified]
+            if cloud_dict.get(x) == None:
+                only_local.append(x)
+        return [only_local+modified, [], only_cloud+modified]
+
 
 def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
     local_dict = {}
@@ -54,7 +51,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             md5e = md5(os.path.join(root, name))
             local_dict[os.path.join(os.path.relpath(root, local_dir), name)] = md5e
     if local_dict == cloud_dict:
-        print("Everything is upto date")
+        print("Everything is up to date.")
         return [[], [], []]
     else:
 
@@ -89,7 +86,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to deal with them individually.\nS to cancel sync.\n")
+                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to "
+                    "deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_cloud:
                         print(x)
@@ -102,7 +100,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 exit(0)
             else:
                 print(
-                    "For all the files displayed, enter one of the options \nR to delete from cloud.\nD to download from cloud.\n")
+                    "For all the files displayed, enter one of the options \nR to delete from cloud.\nD to download "
+                    "from cloud.\n")
                 for x in only_cloud:
                     i = input(x + "\n")
                     while (i != "D" and i != "R"):
@@ -117,7 +116,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
             i = "V"
             while (i == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to deal with them individually.\nS to cancel sync.\n")
+                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to "
+                    "deal with them individually.\nS to cancel sync.\n")
                 if (i == "V"):
                     for x in only_local:
                         print(x)
@@ -130,7 +130,8 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                 exit(0)
             else:
                 print(
-                    "For all the files displayed, enter one of the options \nR to delete from local.\nU to upload to cloud.")
+                    "For all the files displayed, enter one of the options \nR to delete from local.\nU to upload to "
+                    "cloud.")
                 for x in only_local:
                     i = input(x + "\n")
                     while (i != "U" and i != "R"):
@@ -170,7 +171,6 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                     else:
                         to_upload.append(x)
                         to_delete.append(x)
-        print(to_download)
         delete(local_dir, local_delete)
         #        print (to_upload,to_download,to_delete)
         return [to_upload, to_download, to_delete]

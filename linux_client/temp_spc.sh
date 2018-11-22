@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 .TH man 1 "22 Nov 2018" "1.0" "spc man page"
 .SH NAME
 spc \- syncs your data to secure encrypted presonal cloud

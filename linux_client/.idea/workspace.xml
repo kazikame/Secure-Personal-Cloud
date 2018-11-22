@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80a44053-6d42-46b5-b36a-2aba0ee910e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/FileEncrypt.class" beforeDir="false" afterPath="$PROJECT_DIR$/FileEncrypt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FileEncrypt.java" beforeDir="false" afterPath="$PROJECT_DIR$/FileEncrypt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenerateKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenerateKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../directory/templates/directory/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../directory/templates/directory/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FileEncrypt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenerateKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/KeyEncrypt.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SPC.log" beforeDir="false" afterPath="$PROJECT_DIR$/SPC.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conflicts.py" beforeDir="false" afterPath="$PROJECT_DIR$/conflicts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encryption.py" beforeDir="false" afterPath="$PROJECT_DIR$/encryption.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startup.py" beforeDir="false" afterPath="$PROJECT_DIR$/startup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/js/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/../static/js/test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,6 +24,7 @@
     <session id="283379730">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -86,7 +90,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="293" />
     <option name="y" value="53" />
     <option name="width" value="1400" />
@@ -143,8 +147,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="7" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
       <window_info id="Designer" />
       <window_info id="UI Designer" />
