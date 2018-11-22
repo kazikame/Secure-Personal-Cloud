@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if command -v python3 &>/dev/null;
 then
     echo foo > /dev/null
@@ -39,4 +41,4 @@ temp="@reboot root $temp"
 echo $temp > /etc/cron.d/spc_daemon
 
 cp spc /usr/local/man/man1/spc.1
-gzip /usr/local/man/man1/spc.1
+gzip /usr/local/man/man1/spc.1#!/usr/bin/env bash
