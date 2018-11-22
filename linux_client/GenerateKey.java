@@ -75,6 +75,7 @@ public class GenerateKey {
         new Random().nextBytes(randomBytes);
         SecretKey secretKey = new SecretKeySpec(randomBytes, "DESede");
         byte[] key = secretKey.getEncoded();
+
         fileOutputStream.write(key);
     }
 }

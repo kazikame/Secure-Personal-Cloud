@@ -114,6 +114,7 @@ public class FileEncrypt {
         keyFileInputStream.read(key);
         SecretKey secretKey = new SecretKeySpec(key, "DESede");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        System.out.println(cipher.getIV());
         byte[] plainTextByte = new byte[32];
         int bytesRead;
         while ((bytesRead = fileInputStream.read(plainTextByte)) != -1) {

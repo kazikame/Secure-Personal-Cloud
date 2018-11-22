@@ -3,11 +3,15 @@
 {% block title %}Your Files{% endblock %}
 {# simplest template for listing the directory #}
 {% block scripts %}
-<script src="{% static 'js/react.min.js' %}"></script>
-<script src="{% static 'js/react-dom.min.js' %}"></script>
-<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<!--<script src="{% static 'js/react.min.js' %}"></script>-->
+<!--<script src="{% static 'js/react-dom.min.js' %}"></script>-->
+<!--<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>-->
 <script src="{% static 'js/browser.min.js' %}"></script>
 <script src="{% static 'CryptoJS/rollups/aes.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/tripledes.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ecb.js' %}"></script>
+
 {% endblock %}
 {% block content %}
 <h1>{{ user }}</h1>
@@ -44,8 +48,18 @@
         <a href="{% url 'directory_download_file' directory_name file %}">Download {{ file }}</a>
     </li>
     {% endfor %}
-    <script src="{% static 'js/test.js' %}" type="text/javascript"></script>
 </ul>
 <!--<p><a href="{% url 'directory_list' directory_name %}">Go to parent</a></p>-->
-<input type=button value="Go to parent" onClick="javascript:history.go(-1);">
+<h1>AES decrypt using CryptoJS</h1>
+
+<br>key (64 hexadecimal characters)<input id='key' type='text'/>
+
+<br>IV (32 hexadecimal characters)<input id='iv' type='text' />
+
+<br><button onclick="decrypt()">decrypt</button>
+<br>decoded:<br><span id="decrypted"></span>
+
+<script src="{% static 'js/test.js' %}" type="text/javascript"></script>
+
+<br><input type=button value="Go to parent" onClick="javascript:history.go(-1);">
 {% endblock %}
