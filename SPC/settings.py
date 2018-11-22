@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'UploadDownload',
     'rest_framework.authtoken',
     'rest_auth',
-    'lock_tokens.apps.LockTokensConfig',
 ]
 
 AUTH_USER_MODEL = 'Authentication.SPCUser'
