@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{ file_name }}{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/aes.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/tripledes.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ecb.js' %}"></script>
+<script src="{% static 'CryptoJS/components/pad-nopadding.js' %}"></script>
+
+<script src="{% static 'js/test.js' %}" type="text/javascript"></script>
+
+{% endblock %}
+
+{% block content %}
+    <h1>AES decrypt using CryptoJS</h1>
+    <br>key (64 hexadecimal characters)<input id='key' type='text' value="7bb28bff562de31d99cc67c82f5260000326ec846faf40e84310382873f83d34"/>
+    <br>IV (32 hexadecimal characters)<input id='iv' type='text' value="724fa334bae5a617d6efa81b6277601f"/>
+    <br><button id="decrypt_button" onclick="decrypt(`{{ file_str }}`, '{{ file_name }}')" >decrypt</button>
+    <br>decoded:<br><span id="decrypted"></span>
+    <iframe id="iframe" src=""></iframe>
+{% endblock %}

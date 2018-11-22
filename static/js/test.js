@@ -13,7 +13,8 @@ var enmsg = "yM9NwHtZfCTEHxXYt3qpE3cXevdfDLpuzNAp6gyi/hGxyKqEQVKTlFu9gBXk9xSM\n"
 //     document.getElementById("decrypted").innerHTML = '';
 // }
 
-function decrypt(enmsg){
+
+function decrypt(enmsg, filename = 'lol.jpeg'){
     // var msg = "hi this is yash\n" +
     //     "sdouaeusfgvbhjjeioaweADSKLssfavd'\n" +
     //     "\n" +
@@ -22,9 +23,12 @@ function decrypt(enmsg){
     //     "D2356278E3%$^%^&**uoi*&*^%$%^\n" +
     //     "k3E";
     enmsg = enmsg.split(/\s/).join('');
+    var fileext = filename.split(".");
+    fileext = fileext[fileext.length - 1];
+
     var key = CryptoJS.enc.Hex.parse(document.getElementById("key").value);
     var iv = CryptoJS.enc.Hex.parse(document.getElementById("iv").value);
-    console.log(CryptoJS.AES.encrypt(msg,key,{
+    console.log(CryptoJS.AES.encrypt(enmsg,key,{
         iv: iv,
         mode: CryptoJS.mode.CTR,
         padding: CryptoJS.pad.NoPadding
@@ -37,9 +41,18 @@ function decrypt(enmsg){
             mode:CryptoJS.mode.CTR,
             padding: CryptoJS.pad.NoPadding
         });
-    console.log(decrypted.toString(CryptoJS.enc.Utf8));
-    // document.getElementById("decrypted").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
-    return decrypted;
+
+    var image = new Image();
+    if (fileext == "jpeg"   )
+    {
+        document.getElementById("iframe").src = 'data:image/jpg;base64,' + decrypted.toString(CryptoJS.enc.Base64)
+         document.getElementById("iframe").style.height = document.getElementById("iframe").contentWindow.document.body.scrollHeight + 'px';
+        //document.body.appendChild(image);
+    }
+    //document.getElementById("decrypted").innerHTML =
+    document.getElementById("decrypt_button").disabled = true
+
+
 }
 
 

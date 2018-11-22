@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'UploadDownload',
     'rest_framework.authtoken',
     'rest_auth',
-    'lock_tokens.apps.LockTokensConfig',
 ]
 
 AUTH_USER_MODEL = 'Authentication.SPCUser'
@@ -147,9 +146,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 DEFAULT_FILE_STORAGE = 'SPC.storage.CustomFileSystemStorage'
-
-LOCK_TOKENS = {
-    'API_CSRF_EXEMPT': True,
-    'DATEFORMAT': "%Y%m%d%H%M%S",
-    'TIMEOUT': 60,
-}

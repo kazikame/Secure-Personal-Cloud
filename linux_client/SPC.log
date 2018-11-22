@@ -1018,3 +1018,9 @@ Traceback (most recent call last):
   File "/home/parikshit/.local/lib/python3.6/site-packages/requests/adapters.py", line 516, in send
     raise ConnectionError(e, request=request)
 requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/login/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f85587b3400>: Failed to establish a new connection: [Errno 111] Connection refused',))
+11/22/2018 08:12:15 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 08:12:15 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 08:12:15 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 08:12:15 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 12
+11/22/2018 08:12:17 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 08:12:17 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
