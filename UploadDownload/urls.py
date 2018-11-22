@@ -1,4 +1,4 @@
-from django.conf.urls import re_path, include
+from django.conf.urls import re_path, include, url
 from .views import FileView
 from rest_framework import routers
 from .views import *
@@ -15,4 +15,5 @@ urlpatterns = [
     re_path(r'^download/$', DownloadFile.as_view(), name='file-download'),
     re_path(r'^get-index/$', FileIndex.as_view(), name='file-index'),
     re_path(r'', include('rest_auth.urls')),
+    url(r'^lock_tokens/', include('lock_tokens.urls', namespace='lock-tokens')),
 ]

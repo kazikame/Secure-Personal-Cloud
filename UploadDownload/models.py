@@ -10,6 +10,7 @@ class SingleFileUpload(models.Model):
     file_path = models.CharField(max_length=1000)
     file = models.FileField(upload_to=loc_func, max_length=1000, default=None)
     md5sum = models.CharField(max_length=200)
+    md5sum_o = models.CharField(max_length=200)
     file_url = models.CharField(max_length=200)
     username = models.CharField(max_length=100)
     name = models.CharField(max_length=200)
@@ -28,12 +29,15 @@ def auto_delete_file_on_delete(sender, instance, **kwargs):
     when corresponding `MediaFile` object is deleted.
     """
     print(instance.file)
-    if instance.file:
-        if os.path.isfile(instance.file_url):
-            os.remove(instance.file_url)
-            filedir = os.path.split(instance.file_url)[0]
-            if not os.listdir(filedir):
-                os.rmdir(filedir)
+    try:
+        if instance.file:
+            if os.path.isfile(instance.file_url):
+                os.remove(instance.file_url)
+                filedir = os.path.split(instance.file_url)[0]
+                if not os.listdir(filedir):
+                    os.rmdir(filedir)
+    except IOError as e:
+        pass
 
 @receiver(models.signals.pre_save, sender=SingleFileUpload)
 def auto_delete_file_on_change(sender, instance, **kwargs):

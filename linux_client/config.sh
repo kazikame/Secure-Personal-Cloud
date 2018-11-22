@@ -5,10 +5,12 @@ config="config_edit"
 observe="observe"
 sync="sync"
 daemon="stop_daemon"
+setkey="set_key"
+status="status"
 
 dic_file="conf.json"
 
-cd $SPC_PATH
+# cd $SPC_PATH
 
 if [ "$1" == "$server" ]
 then
@@ -28,6 +30,12 @@ then
     pid=$(ps -aux | grep "daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
     sudo kill -9 $pid
     echo Daemon Terminated
+elif [ "$1" == "$setkey" ]
+then
+    python3.6 startup.py generate_key
+elif [ "$1" == "$status" ]
+then
+    python3.6 startup.py status
 else
     echo "spc $1 -- command not found. For help look at the man page"
 fi

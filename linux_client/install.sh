@@ -11,6 +11,7 @@ fi
 pip3 install tqdm
 pip3 install pycrypto
 pip3 install requests-toolbelt
+pip3 install requests
 
 home_folder=$(pwd)
 temp="export SPC_PATH='$home_folder'"
@@ -21,6 +22,7 @@ daemon_path=$(echo $home_folder/daemon.py)
 config_path=$(echo $home_folder/config.sh)
 
 python3.6 $daemon_path
+
 temp=$(echo "python3.6 $daemon_path")
 temp="alias start_daemon='$temp'"
 temp=$(echo $temp | sed s/\'/\"/g )

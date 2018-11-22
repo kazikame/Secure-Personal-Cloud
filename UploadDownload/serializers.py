@@ -12,4 +12,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class FileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SingleFileUpload
-        fields = ('file_path', 'md5sum')
+        fields = ('file_path', 'md5sum', 'md5sum_o')
