@@ -44,12 +44,8 @@
 {% endblock %}
 
 {% block content %}
-<h1>AES decrypt using CryptoJS</h1>
-    <br>key (64 hexadecimal characters)<input id='key' type='text' value="7bb28bff562de31d99cc67c82f5260000326ec846faf40e84310382873f83d34"/>
-    <br>IV (32 hexadecimal characters)<input id='iv' type='text' value="724fa334bae5a617d6efa81b6277601f"/>
-    <br><button id="decrypt_button" onclick="decrypt(`{{ file_str }}`, '{{ file_name }}')" >decrypt</button>
-    <br>decoded:<br><span id="decrypted"></span>
-    <iframe id="iframe" src=""></iframe>
+
+
 <label for="privkey">Private Key</label><br/>
 <textarea id="privkey" rows="15" cols="65">-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6khyfD1Yt3YiCgQ
@@ -76,4 +72,15 @@ gwQco1KRMDSmXSMkDwIDAQAB
 <label for="input">Text to encrypt:</label><br/>
 <textarea id="input" name="input" type="text" rows=4 cols=70>This is a test!</textarea><br/>
 <input id="testme" type="button" value="Test Me!!!" /><br/>
+
+
+    <div id="error"></div>
+    <div id="lol">
+    <h1>AES decrypt using CryptoJS</h1>
+    <br>key (64 hexadecimal characters)<input id='key' type='text' value="7bb28bff562de31d99cc67c82f5260000326ec846faf40e84310382873f83d34"/>
+    <br>IV (32 hexadecimal characters)<input id='iv' type='text' value="724fa334bae5a617d6efa81b6277601f"/>
+    <br><button id="decrypt_button" onclick="decrypt(`{{ file_str }}`, '{{ file_name }}')" >decrypt</button>
+    </div>
+
+    <div id="text_file"></div>
 {% endblock %}
