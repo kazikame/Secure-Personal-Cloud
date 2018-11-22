@@ -318,7 +318,9 @@ def download_files(server_url, AuthKey, file_list, home_dir):
         payLoad = {'file_path': split_path[0], 'name': split_path[1]}
         r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
         values, params = cgi.parse_header(r.headers['Content-Disposition'])
-        [filename, md5] = params['filename'].split('```')
+        md5 = params['filename']
+        filename = f
+
         pathlib.Path(os.path.split(os.path.join(home_dir, filename))[0]).mkdir(parents=True, exist_ok=True)
         print(os.path.join(home_dir, filename))
         with open(os.path.join(home_dir, filename), 'wb') as xx:

@@ -350,6 +350,6 @@ def Daemon():
         uploadlocal()
         sleep(86400)
 
-os.chdir('/home/parikshit/PycharmProjects/251Project/linux_client/')
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 Daemon()
