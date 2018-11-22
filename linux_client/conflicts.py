@@ -73,7 +73,7 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
 
         for x in local_dict.keys():
             if (cloud_dict.get(x) == None):
-                only_local.append(x);
+                only_local.append(x)
 
         print("There are some Merge conflicts.\n\nYou have :")
         print(len(modified), " modified files")

@@ -35,10 +35,12 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
                 keys = pickle.load(f)
                 key = keys["key"].decode('utf-8').upper()
                 iv = keys["iv"].decode('utf-8').upper()
-        command = "openssl enc -asc-256-ctr -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
+        command = "openssl enc -aes-256-ctr -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
         for file in files:
             inp = os.path.join(base, file)
             output = os.path.join(encrypted_base, file)
+            if not os.path.isdir(os.path.dirname(output)):
+                os.mkdir(os.path.dirname(output))
             os.system(command.format(inp, output, key, iv))
         print("Files encrypted successfully.")
         return True
@@ -54,7 +56,7 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
     :param algorithm: AES / TripleDES
     :return: boolean for success
     """
-    if os.path.normpath(encrypted_base) == os.path.normpath(encrypted_base):
+    if os.path.normpath(encrypted_base) == os.path.normpath(decrypted_base):
         print("The path to files given are the same. Please try again")
         exit(1)
     if algorithm == "AES":
@@ -75,12 +77,14 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
                 keys = pickle.load(f)
                 key = keys["key"].decode('utf-8').upper()
                 iv = keys["iv"].decode('utf-8').upper()
-        command = "openssl enc -asc-256-ctr -d -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
+        command = "openssl enc -aes-256-ctr -d -in {0} -out {1} -base64 -nosalt -K {2} -iv {3}"
         for file in files:
             inp = os.path.join(encrypted_base, file)
             output = os.path.join(decrypted_base, file)
+            if not os.path.isdir(os.path.dirname(output)):
+                os.mkdir(os.path.dirname(output))
             os.system(command.format(inp, output, key, iv))
-        print("Files encrypted successfully.")
+        print("Files decrypted successfully.")
         return True
 
 
@@ -128,7 +132,6 @@ def generate_key(encryption_schema, key_file=None):
     """
     if encryption_schema == "AES":
         randomKeyHex = binascii.b2a_hex(os.urandom(32))
-        print(randomKeyHex)
         randomIVHex = binascii.b2a_hex(os.urandom(16))
         if key_file is None:
             print("Please keep the following following information confidential, for the privacy of your files "
