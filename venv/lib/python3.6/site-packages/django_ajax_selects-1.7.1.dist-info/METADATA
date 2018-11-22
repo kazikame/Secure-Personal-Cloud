@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: django-ajax-selects
+Version: 1.7.1
+Summary: Edit ForeignKey, ManyToManyField and CharField in Django Admin using jQuery UI AutoComplete.
+Home-page: https://github.com/crucialfelix/django-ajax-selects/
+Author: Chris Sattinger
+Author-email: crucialfelix@gmail.com
+License: MIT
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: User Interfaces
+Classifier: Framework :: Django
+
+Edit ForeignKey, ManyToManyField and CharField in Django Admin using jQuery UI AutoComplete.
+
+- Customize search query
+- Query other resources besides Django ORM
+- Format results with HTML
+- Customize styling
+- Customize security policy
+- Add additional custom UI alongside widget
+- Integrate with other UI elements elsewhere on the page using the javascript API
+- Works in Admin as well as in normal views
+
+- Django >=1.8, <=2.1
+- Python >=2.7, <=3.7
+
+

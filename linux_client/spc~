@@ -1,0 +1,44 @@
+.TH man 1 "22 Nov 2018" "1.0" "spc man page"
+.SH NAME
+spc \- syncs your data to secure encrypted presonal cloud 
+.SH SYNOPSIS
+spc [OPTION]... 
+.SH DESCRIPTION
+spc helps you to store your encrypted files on your personal server, and synchronise them. You have the freedom of choosing the encryption scheme and key.
+
+.SH OPTIONS
+
+.TP
+.B \- config_edit
+configure your username and password for easier access
+
+.TP
+.B \- set_url [URL]
+set the url for your server
+
+.TP
+.B \- observe [HOME_DIR]
+set the directorly to be monitored
+
+.TP
+.B \- sync
+synchronise local and cloud copy. They are identical after this command
+
+.TP
+.B \- version
+prints the current version
+
+.TP
+.B \- help
+list of all commands supported
+
+.TP
+.B \- server
+prints public information of the server
+
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Pariskhit Bansal (parikshitb5@gmail.com)
+.SH DEVELOPER_TEAM
+importteamName

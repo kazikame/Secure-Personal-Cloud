@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Your Files{% endblock %}
+{# simplest template for listing the directory #}
+{% block scripts %}
+<!--<script src="{% static 'js/react.min.js' %}"></script>-->
+<!--<script src="{% static 'js/react-dom.min.js' %}"></script>-->
+<!--<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>-->
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/aes.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/tripledes.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-cfb.js' %}"></script>
+<script src="{% static 'CryptoJS/components/pad-nopadding.js' %}"></script>
+
+{% endblock %}
+{% block content %}
+<h1>{{ user }}</h1>
+
+<ul id="list_of_files">
+    {% for subdir in subdirs %}
+    <li>
+        {% with directory_name|add:subdir as totaldir %}
+        <a href="{% url 'directory_list' totaldir %}">Directory-{{ subdir }}</a>
+        {% endwith %}
+    </li>
+    {% endfor %}
+    {% for file in files %}
+    <li>
+        <a href="{% url 'directory_view_file' directory_name file %}">Download {{ file }}</a>
+    </li>
+    {% endfor %}
+</ul>
+<!--<p><a href="{% url 'directory_list' directory_name %}">Go to parent</a></p>-->
+
+<br><input type=button value="Go to parent" onClick="javascript:history.go(-1);">
+{% endblock %}

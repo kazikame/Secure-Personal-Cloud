@@ -1,0 +1,15 @@
+CHANGES.txt
+LICENSE.txt
+MANIFEST.in
+README.md
+README.rst
+setup.cfg
+setup.py
+sjcl/__init__.py
+sjcl/sjcl.py
+sjcl.egg-info/PKG-INFO
+sjcl.egg-info/SOURCES.txt
+sjcl.egg-info/dependency_links.txt
+sjcl.egg-info/not-zip-safe
+sjcl.egg-info/requires.txt
+sjcl.egg-info/top_level.txt
