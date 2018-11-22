@@ -101,9 +101,10 @@ class DeleteFile(APIView):
                 name_list = request.data['name_list'].split('```')
                 print(name_list)
                 print(file_path)
-                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path, name__in=name_list).delete()
-                instance.delete()
-                instance.get().delete()
+                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path,
+                                                           name__in=name_list).delete()
+                instance = SingleFileUpload.objects.filter(username=request.user.username, file_path__in=file_path,
+                                                           name__in=name_list).delete()
                 return Response({'detail': 'Successful!'}, status=status.HTTP_200_OK)
             except Exception as e:
                 print(e)
@@ -146,11 +147,12 @@ class FileIndex(APIView):
         #else:
            # x.syncLock = 1
            # x.save()
-        indexSet = list(SingleFileUpload.objects.filter(username=request.user.username).values('file_path', 'name', 'md5sum'))
-
+        indexSet = list(SingleFileUpload.objects.filter(username=request.user.username).values('file_path',
+                                                                                               'name',
+                                                                                               'md5sum_o'))
         index = []
         for i in indexSet:
-            index.append({'file_path': i['file_path'] + '/' + i['name'], 'md5sum': i['md5sum']})
+            index.append({'file_path': i['file_path'] + '/' + i['name'], 'md5sum_o': i['md5sum_o']})
 
         return Response({'index': index})
 

@@ -40,5 +40,6 @@ temp=$(echo /usr/bin/python3.6 "$daemon_path")
 temp="@reboot root $temp"
 echo $temp > /etc/cron.d/spc_daemon
 
+
 cp spc /usr/local/man/man1/spc.1
 gzip /usr/local/man/man1/spc.1#!/usr/bin/env bash
