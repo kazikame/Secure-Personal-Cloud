@@ -42,16 +42,55 @@ function decrypt(enmsg, filename = 'lol.jpeg'){
             padding: CryptoJS.pad.NoPadding
         });
 
-    var image = new Image();
-    if (fileext == "jpeg"   )
+    var finalStr = decrypted.toString(CryptoJS.enc.Base64);
+
+    if (fileext == "jpeg")
     {
-        document.getElementById("iframe").src = 'data:image/jpg;base64,' + decrypted.toString(CryptoJS.enc.Base64)
-         document.getElementById("iframe").style.height = document.getElementById("iframe").contentWindow.document.body.scrollHeight + 'px';
-        //document.body.appendChild(image);
+        // document.getElementById("iframe").src = 'data:image/jpg;base64,' + decrypted.toString(CryptoJS.enc.Base64)
+        // document.getElementById("iframe").style.height = document.getElementById("iframe").contentWindow.document.body.scrollHeight + 'px';
+        // document.body.appendChild(image);
+
+        var objbuilder = ('<img src="data:image/png;base64,' + finalStr +'" alt="Red dot" />')
+        var win = window.open("","_self","titlebar=yes");
+        win.document.title = filename;
+        win.document.write('<html><title>' + filename +  '</title><body style="background-color: #000000">');
+        win.document.write(objbuilder);
+        win.document.write('</body></html>');
+    }
+
+    else if (fileext == "pdf")
+    {
+          var objbuilder = '';
+          objbuilder += ('<object width="100%" height="100%"      data="data:application/pdf;base64,');
+            objbuilder += finalStr;
+            objbuilder += ('" type="application/pdf" class="internal"');
+            objbuilder += ('name="' + filename + '"');
+            objbuilder += ('<embed src="data:application/pdf;base64,');
+            objbuilder += finalStr;
+            objbuilder += ('" type="application/pdf" />');
+            objbuilder += ('</object>');
+            var win = window.open("","_self","titlebar=yes");
+        win.document.title = filename;
+        win.document.write('<html><title>' + filename +  '</title><body>');
+        win.document.write(objbuilder);
+        win.document.write('</body></html>');
+        layer = jQuery(win.document);
+    }
+
+    else if (fileext == "mp4")
+    {
+        var vidURL = URL.createObjectURL(b64toBlob(finalStr, 'video/mp4'));
+        var objbuilder= "<video controls>\n" +
+            "\t<source type=\"video/mp4\" src=\"data:video/mp4;base64," + finalStr + "\">\n" +
+            "</video>"
+
+        var win = window.open("","_self","titlebar=yes");
+        win.document.title = filename;
+        win.document.write('<html><title>' + filename +  '</title><body style="background-color: #000000">');
+        win.document.write(objbuilder);
+        win.document.write('</body></html>');
     }
     //document.getElementById("decrypted").innerHTML =
-    document.getElementById("decrypt_button").disabled = true
-
 
 }
 
