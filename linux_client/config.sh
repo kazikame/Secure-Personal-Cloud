@@ -8,6 +8,8 @@ daemon="stop_daemon"
 
 dic_file="conf.json"
 
+cd $SPC_PATH
+
 if [ "$1" == "$server" ]
 then
     python3.6 startup.py empty_json "$dic_file"
@@ -23,9 +25,12 @@ then
     python3.6 startup.py sync "$dic_file"
 elif [ "$1" == "$daemon" ]
 then
-    pid=$(ps -aux | grep "python3.6 daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
-    kill -9 $pid
+    pid=$(ps -aux | grep "daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
+    sudo kill -9 $pid
     echo Daemon Terminated
 else
-    echo "spc $1 -- command not found."
+    echo "spc $1 -- command not found. For help look at the man page"
 fi
+
+cd - > /dev/null
+
