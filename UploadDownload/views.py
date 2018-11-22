@@ -127,7 +127,7 @@ class DownloadFile(APIView):
                     file_url = obj.file_url
                     md5 = obj.md5sum
                     f = open(file_url, 'rb')
-                    response = FileResponse(f, filename=os.path.join(dfile_path, dfile_name) + '```' + md5, as_attachment=True)
+                    response = FileResponse(f, filename=md5, as_attachment=True)
                     return response
                 else:
                     return Response({'error': 'file not found'})
