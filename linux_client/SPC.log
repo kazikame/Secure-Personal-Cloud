@@ -1234,3 +1234,9 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8
 11/22/2018 09:47:47 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
 11/22/2018 09:47:47 PM Starting new HTTP connection (1): 127.0.0.1:8000
 11/22/2018 09:47:47 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 282
+11/22/2018 11:42:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:42:55 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/22/2018 11:42:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:42:55 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 282
+11/22/2018 11:42:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/22/2018 11:42:58 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20

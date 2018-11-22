@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from django.core.exceptions import PermissionDenied, ImproperlyConfigured
 from django.urls import reverse
-from django.http import StreamingHttpResponse, Http404, HttpResponseRedirect, HttpResponse
+from django.http import StreamingHttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 
 try:
