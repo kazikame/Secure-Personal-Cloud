@@ -43,7 +43,7 @@ function decrypt(enmsg, filename = 'lol.jpeg'){
         });
 
     var image = new Image();
-    if (fileext == "jpeg"   )
+    if (fileext == "jpeg")
     {
         document.getElementById("iframe").src = 'data:image/jpg;base64,' + decrypted.toString(CryptoJS.enc.Base64)
          document.getElementById("iframe").style.height = document.getElementById("iframe").contentWindow.document.body.scrollHeight + 'px';
