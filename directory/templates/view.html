@@ -22,7 +22,8 @@
             var encrypt = new JSEncrypt();
             encrypt.setPublicKey($('#pubkey').val());
             var encrypted = encrypt.encrypt($('#input').val());
-
+            console.log(encrypted);
+            console.log(typeof encrypted);
             // Decrypt with the private key...
             var decrypt = new JSEncrypt();
             decrypt.setPrivateKey($('#privkey').val());
