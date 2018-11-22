@@ -10,7 +10,7 @@ setkey="set_key"
 
 status="status"
 
-# cd $SPC_PATH
+cd $SPC_PATH
 
 if [ "$1" == "$server" ]
 then

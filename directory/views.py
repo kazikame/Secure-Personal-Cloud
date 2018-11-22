@@ -119,8 +119,8 @@ def view_file(request, dir_name, file_name="", *args, **kwargs):
         directory = os.path.join(settings.CLOUD_DIR, request.user.username)
 
         file_path = os.path.join(directory, dir_name, file_name)
-        if os.path.isfile(file_path) and os.path.getsize(file_path) < 10**8:
-            file_obj = open(file_path, 'rw')
+        if os.path.isfile(file_path) and os.path.getsize(file_path) < 2.5* (10**7):
+            file_obj = open(file_path, 'r')
             b64_str = file_obj.read()
             return render(request, 'view.html', {'file_str': b64_str, 'file_name': file_name})
         else:

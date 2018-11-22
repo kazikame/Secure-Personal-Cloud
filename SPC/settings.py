@@ -146,9 +146,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 DEFAULT_FILE_STORAGE = 'SPC.storage.CustomFileSystemStorage'
-
-LOCK_TOKENS = {
-    'API_CSRF_EXEMPT': True,
-    'DATEFORMAT': "%Y%m%d%H%M%S",
-    'TIMEOUT': 60,
-}
