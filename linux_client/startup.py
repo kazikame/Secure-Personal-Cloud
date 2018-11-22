@@ -51,18 +51,16 @@ def status ():
     AuthKey = check_user_pass(server_url)
     home_dir = check_home_dir()
     [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
-    print ("The files on both server and local (unmodified): ")
-    for x in unmodified:
-        print (x)
-    print("The files on both server and local (modified): ")
+    print ("You have "+len(modified)+" files on the local directory along with "+len(local)+" new files and "+len(cloud)+" deleted files")
+    print ("Modified: ")
     for x in modified:
-        print(x)
-    print("The files only on server : ")
+        print ("\t"+x)
+    print ("Deleted: ")
     for x in cloud:
-        print(x)
-    print("The files only on local : ")
+        print("\t"+x)
+    print ("New: ")
     for x in local:
-        print(x)
+        print("\t"+x)
     pass
 
 def sync(paramalgo, paramkey):
