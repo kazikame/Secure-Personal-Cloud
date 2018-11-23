@@ -113,18 +113,18 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
         if (len(only_cloud) != 0):
             print("The files only on Cloud Storage.")
             i = "V"
-            while (i == "V"):
+            while (i.upper() == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nQ to "
-                    "deal with them individually.\nS to cancel sync.\n")
-                if (i == "V"):
+                    "Enter V to view them.\nR to delete all of them.\nD to download them all to local storage.\nS to "
+                    "cancel sync.\nAnyother key to deal with them individually.\n")
+                if (i.upper() == "V"):
                     for x in only_cloud:
                         print(x)
-            if (i == "R"):
+            if (i.upper() == "R"):
                 to_delete = to_delete + only_cloud
-            elif (i == "D"):
+            elif (i.upper() == "D"):
                 to_download = to_download + only_cloud
-            elif i == "S":
+            elif i.upper() == "S":
                 print("sync terminated.")
                 exit(0)
             else:
@@ -133,28 +133,27 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                     "from cloud.\n")
                 for x in only_cloud:
                     i = input(x + "\n")
-                    while (i != "D" and i != "R"):
+                    while (i.upper() != "D" and i.upper() != "R"):
                         i = input("Wrong input. Try again\n")
-                    if (i == "D"):
+                    if (i.upper() == "D"):
                         to_download.append(x)
                     else:
                         to_delete.append(x)
-
         if (len(only_local) != 0):
             print("The files only on Local Storage.")
             i = "V"
-            while (i == "V"):
+            while (i.upper() == "V"):
                 i = input(
-                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nQ to "
-                    "deal with them individually.\nS to cancel sync.\n")
-                if (i == "V"):
+                    "Enter V to view them.\nR to delete all of them.\nU to upload them all to cloud storage.\nS to "
+                    "to cancel sync.\nAnyother deal with them individually.\n")
+                if (i.upper() == "V"):
                     for x in only_local:
                         print(x)
-            if (i == "R"):
+            if (i.upper() == "R"):
                 local_delete = local_delete + only_local
-            elif (i == "U"):
+            elif (i.upper() == "U"):
                 to_upload = to_upload + only_local
-            elif i == "S":
+            elif i.upper() == "S":
                 print("sync terminated.")
                 exit(0)
             else:
@@ -163,9 +162,9 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
                     "cloud.")
                 for x in only_local:
                     i = input(x + "\n")
-                    while (i != "U" and i != "R"):
+                    while (i.upper() != "U" and i.upper() != "R"):
                         i = input("Wrong input. Try again\n")
-                    if (i == "U"):
+                    if (i.upper() == "U"):
                         to_upload.append(x)
                     else:
                         local_delete.append(x)
@@ -173,28 +172,31 @@ def resolve_conflicts(cloud_dict, local_dir):  # return [upload,download,delete]
         if len(modified) != 0:
             print("The Modified files.")
             i = "V"
-            while (i == "V"):
+            while (i.upper() == "V"):
                 i = input(
-                    "Enter V to view them.\nC to keep the cloud storage versions.\nL to keep local storege "
-                    "versions.\nQ to deal with them individually\n")
-                if (i == "V"):
+                    "Enter V to view them.\nC to keep the cloud storage versions.\nL to keep local storage "
+                    "versions.\n S to cancel sync.\nAnyother to deal with them individually\n")
+                if (i.upper() == "V"):
                     for x in modified:
                         print(x)
-            if (i == "C"):
+            if (i.upper() == "C"):
                 local_delete = local_delete + modified
                 to_download = to_download + modified
-            elif (i == "L"):
+            elif (i.upper() == "L"):
                 to_upload = to_upload + modified
                 to_delete = to_delete + modified
+            elif (i.upper() == "S"):
+                print("sync terminated.")
+                exit(0)
             else:
                 print(
                     "For all the files displayed, enter one of the options \nL to keep the local copy.\nC to keep the "
                     "cloud copy.")
                 for x in modified:
                     i = input(x + "\n")
-                    while (i != "C" and i != "L"):
+                    while (i.upper() != "C" and i.upper() != "L"):
                         i = input("Wrong input. Try again\n")
-                    if (i == "C"):
+                    if (i.upper() == "C"):
                         local_delete.append(x)
                         to_download.append(x)
                     else:
