@@ -65,3 +65,623 @@
 11/23/2018 01:28:01 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 500 22455
 11/23/2018 01:28:31 PM Starting new HTTP connection (1): 127.0.0.1:8000
 11/23/2018 01:28:31 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 500 22455
+11/23/2018 02:26:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:08 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:26:08 PM 
+Traceback (most recent call last):
+  File "startup.py", line 54, in sync
+    home_dir = check_home_dir()
+  File "startup.py", line 182, in check_home_dir
+    raise NoHomeDirException
+NoHomeDirException
+11/23/2018 02:26:28 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:28 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:26:41 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:41 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 02:26:41 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:41 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:41 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 12
+11/23/2018 02:26:41 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/67b6ba65ede14ed4bf4a37d428b7d4df HTTP/1.1" 200 74
+11/23/2018 02:26:45 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:45 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:26:45 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:26:45 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:26:45 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:26:45 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:26:45 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:26:45 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:26:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:26:50 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:50 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:26:50 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:50 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:26:50 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:26:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:58 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:26:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:58 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:26:58 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:26:59 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:59 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:26:59 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:26:59 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:26:59 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:00 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:00 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:00 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:00 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:00 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:02 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:03 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:03 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:03 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:03 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:04 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:04 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:04 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:05 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:05 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:05 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:05 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:05 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:07 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:08 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:08 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:08 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:09 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:09 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:09 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:09 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:10 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:10 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:10 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:10 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:10 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:11 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:11 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:11 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:11 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:11 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:12 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:12 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:12 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:12 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:12 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:14 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:14 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:14 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:14 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:14 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:15 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:15 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:15 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:15 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:15 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:16 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:16 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:16 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:16 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:16 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:17 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:17 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:17 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:17 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:17 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:17 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:18 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:18 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:18 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:18 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:18 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:18 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:18 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:18 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:18 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:19 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:19 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:19 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:19 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:19 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:21 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:23 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:23 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:23 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:23 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:25 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:25 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:25 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:25 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:25 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:26 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:26 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:26 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:26 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:26 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:27 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:27 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:27 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:27 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:27 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:30 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:30 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:30 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:30 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:30 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:31 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:31 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:31 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:31 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:31 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:32 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:32 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:32 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:32 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:32 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:40 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:40 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:40 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:40 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:40 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:40 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:41 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:41 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:41 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:27:41 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:27:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:42 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:27:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:42 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 02:27:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:27:42 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 428
+11/23/2018 02:27:42 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/1103b0baf95f497db2b6134e24cf206b HTTP/1.1" 200 74
+11/23/2018 02:27:52 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:27:52 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/1103b0baf95f497db2b6134e24cf206b HTTP/1.1" 200 74
+11/23/2018 02:28:02 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:28:02 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/1103b0baf95f497db2b6134e24cf206b HTTP/1.1" 200 74
+11/23/2018 02:28:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:28:04 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:28:04 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:28:04 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:28:04 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:28:30 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:28:30 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:28:31 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:28:31 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 409 2
+11/23/2018 02:28:31 PM 
+Traceback (most recent call last):
+  File "startup.py", line 56, in sync
+    token = check_if_unlocked(server_url, AuthKey)
+  File "startup.py", line 98, in check_if_unlocked
+    raise requests.exceptions.HTTPError
+requests.exceptions.HTTPError
+11/23/2018 02:40:38 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:38 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:40:38 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:38 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 02:40:38 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:38 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:38 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 428
+11/23/2018 02:40:38 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/808427132f04482aa58fcfaf94d44069 HTTP/1.1" 200 74
+11/23/2018 02:40:47 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:47 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:47 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/808427132f04482aa58fcfaf94d44069 HTTP/1.1" 200 74
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:48 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:48 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:49 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:49 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 02:40:50 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:40:50 PM http://127.0.0.1:8000 "DELETE /api/lock_tokens/808427132f04482aa58fcfaf94d44069 HTTP/1.1" 204 0
+11/23/2018 02:41:06 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:06 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 02:41:06 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:06 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 02:41:06 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:06 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:06 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 5627
+11/23/2018 02:41:06 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/4fd5f1bd37e248fe99f402ab789131e5 HTTP/1.1" 200 74
+11/23/2018 02:41:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:08 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 24
+11/23/2018 02:41:08 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 02:41:08 PM http://127.0.0.1:8000 "DELETE /api/lock_tokens/4fd5f1bd37e248fe99f402ab789131e5 HTTP/1.1" 204 0
+11/23/2018 03:51:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:51:55 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 03:51:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:51:55 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 03:51:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:51:55 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:51:55 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 12
+11/23/2018 03:51:55 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/83854a4fb0b645259eea86726500467c HTTP/1.1" 200 74
+11/23/2018 03:51:58 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:51:58 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:51:58 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:51:58 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:51:58 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:51:58 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:51:58 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:51:58 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:00 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:03 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:03 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:04 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:04 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/83854a4fb0b645259eea86726500467c HTTP/1.1" 200 74
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:05 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:05 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 03:52:06 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 03:52:06 PM http://127.0.0.1:8000 "DELETE /api/lock_tokens/83854a4fb0b645259eea86726500467c HTTP/1.1" 204 0
+11/23/2018 04:29:36 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:36 PM http://127.0.0.1:8000 "POST /api/login/ HTTP/1.1" 200 50
+11/23/2018 04:29:37 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:37 PM http://127.0.0.1:8000 "POST /api/lock_tokens/ HTTP/1.1" 201 74
+11/23/2018 04:29:37 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:37 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:37 PM http://127.0.0.1:8000 "POST /api/get-index/ HTTP/1.1" 200 5627
+11/23/2018 04:29:37 PM http://127.0.0.1:8000 "PATCH /api/lock_tokens/2c2b1e30fa394890be42c551e4f91a9d HTTP/1.1" 200 74
+11/23/2018 04:29:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/delete/ HTTP/1.1" 200 24
+11/23/2018 04:29:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 04:29:42 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 04:29:42 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 04:29:42 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 04:29:42 PM Resetting dropped connection: 127.0.0.1
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "POST /api/upload/ HTTP/1.1" 201 20
+11/23/2018 04:29:42 PM Starting new HTTP connection (1): 127.0.0.1:8000
+11/23/2018 04:29:42 PM http://127.0.0.1:8000 "DELETE /api/lock_tokens/2c2b1e30fa394890be42c551e4f91a9d HTTP/1.1" 204 0
