@@ -72,7 +72,7 @@ class LockTokenDetailView(LockTokenBaseView):
                                                         token)
         return JsonResponse(lock_token.serialize())
 
-    def patch(self, request, app_label, model, object_id, token):
+    def patch(self, request, token):
         object_id = SpcUser.objects.filter(username=request.user.username).get().id
         lock_token = self.get_valid_lock_token_or_error('Authentication', 'spcuser', object_id,
                                                         token)

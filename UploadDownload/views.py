@@ -28,7 +28,14 @@ class FileView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request, format=None):
+
         if request.user.is_authenticated:
+            user_obj = SpcUser.objects.filter(username=request.user.username).get()
+            if not user_obj.is_locked():
+                return Response({'error': 'Sync unlocked. Please lock and try again.'}, status.HTTP_400_BAD_REQUEST)
+            elif not user_obj.check_lock_token(request.data['token']):
+                return Response({'error': 'Sync Locked! Please try again later.'}, status.HTTP_400_BAD_REQUEST)
+
             file_serializer = FileSerializer(data=request.data)
             if file_serializer.is_valid():
                 try:
@@ -96,6 +103,11 @@ class DeleteFile(APIView):
 
     def post(self, request):
         if request.user.is_authenticated:
+            user_obj = SpcUser.objects.filter(username=request.user.username).get()
+            if not user_obj.is_locked():
+                return Response({'error': 'Sync unlocked. Please lock and try again.'}, status.HTTP_400_BAD_REQUEST)
+            elif not user_obj.check_lock_token(request.data['token']):
+                return Response({'error': 'Sync Locked! Please try again later.'}, status.HTTP_400_BAD_REQUEST)
             try:
                 file_path = request.data['file_path'].split('```')
                 name_list = request.data['name_list'].split('```')
@@ -117,7 +129,16 @@ class DownloadFile(APIView):
     parser_classes = (FormParser, )
 
     def post(self, request):
+        user_obj = SpcUser.objects.filter(username=request.user.username).get()
+        if not user_obj.is_locked():
+            return Response({'error': 'Sync unlocked. Please lock and try again.'}, status.HTTP_400_BAD_REQUEST)
+        elif not user_obj.check_lock_token(request.data['token']):
+            return Response({'error': 'Sync Locked! Please try again later.'}, status.HTTP_400_BAD_REQUEST)
         if request.user.is_authenticated:
+            if not user_obj.is_locked():
+                return Response({'error': 'Sync unlocked. Please lock and try again.'}, status.HTTP_400_BAD_REQUEST)
+            elif not user_obj.check_lock_token(request.data['token']):
+                return Response({'error': 'Sync Locked! Please try again later.'}, status.HTTP_400_BAD_REQUEST)
             try:
                 dfile_path = request.data['file_path']
                 dfile_name = request.data['name']
@@ -141,12 +162,6 @@ class DownloadFile(APIView):
 
 class FileIndex(APIView):
     def post(self, request):
-        #x = SpcUser.objects.filter(username=request.user.username).get()
-        #if x.syncLock == 1:
-            #return Response({'error': 'In use'}, status=status.HTTP_400_BAD_REQUEST)
-        #else:
-           # x.syncLock = 1
-           # x.save()
         indexSet = list(SingleFileUpload.objects.filter(username=request.user.username).values('file_path',
                                                                                                'name',
                                                                                                'md5sum_o'))

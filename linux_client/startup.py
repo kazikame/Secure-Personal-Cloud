@@ -8,7 +8,6 @@ from functools import partial
 from os import path
 from urllib.error import *
 import requests
-from encryption import encrypt_files, decrypt_files, generate_key
 from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
 from tqdm import tqdm
 import logging
@@ -21,6 +20,7 @@ import pickle
 sys.path.append('.')
 import conflicts
 from encryption import *
+import lockThread
 
 # CONFIG OPTIONS
 config_file = 'conf.json'
@@ -47,24 +47,6 @@ class NoHomeDirException(Exception):
     pass
 
 
-def status ():
-    server_url = get_server_url()
-    AuthKey = check_user_pass(server_url)
-    home_dir = check_home_dir()
-    [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
-    print ("You have "+len(modified)+" files on the local directory along with "+len(local)+" new files and "+len(cloud)+" deleted files")
-    print ("Modified: ")
-    for x in modified:
-        print ("\t"+x)
-    print ("Deleted: ")
-    for x in cloud:
-        print("\t"+x)
-    print ("New: ")
-    for x in local:
-        print("\t"+x)
-    pass
-
-
 def sync():
     try:
         server_url = get_server_url()
@@ -74,6 +56,9 @@ def sync():
         [schema, en_key] = get_en_key()
         token = check_if_unlocked(server_url, AuthKey)
         print("Sync locked successfully!")
+        updateThread = lockThread.LockUpdate(server_url, AuthKey, token, 10)
+        updateThread.setDaemon(True)
+        updateThread.start()
         [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
     except requests.exceptions.HTTPError as e:
         logging.exception(e)
@@ -86,12 +71,11 @@ def sync():
         exit(-1)
     except NoHomeDirException as e:
         logging.exception(e)
-        print("error: Invalid home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
-        unlock_sync(server_url, AuthKey, token)
+        print("You have not set a home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
         exit(-1)
-    del_bool = delete_files(server_url, AuthKey, delete)
-    down_bool = download_files(server_url, AuthKey, download, home_dir, schema, en_key)
-    up_bool = upload_files(server_url, AuthKey, home_dir, upload, schema, en_key)
+    del_bool = delete_files(server_url, AuthKey, delete, token)
+    down_bool = download_files(server_url, AuthKey, download, home_dir,token,  schema, en_key)
+    up_bool = upload_files(server_url, AuthKey, home_dir, upload, token, schema, en_key)
 
     if (delete and del_bool) and (download and down_bool) and (upload and up_bool):
         print('Sync Successful')
@@ -99,7 +83,12 @@ def sync():
         pass
     else:
         print('Sync Unsuccessful. Check SPC.logs for more details.')
-    unlock_sync(server_url, AuthKey, token)
+
+    f = unlock_sync(server_url, AuthKey, token)
+    if f:
+        tqdm.write('Sync unlocked successfully.')
+    else:
+        tqdm.write("Sync couldn't be unlocked for some reason.\nCheck SPC.logs for more details.")
 
 
 def check_if_unlocked(server_url, AuthKey):
@@ -117,10 +106,10 @@ def unlock_sync(server_url, AuthKey, token):
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
     r = client.delete(urlp.urljoin(server_url, 'api/lock_tokens/' + token), headers=header)
     if not (r == 404 or r == 403):
-        print("Sync unlocked successfully.")
+        return True
     else:
-        print("Sync couldn't be unlocked!")
         logging.warn(r.text)
+        return False
 
 
 def get_server_url():
@@ -270,7 +259,7 @@ def progress_update(monitor):
     completed = monitor.bytes_read
 
 
-def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file=None):
+def upload_files(server_url, AuthKey, home_dir, files, token, algorithm="AES", key_file=None):
     """
     Main Upload function.
 
@@ -351,7 +340,8 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
             payloadUpload = MultipartEncoder(fields={'file_path': file_path,
                                                      'md5sum': md5sum1,
                                                      'md5sum_o': md5sum_orig,
-                                                     'file': (filename, f, 'application/octet-stream')})
+                                                     'file': (filename, f, 'application/octet-stream'),
+                                                     'token': token})
 
             # Header
             header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0'),
@@ -379,18 +369,20 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
                 logging.warn(r.text)
             num -= 1
 
-    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
+    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.')
     if md5fail > 0:
         i = input(str(md5fail) + 'files uploaded incorrectly, would you like to retry sync? (MD5 checksum fail) [Y/n]')
         if i == 'y' or i == 'Y':
             upload_files(server_url, AuthKey, home_dir, retryUploads)
         else:
             return False
+    elif upload_failed > 0:
+        return False
     else:
         return True
 
 
-def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", key_file=None):
+def download_files(server_url, AuthKey, file_list, home_dir, token, algorithm="AES", key_file=None):
     """
     Utility to download files from cloud.
     :param key_file:
@@ -413,7 +405,7 @@ def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", ke
     with tempfile.TemporaryDirectory() as tempdir:
         for f in file_list:
             split_path = os.path.split(f)
-            payLoad = {'file_path': split_path[0], 'name': split_path[1]}
+            payLoad = {'file_path': split_path[0], 'name': split_path[1], 'token': token}
             r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
             values, params = cgi.parse_header(r.headers['Content-Disposition'])
 
@@ -463,37 +455,13 @@ def set_home_dir(parameter, dir, out):
         exit(-1)
 
 
-def set_key(paramalgo, paramkey):
-    with open(config_file) as fhand:
-        data = json.load(fhand)
-    with open(config_file, 'w') as fhand:
-        algoselected = input("Select an enctyption schema (enter choice 1, 2, or 3)\n1. AES\n2. TripleDES\n3. (tbd)\n")
-        if '1' in algoselected:
-            data[paramalgo] = "AES"
-            keyFile = input("Enter a valid file path where you want the key to be stored."
-                            "Enter 'print' if you want the key to be printed out to terminal (not recommended)")
-            if keyFile == "print":
-                keyFile = None
-            else:
-                if not os.path.isdir(os.path.dirname(keyFile)):
-                    print('Directory not found. Try again')
-                    exit(0)
-            x = generate_key("AES", keyFile)
-            if not x:
-                print("Error generating key. Try again")
-                exit(1)
-            else:
-                data[paramkey] = keyFile
-        json.dump(data, fhand)
-
-
 def empty_json():
     data = {}
     with open(config_file, 'w') as outfile:
         json.dump(data, outfile)
 
 
-def delete_files(server_url, AuthKey, file_list):
+def delete_files(server_url, AuthKey, file_list, token):
     if len(file_list) == 0:
         return
     client = requests.Session()
@@ -504,7 +472,7 @@ def delete_files(server_url, AuthKey, file_list):
         file_list[i] = split_path[0]
         name_list.append(split_path[1])
 
-    payloadDelete = {'file_path': '```'.join(file_list), 'name_list': '```'.join(name_list)}
+    payloadDelete = {'file_path': '```'.join(file_list), 'name_list': '```'.join(name_list), 'token': token}
     try:
         r = client.post(urlp.urljoin(server_url, 'api/delete/'), data=payloadDelete, headers=header)
         if r.status_code == 200:
@@ -536,44 +504,60 @@ def get_index(server_url, AuthKey):
     return index_dict
 
 
-def get_status():
-    try:
-        server_url = get_server_url()
-        AuthKey = check_user_pass(server_url)
-        home_dir = check_home_dir()
-        [upload, download, delete] = conflicts.resolve_conflicts(get_index(server_url, AuthKey), home_dir)
-    except requests.exceptions.ConnectionError as e:
-        logging.exception(e)
-        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
-        exit(-1)
-    print('Current directory being observed: ' + home_dir)
-    if upload or download or delete:
-        print('Your local directory is not in sync with the cloud. To sync, use \n\nspc sync')
+def status ():
+    server_url = get_server_url()
+    AuthKey = check_user_pass(server_url)
+    home_dir = check_home_dir()
+    [modified, unmodified, cloud,local] = conflicts.get_status(get_index(server_url, AuthKey), home_dir)
+    print ("You have "+str(len(modified))+" files on the local directory along with "+str(len(local))+" new files and "+str(len(cloud))+" deleted files")
+    if (len(modified)>0):
+        print ("Modified: ")
+        for x in modified:
+            print ("\t"+x)
+    if (len(cloud)>0):
+        print ("Deleted: ")
+        for x in cloud:
+            print("\t"+x)
+    if (len(local)>0):
+        print ("New: ")
+        for x in local:
+            print("\t"+x)
+    pass
 
 
 def set_key(paramalgo, paramkey):
     with open(config_file) as fhand:
         data = json.load(fhand)
-    with open(config_file, 'w') as fhand:
-        algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES\n2. TripleDES\n3. (tbd)\n")
-        if '1' in algoselected:
-            data[paramalgo] = "AES"
-            keyFile = input("Enter a valid file path where you want the key to be stored."
-                            "Enter 'print' if you want the key to be printed out to terminal (not recommended)")
-            if keyFile == "print":
-                keyFile = None
-            else:
-                if not os.path.isdir(os.path.dirname(keyFile)):
-                    print('Directory not found. Try again')
-                    exit(0)
-            x = generate_key("AES", keyFile)
-            if not x:
-                print("Error generating key. Try again")
-                exit(1)
-            else:
-                data[paramkey] = keyFile
-        json.dump(data, fhand)
 
+    algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES - The safest encryption we "
+                         "got\n2. TripleDES - Another extremely secure schema\n3. RC4 - Internet tells me I can't "
+                         "trust this for my life\n")
+    if '1' in algoselected:
+        data[paramalgo] = "AES"
+        algoselected = "AES"
+    elif '2' in algoselected:
+        data[paramalgo] = "TripleDES"
+        algoselected = "TripleDES"
+    elif '3' in algoselected:
+        data[paramalgo] = "RC4"
+        algoselected = "RC4"
+    keyFile = input("Enter a valid file path where you want the key to be stored.\n"
+                    "Enter 'print' if you want the key to be printed out to terminal (not recommended)\n")
+    if keyFile == "print":
+        keyFile = None
+    else:
+        if not os.path.isdir(os.path.dirname(keyFile)):
+            print('Directory not found. Try again')
+            exit(0)
+    x = generate_key(algoselected, keyFile)
+    if not x:
+        print("Error generating key. Try again")
+        exit(1)
+    else:
+        data[paramkey] = keyFile
+
+    with open(config_file, 'w') as fhand:
+        json.dump(data, fhand)
     return [data[paramalgo], data[paramkey]]
 
 
@@ -588,8 +572,6 @@ if len(sys.argv) > 1:
         sync()
     elif sys.argv[1] == 'empty_json':
         empty_json()
-    elif sys.argv[1] == 'status':
-        get_status()
     elif sys.argv[1] == 'generate_key':
         set_key('encryption_schema', 'key')
     elif sys.argv[1] == 'status':

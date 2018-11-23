@@ -43,8 +43,30 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
             if not os.path.isdir(os.path.dirname(output)):
                 pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
             os.system(command.format(inp, output, key, iv))
-        print("Files encrypted successfully.")
-        return True
+    elif algorithm == "TripleDES":
+        if key_file is None:
+            print("Please enter the TripleDES encryption key given on generation")
+            while True:
+                key = input("Key: ").upper()
+                try:
+                    x = int(key, 16)
+                except ValueError:
+                    print("Please enter a valid hexadecimal key")
+                    continue
+                break
+        else:
+            with open(key_file, 'rb') as f:
+                keys = pickle.load(f)
+                key = keys["key"].decode('utf-8').upper()
+        command = "openssl enc -des-ede3-ecb -in '{0}' -out '{1}' -base64 -nosalt -K {2}"
+        for file in files:
+            inp = os.path.join(base, file)
+            output = os.path.join(encrypted_base, file)
+            if not os.path.isdir(os.path.dirname(output)):
+                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
+            os.system(command.format(inp, output, key))
+    print("Files encrypted successfully.")
+    return True
 
 
 def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=None):
@@ -85,8 +107,30 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
             if not os.path.isdir(os.path.dirname(output)):
                 pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
             os.system(command.format(inp, output, key, iv))
-        print("Files decrypted successfully.")
-        return True
+    elif algorithm == "TripleDES":
+        if key_file is None:
+            print("Please enter the key and IV given on generation")
+            while True:
+                key = input("Key: ").upper()
+                try:
+                    x = int(key, 16)
+                except ValueError:
+                    print("Please enter a valid hexadecimal key")
+                    continue
+                break
+        else:
+            with open(key_file, 'rb') as f:
+                keys = pickle.load(f)
+                key = keys["key"].decode('utf-8').upper()
+        command = "openssl enc -des-ede3-ecb -d -in '{0}' -out '{1}' -base64 -nosalt -K {2}"
+        for file in files:
+            inp = os.path.join(encrypted_base, file)
+            output = os.path.join(decrypted_base, file)
+            if not os.path.isdir(os.path.dirname(output)):
+                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
+            os.system(command.format(inp, output, key))
+    print("Files decrypted successfully.")
+    return True
 
 
 # def decrypt_key(encryptedKeyFile, password, decryptedFilePath):
@@ -149,4 +193,21 @@ def generate_key(encryption_schema, key_file=None):
                 aeskey = {"key": randomKeyHex, "iv": randomIVHex}
                 pickle.dump(aeskey, f)
             print("Key stored successfully")
+            return True
+    elif encryption_schema == "TripleDES":
+        randomKeyHex = binascii.b2a_hex(os.urandom(16))
+        if key_file is None:
+            print("Please keep the following following information confidential, for the privacy of your files "
+                  "uploaded on the server.\nWe will not be responsible for any breach of privacy")
+            print("TripleDES schema chosen. Produce this key and the initialization vector when you wish to download, "
+                  "upload or sync.")
+            print("KEY:", randomKeyHex.decode('utf-8').upper())
+            return True
+        else:
+            print("Please keep the file extremely secure and in the same path as chosen. DO NOT delete or move the "
+                  "file, until a new encryption schema is chose.")
+            with open(key_file, 'wb') as f:
+                aeskey = {'key': randomKeyHex}
+                pickle.dump(aeskey, f)
+            print("Key stored successfully.")
             return True

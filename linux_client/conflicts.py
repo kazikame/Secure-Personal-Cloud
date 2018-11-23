@@ -43,7 +43,8 @@ def uploadall(cloud_dict, local_dir):
                 only_local.append(x)
         return [only_local+modified, [], only_cloud+modified]
 
-def status(cloud_dict, local_dir):
+
+def get_status(cloud_dict, local_dir):
     local_dict = {}
     for (root, dirnames, filenames) in walk(local_dir):
         for name in filenames:

@@ -20,8 +20,11 @@ echo $temp >> ~/.bashrc
 
 daemon_path=$(echo $home_folder/daemon.py)
 config_path=$(echo $home_folder/config.sh)
+json_path=$(echo $home_folder/conf.json)
 
 python3.6 $daemon_path
+
+python3.6 $json_path empty_json
 
 temp=$(echo "python3.6 $daemon_path")
 temp="alias start_daemon='$temp'"
