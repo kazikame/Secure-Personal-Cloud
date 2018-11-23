@@ -41,7 +41,10 @@ echo $temp >> ~/.bashrc
 
 temp=$(echo /usr/bin/python3.6 "$daemon_path")
 temp="@reboot root $temp"
+
+sudo chmod +w  /etc/cron.d
 sudo echo $temp > /etc/cron.d/spc_daemon
+sudo chmod +w  /etc/cron.d
 
 sudo mkdir -p /usr/local/man/man1
 sudo cp spc /usr/local/man/man1/spc.1

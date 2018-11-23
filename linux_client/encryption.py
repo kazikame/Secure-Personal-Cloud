@@ -57,6 +57,7 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
         else:
             x = os.system(command.format(inp, output, key))
         if x:
+            print(file, base, os.path.isdir(base), os.path.isfile(os.path.join(base,file)))
             print("Something went wrong while encrypting, exiting")
             return False
     print("Files encrypted successfully.")

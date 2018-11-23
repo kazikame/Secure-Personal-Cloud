@@ -40,118 +40,356 @@ if len(sys.argv) == 1:
     print("Team name: import teamName")
     exit(0)
 
-def change_key():
-    print ("To change key you first need to sync your files")
-    sync()
-    print ("Enter the index(1-3) of the new Encryption schema:")
-    print ("1. AES")
-    print ("2. TripleDES")
-    print ("3. RC4")
-    index = input();
+def check_key(scheme,key):
+    if (scheme == "AES"):
+        if (len(key) != 64):
+            return False
+        try :
+            int(key,16)
+            return True
+        except Exception as e:
+            return False
+    if (scheme == "TripleDES"):
+        if (len(key) != 48):
+            return False
+        try :
+            int(key,16)
+            return True
+        except Exception as e:
+            return False
+
+    if (scheme == "AES"):
+        if (len(key) != 32):
+            return False
+        try :
+            int(key,16)
+            return True
+        except Exception as e:
+            return False
+    pass
+
+
+def check_iv(scheme,key):
+    if (scheme == "AES"):
+        if (len(key) != 32):
+            return False
+        try :
+            int(key,16)
+            return True
+        except Exception as e:
+            return False
+    if (scheme == "TripleES"):
+        if (len(key) != 16):
+            return False
+        try:
+            int(key, 16)
+            return True
+        except Exception as e:
+            return False
+    pass
+
+
+def set_key(paramalgo, paramkey):
     with open(config_file) as fhand:
         data = json.load(fhand)
-    os.remove('key.key')
-    if '1' in index:
-        print("Enter the key :")
-        key = (input()).encode('utf-8');
-        print("Enter the IV :")
-        IV = (input()).encode('utf-8');
-        dict = {}
-        dict["key"] = key;
-        dict["iv"] = IV;
+
+    algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES - The safest encryption we "
+                         "got\n2. TripleDES - Another extremely secure schema\n3. RC4 - Internet tells me I can't "
+                         "trust this for my life\n")
+    if '1' in algoselected:
         data[paramalgo] = "AES"
-        if (data.get(paramkey) != None):
-            with open(data[paramkey],'wb') as file:
-                pickle.dump(dict,file);
-    elif '2' in index:
-        print("Enter the key :")
-        key = (input()).encode('utf-8')
-        print("Enter the IV :")
-        IV = (input()).encode('utf-8')
-        dict = {}
-        dict["key"] = key;
-        dict["iv"] = IV;
+        algoselected = "AES"
+    elif '2' in algoselected:
         data[paramalgo] = "TripleDES"
-        if (data.get(paramkey) != None):
-            with open(data[paramkey], 'wb') as file:
-                pickle.dump(dict, file)
-    elif '3' in index:
-        print("Enter the key :")
-        key = (input()).encode('utf-8')
+        algoselected = "TripleDES"
+    elif '3' in algoselected:
         data[paramalgo] = "RC4"
-        dict = {}
-        dict["key"] = key;
-        if (data.get(paramkey) != None):
-            with open(data[paramkey], 'wb') as file:
-                pickle.dump(dict, file);
+        algoselected = "RC4"
+    inpu = input("Enter 'file' if you want to store the key in a file (recommended).\n"
+                    "Enter 'print' if you want the key to be printed out to terminal (not recommended)\n")
+    if inpu == "print":
+        keyFile = None
+    elif inpu == "file":
+        keyFile = os.path.join(data["home_folder"], "key.key")
+    else :
+        print("Invalid Argument. Exiting...")
+        exit(0)
+    x = generate_key(algoselected, keyFile)
+    if not x:
+        print("Error generating key. Try again")
+        exit(1)
     else:
-        print ("Invalid key. Exiting.")
-        return
+        data[paramkey] = keyFile
+
     with open(config_file, 'w') as fhand:
         json.dump(data, fhand)
-    server_url = get_server_url()
-    AuthKey = check_user_pass(server_url)
-    home_dir = check_home_dir()
-    [schema, en_key] = get_en_key()
-    token = check_if_unlocked(server_url, AuthKey)
-    delete = list((get_index(server_url, AuthKey)).keys())
-    delete_files(server_url, AuthKey, delete, token)
-    upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
-    print ("Your new Encryption Scheme is now set")
-    pass
+    return [data[paramalgo], data[paramkey]]
 
 
-def change_file(dump_file):
-    print("To change key you first need to sync your files")
-    sync()
+def store_key_file (file):
     with open(config_file) as fhand:
         data = json.load(fhand)
-    print("Enter the index(1-3) of the new Encryption schema:")
-    print("1. AES")
-    print("2. TripleDES")
-    print("3. RC4")
-    index = input();
-    if (index == 1):
-        data[paramalgo] == "AES"
-    elif (index == 2):
-        data[paramalgo] == "TripleDES"
-    elif (index == 3):
-        data[paramalgo] == "RC4"
-    else :
-        print("Invalid Index. Exiting...")
-        return;
-    os.remove('key.key')
-    if (data[paramalgo] == "AES" or data[paramalgo] == "TripleDES"):
-        print("Kindly verify your dump_file. It should be have 2 attributes, a key and a IV. Press 1 to exit, or anyother key to continue")
-        index = input()
-        if (index == "1"):
-            print("Exiting...")
-            return
-    else:
-        print("Kindly verify your dump_file. It should be have only attribute, a key. Press 1 to exit, or anyother key to continue")
-        index = input()
-        if (index == "1"):
-            print("Exiting...")
-            return
-    with open(dump_file,'rb') as file:
-        dict = pickle.load(file)
-    if (data.get(paramkey) == None):
-        data[paramkey] = os.path.join(data["home_folder"],'key.key');
-    with open(data[paramkey],'wb') as f:
-        pickle.dump(dict,f)
-    with open(config_file, 'w') as fhand:
-        json.dump(data, fhand)
-
-    server_url = get_server_url()
-    AuthKey = check_user_pass(server_url)
-    home_dir = check_home_dir()
-    [schema, en_key] = get_en_key()
-    token = check_if_unlocked(server_url, AuthKey)
-    delete = list((get_index(server_url, AuthKey)).keys())
-    delete_files(server_url, AuthKey, delete, token)
-    upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
-    print("Your new Encryption Scheme is now set")
+    if (data.get("encryption_schema") == None):
+        print("Specify Encryption :")
+        while (True):
+            inp = input();
+            if (inp == "AES" or inp == "TripleDES" or inp == "RC4"):
+                break
+            print("Invalid schema. Try again.")
+        data["encryption_schema"] = inp
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    with open(file,'rb') as f:
+        key = pickle.load(f)
+        if (key.get('key') == None):
+            print ("Invalid File. Exiting...")
+            exit(0)
+        if (key.get('iv') == None and inp != "RC4"):
+            print("Invalid File. Exiting...")
+            exit(0)
+    with open(keyFile,'wb') as fi:
+        pickle.dump(key,fi)
+    print("Key stored")
+    return inp,keyFile
     pass
+
+
+def store_key():
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    if (data.get("encryption_schema")==None):
+        print ("Specify Encryption :")
+        while(True):
+            inp = input();
+            if (inp == "AES" or inp == "TripleDES" or inp == "RC4"):
+                break
+            print("Invalid schema. Try again.")
+        data["encryption_schema"] = inp
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    dict = {}
+    while (True):
+        print("Enter the key :")
+        keydash = input()
+        if (check_key(inp,keydash)):
+            keydash = keydash.encode('utf-8')
+            break
+        else :
+            print("Wrong key. Kindly Try again.")
+    dict["key"] = keydash;
+    if (inp != "RC4"):
+        while (True):
+            print("Enter the IV :")
+            keydash = input()
+            if (check_iv(inp,keydash)):
+                keydash = keydash.encode('utf-8')
+                break
+            else :
+                print("Wrong IV. Kindly Try again.")
+    dict["iv"] = keydash;
+    with open(keyFile,'wb') as fi:
+        pickle.dump(dict,fi)
+    print("Key stored")
+    return inp,keyFile
+    pass
+
+
+def take_key():
+    print("Specify Encryption : (One of AES, TripleDES, RC4)")
+    while (True):
+        inp = input();
+        if (inp == "AES" or inp == "TripleDES" or inp == "RC4"):
+            break
+        print("Invalid schema. Try again.")
+    encryption_schema = inp
+    dict = {}
+    while (True):
+        print("Enter the key :")
+        keydash = input()
+        if (check_key(inp,keydash)):
+            keydash = keydash.encode('utf-8')
+            break
+        else :
+            print("Wrong key. Kindly Try again.")
+    dict["key"] = keydash;
+    if (inp != "RC4"):
+        while (True):
+            print("Enter the IV :")
+            keydash = input()
+            if (check_key(inp,keydash)):
+                keydash = keydash.encode('utf-8')
+                break
+            else :
+                print("Wrong IV. Kindly Try again.")
+    dict["iv"] = keydash;
+    return encryption_schema,dict
+
+
+def new_user_key():
+    ind = input("Do you wanna store the key? Yes or No :")
+    if "Y" in ind.upper():
+        dic = store_key()
+        return dic
+    elif "N" in ind.upper() :
+        print("Specify Encryption : (One of AES, TripleDES, RC4)")
+        while (True):
+            inp = input();
+            if (inp == "AES" or inp == "TripleDES" or inp == "RC4"):
+                break
+            print("Invalid schema. Try again.")
+        return [inp,None]
+    else:
+        print ("Invalid Input. Try again.")
+        new_user_key()
+    pass
+
+
+def get_en_key():
+    data = {}
+    with open(config_file) as f:
+        try:
+            data = json.load(f)
+        except Exception as e:
+            pass
+    if ('encryption_schema' not in data):
+        print("Are you an existing user(Do you have the encryption key?). Enter Yes or No :")
+        while (True):
+            i = input()
+            if "Y" in i.upper():
+                return new_user_key();
+                break
+            elif "N" in i.upper():
+                return set_key('encryption_schema', 'key')
+                break
+    elif ('key' not in data):
+        return [data['encryption_schema'],None]
+    else:
+        return [data['encryption_schema'], data['key']]
+
+
+def change():
+    with tempfile.TemporaryDirectory() as dir1:
+        try:
+            with open(config_file,'r') as fil:
+                data = json.load(fil)
+                if ('encryption_schema' not in data):
+                    print ("set some schema first")
+                    exit (0)
+            server_url = get_server_url()
+            AuthKey = check_user_pass(server_url)
+            [schema, en_key] = get_en_key()
+            token = check_if_unlocked(server_url, AuthKey)
+            print("Sync locked successfully!")
+            updateThread = lockThread.LockUpdate(server_url, AuthKey, token, 10)
+            updateThread.setDaemon(True)
+            updateThread.start()
+            file_list = list((get_index(server_url, AuthKey)).keys())
+            download_files(server_url, AuthKey,file_list, dir1, token, schema, en_key)
+            with open(config_file, 'r') as fil:
+                data = json.load(fil)
+                del data['encryption_schema']
+                home_key = data['key']
+                del data['key']
+        except requests.exceptions.HTTPError as e:
+            logging.exception(e)
+            print("error: Sync locked. Another user is using it, please try again later.")
+            exit(0)
+        except requests.exceptions.ConnectionError as e:
+            logging.exception(e)
+            print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
+            exit(-1)
+        with open(config_file, 'w') as fil:
+            json.dump(data, fil)
+        while (True):
+            ind = input("Do you wanna generate the key yourself? Enter Yes or No :")
+            if "Y" in ind.upper():
+                while (True):
+                    id = input("Do you wanna store the key ? Enter Yes or No :")
+                    if "Y" in id.upper():
+                        schema,en_key = store_key()
+                        with open(config_file, 'r') as fil:
+                            data = json.load(fil)
+                        data['encryption_schema'] = schema;
+                        data['key'] = home_key;
+                        with open(config_file, 'w') as fil:
+                            json.dump(data, fil)
+                        break
+                    elif "N" in id.upper():
+                        print("Specify Encryption : (One of AES, TripleDES, RC4)")
+                        while (True):
+                            schema = input()
+                            if (schema == "AES" or schema == "TripleDES" or schema == "RC4"):
+                                break
+                            print("Invalid schema. Try again.")
+                        en_key = None
+                        with open(config_file, 'r') as fil:
+                            data = json.load(fil)
+                        data['encryption_schema'] = schema;
+                        with open(config_file, 'w') as fil:
+                            json.dump(data,fil)
+                        break
+                    else :
+                        print("Try again")
+                break
+            elif "N" in ind.upper():
+                schema, en_key = set_key('encryption_schema', 'key')
+                break
+        newlist = file_list[:]
+        delete_files(server_url, AuthKey, file_list, token)
+        upload_files(server_url, AuthKey, dir1, newlist, token, schema, en_key)
+        unlock_sync(server_url, AuthKey, token)
+    pass
+
+# def change_file(dump_file):
+#     print("To change key you first need to sync your files")
+#     sync()
+#     with open(config_file) as fhand:
+#         data = json.load(fhand)
+#     print("Enter the index(1-3) of the new Encryption schema:")
+#     print("1. AES")
+#     print("2. TripleDES")
+#     print("3. RC4")
+#     index = input();
+#     if (index == 1):
+#         data[paramalgo] == "AES"
+#     elif (index == 2):
+#         data[paramalgo] == "TripleDES"
+#     elif (index == 3):
+#         data[paramalgo] == "RC4"
+#     else :
+#         print("Invalid Index. Exiting...")
+#         return;
+#     os.remove('key.key')
+#     if (data[paramalgo] == "AES" or data[paramalgo] == "TripleDES"):
+#         print("Kindly verify your dump_file. It should be have 2 attributes, a key and a IV. Press 1 to exit, or anyother key to continue")
+#         index = input()
+#         if (index == "1"):
+#             print("Exiting...")
+#             return
+#     else:
+#         print("Kindly verify your dump_file. It should be have only attribute, a key. Press 1 to exit, or anyother key to continue")
+#         index = input()
+#         if (index == "1"):
+#             print("Exiting...")
+#             return
+#     with open(dump_file,'rb') as file:
+#         dict = pickle.load(file)
+#     if (data.get(paramkey) == None):
+#         data[paramkey] = os.path.join(data["home_folder"],'key.key');
+#     with open(data[paramkey],'wb') as f:
+#         pickle.dump(dict,f)
+#     with open(config_file, 'w') as fhand:
+#         json.dump(data, fhand)
+#
+#     server_url = get_server_url()
+#     AuthKey = check_user_pass(server_url)
+#     home_dir = check_home_dir()
+#     [schema, en_key] = get_en_key()
+#     token = check_if_unlocked(server_url, AuthKey)
+#     delete = list((get_index(server_url, AuthKey)).keys())
+#     delete_files(server_url, AuthKey, delete, token)
+#     upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
+#     print("Your new Encryption Scheme is now set")
+#     pass
 
 def print_key():
     with open(config_file) as fhand:
@@ -173,7 +411,6 @@ class AuthenticationException(Exception):
 
 class NoHomeDirException(Exception):
     pass
-
 
 def sync():
     try:
@@ -324,20 +561,6 @@ def get_auth_key(server_url, username, password):
     else:
         return AuthKey
 
-
-def get_en_key():
-    data = {}
-    with open(config_file) as f:
-        try:
-            data = json.load(f)
-        except Exception as e:
-            pass
-    if ('encryption_schema' not in data) or ('key' not in data):
-        return set_key('encryption_schema', 'key')
-    else:
-        return [data['encryption_schema'], data['key']]
-
-
 def config_edit(server_url=None):
     data = {}
     with open(config_file) as f:
@@ -438,7 +661,6 @@ def upload_files(server_url, AuthKey, home_dir, files, token, algorithm="AES", k
     md5fail = 0
     retryUploads = []
     num = len(files)
-
     with tempfile.TemporaryDirectory() as directory:
         encrypt_files(algorithm, home_dir, directory, files, key_file)
         old_home = home_dir
@@ -548,6 +770,7 @@ def download_files(server_url, AuthKey, file_list, home_dir, token, algorithm="A
             if not os.path.isdir(os.path.dirname(os.path.join(tempdir, f))):
                 pathlib.Path(os.path.dirname(os.path.join(tempdir, f))).mkdir(parents=True, exist_ok=True)
 
+
             home_dir = tempdir
             with open(os.path.join(home_dir, filename), 'wb') as xx:
                 for chunk in r.iter_content(chunk_size=8192):
@@ -655,84 +878,6 @@ def status ():
     pass
 
 
-def set_key(paramalgo, paramkey):
-    with open(config_file) as fhand:
-        data = json.load(fhand)
-
-    algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES - The safest encryption we "
-                         "got\n2. TripleDES - Another extremely secure schema\n3. RC4 - Internet tells me I can't "
-                         "trust this for my life\n")
-    if '1' in algoselected:
-        data[paramalgo] = "AES"
-        algoselected = "AES"
-    elif '2' in algoselected:
-        data[paramalgo] = "TripleDES"
-        algoselected = "TripleDES"
-    elif '3' in algoselected:
-        data[paramalgo] = "RC4"
-        algoselected = "RC4"
-    inpu = input("Enter 'file' if you want to store the key in a file (recommended).\n"
-                    "Enter 'print' if you want the key to be printed out to terminal (not recommended)\n")
-    if inpu == "print":
-        keyFile = None
-    elif inpu == "file":
-        keyFile = os.path.join(data["home_folder"],"key.key")
-    else :
-        print("Invalid Argument. Exiting...")
-        exit(0)
-    x = generate_key(algoselected, keyFile)
-    if not x:
-        print("Error generating key. Try again")
-        exit(1)
-    else:
-        data[paramkey] = keyFile
-
-    with open(config_file, 'w') as fhand:
-        json.dump(data, fhand)
-    return [data[paramalgo], data[paramkey]]
-
-def store_key_file(file):
-    with open(config_file) as fhand:
-        data = json.load(fhand)
-    if (data.get("encryption_schema")==None):
-        print ("Specify Encryption :")
-        inp = input();
-        if (inp != "AES" or inp != "TripleDES" or inp != "RC4"):
-            print ("Invalid schema. Exiting ...")
-            exit(0);
-        data["encryption_schema"] = inp
-    keyFile = os.path.join(data["home_folder"], "key.key")
-    with open(file,'rb') as f:
-        key = pickle.load(file)
-    with open(keyFile,'wb') as fi:
-        pickle.dump(key,fi)
-    print("Key stored")
-    pass
-
-def store_key():
-    with open(config_file) as fhand:
-        data = json.load(fhand)
-    keyFile = os.path.join(data["home_folder"], "key.key")
-    if (data.get("encryption_schema")==None):
-        print ("Specify Encryption :")
-        inp = input();
-        if (inp != "AES" or inp != "TripleDES" or inp != "RC4"):
-            print ("Invalid schema. Exiting ...")
-            exit(0);
-        data["encryption_schema"] = inp
-    keyFile = os.path.join(data["home_folder"], "key.key")
-    dict = {}
-    print("Enter the key :")
-    keydash = (input()).encode('utf-8');
-    dict["key"] = keydash;
-    if (inp != "RC4"):
-        print("Enter the IV :")
-        IV = (input()).encode('utf-8');
-        dict["iv"] = IV;
-    with open(keyFile,'wb') as fi:
-        pickle.dump(dict,fi)
-    print("Key stored")
-    pass
 
 if len(sys.argv) > 1:
     if sys.argv[1] == 'config':
@@ -754,8 +899,8 @@ if len(sys.argv) > 1:
     elif sys.argv[1] == 'generate_key':
         set_key('encryption_schema', 'key')
     elif sys.argv[1] == 'change_key':
-        change_key()
-    elif sys.argv[1] == 'change_file':
-        change_file(sys.argv[2])
+        change()
+    # elif sys.argv[1] == 'change_file':
+    #     change_file(sys.argv[2])
     elif sys.argv[1] == 'status':
         status()
