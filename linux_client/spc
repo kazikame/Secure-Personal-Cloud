@@ -18,7 +18,7 @@ set the url for your server
 
 .TP
 .B \- observe [HOME_DIR]
-set the directorly to be monitored
+set the directory to be monitored
 
 .TP
 .B \- sync
@@ -62,7 +62,6 @@ prints public information of the server
 
 .SH BUGS
 No known bugs.
-.SH AUTHOR
-Pariskhit Bansal (parikshitb5@gmail.com)
+
 .SH DEVELOPER_TEAM
 importteamName

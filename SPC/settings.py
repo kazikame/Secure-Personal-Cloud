@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Authentication',
     'rest_framework',
     'UploadDownload',
+    'django_extensions',
     'rest_framework.authtoken',
     'rest_auth',
     'lock_tokens.apps.LockTokensConfig',

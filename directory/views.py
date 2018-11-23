@@ -68,9 +68,13 @@ def list_directory(request, d_name="."):
         if not os.path.exists(directory):
             template = getattr(settings, 'DEFAULT_DIR_TEMPLATE', 'directory/default.html')
             return render(request, template)
+        files_temp = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+        files = {}
+        for f in files_temp:
+            files[f] = f.split('.')[-1]
         data = {'user': request.user.username, 'directory_name': d_name,
-                'files': [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))],
-                'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if os.path.isdir(os.path.join(directory, d))]
+                'files': files,
+                'subdirs': ["{0}/".format(d) for d in os.listdir(directory) if (os.path.isdir(os.path.join(directory, d)) and os.listdir(os.path.join(directory, d)))]
                 }
         template = getattr(settings, 'DIRECTORY_TEMPLATE', 'directory/list.html')
         return render(request, template, data)

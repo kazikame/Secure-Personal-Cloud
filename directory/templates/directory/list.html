@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}Your Files{% endblock %}
@@ -6,25 +7,42 @@
 <!--<script src="{% static 'js/react.min.js' %}"></script>-->
 <!--<script src="{% static 'js/react-dom.min.js' %}"></script>-->
 <!--<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>-->
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/aes.js' %}"></script>
+<script src="{% static 'CryptoJS/rollups/tripledes.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
+<script src="{% static 'CryptoJS/components/mode-cfb.js' %}"></script>
+<script src="{% static 'CryptoJS/components/pad-nopadding.js' %}"></script>
+{#    <script>#}
+{#    document.getElementById()#}
+{#    </script>#}
 
 {% endblock %}
-{% block content %}
-<h1>{{ user }}</h1>
 
-<ul id="list_of_files">
+{% block responsive %}
+	<link href="{% static 'css/styles_s.css' %}" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+    <div class="main">
+<h1 style="color: #ffffff; float: contour;">{{ user }}</h1>
+<div class="filemanager">
+<ul id="list_of_files" class="data">
     {% for subdir in subdirs %}
     <li>
         {% with directory_name|add:subdir as totaldir %}
-        <a href="{% url 'directory_list' totaldir %}">Directory-{{ subdir }}</a>
+            <a href="{% url 'directory_list' totaldir %}"><span class="icon folder"></span><span class="name">{{ subdir }}</span></a>
         {% endwith %}
     </li>
     {% endfor %}
-    {% for file in files %}
+    {% for file, ext in files.items %}
     <li>
-        <a href="{% url 'directory_view_file' directory_name file %}">Download {{ file }}</a>
+        <a href="{% url 'directory_view_file' directory_name file %}">
+            <span class="icon file f-{{ ext }}">.{{ ext }}</span><span class="name">{{ file }}</span></a>
     </li>
     {% endfor %}
 </ul>
+</div>
+    </div>
 <!--<p><a href="{% url 'directory_list' directory_name %}">Go to parent</a></p>-->
 
 <br><input type=button value="Go to parent" onClick="javascript:history.go(-1);">

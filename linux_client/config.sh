@@ -10,26 +10,30 @@ version_req="version"
 version="version 1.01"
 status="status"
 help="help"
+
 changekey="en_de_update"
 keys="en_de_list"
 dump="dump"
+
+server_stat="server"
+
 
 cd $SPC_PATH
 
 if [ "$1" == "$server" ]
 then
-    python3.6 startup.py set_server "$2"
-elif [ "$1" == "$config" ]
-then
-    python3.6 startup.py config
+    python3 startup.py set_server "$2"
 elif [ "$1" == "$keys" ]
 then
     echo 1. AES
     echo 2. TripleDES
     echo 3. RC4
+elif [ "$1" == "$config" ]
+then
+    python3 startup.py config
 elif [ "$1" == "$observe" ]
 then
-    python3.6 startup.py observe "$2"
+    python3 startup.py observe "$2"
 elif [ "$1" == "$version_req" ]
 then
     echo "$version"
@@ -42,7 +46,7 @@ then
     echo See man page for further information
 elif [ "$1" == "$sync" ]
 then
-    python3.6 startup.py sync
+    python3 startup.py sync
 elif [ "$1" == "$daemon" ]
 then
     pid=$(ps -aux | grep "daemon.py$" | sed 's/\s\+/ /g' | cut -d' ' -f2)
@@ -59,9 +63,6 @@ then
     else
         python3.6 startup.py change_key
     fi
-elif [ "$1" == "$status" ]
-then
-    python3.6 startup.py status
 elif [ "$1" == "$dump" ]
 then
 if [ "$#" -ne 1 ]
@@ -73,6 +74,12 @@ if [ "$#" -ne 1 ]
 elif [ "$1" == "print_key" ]
 then
     python3.6 startup.py print_key
+elif [ "$1" == "$status" ]
+then
+    python3 startup.py status
+elif [ "$1" == "$server_stat" ]
+then
+    python3 startup.py server
 else
     echo "spc $1 -- command not found. For help look at the man page"
 fi
