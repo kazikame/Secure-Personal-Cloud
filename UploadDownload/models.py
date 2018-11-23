@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.dispatch import receiver
 from django.conf import settings
+from Authentication.models import SpcUser
 
 
 class SingleFileUpload(models.Model):
@@ -12,7 +13,8 @@ class SingleFileUpload(models.Model):
     md5sum = models.CharField(max_length=200)
     md5sum_o = models.CharField(max_length=200)
     file_url = models.CharField(max_length=200)
-    username = models.CharField(max_length=100)
+    username_id = models.ForeignKey(SpcUser, on_delete=models.CASCADE)
+    username = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
 
     class Meta:

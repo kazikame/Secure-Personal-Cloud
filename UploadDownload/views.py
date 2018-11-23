@@ -44,7 +44,8 @@ class FileView(APIView):
                                                                request.user.username,
                                                                file_serializer.validated_data['file_path'],
                                                                str(request.data['file'])),
-                                         name=request.data['file'].name)
+                                         name=request.data['file'].name,
+                                         username_id=user_obj)
                     instance = file_serializer.save(file=request.data['file'])
                     #if request.META['HTTP_NUM'] == 1:
                         # x = SpcUser.objects.filter(username=request.user.username).get()
@@ -57,9 +58,11 @@ class FileView(APIView):
                             instance.delete()
                             return Response({'Error': "MD5 don't match."}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 except IntegrityError as e:
+                    print(e)
                     return Response({'Error': 'File already exists'}, status=status.HTTP_400_BAD_REQUEST)
                 except Exception as e:
                     # Remove lock
+                    print(e)
                     print('Caught it!')
                     # x = SpcUser.objects.filter(username=request.user.username).get()
                     # x.syncLock = 0
