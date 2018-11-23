@@ -24,12 +24,3 @@ A complete Linux platform based application that allows users to upload files st
 * **Yash Sharma** - [yash-s20](https://github.com/yash-s20)
 * **Parikshit Bansal** - [pbansal5](https://github.com/pbansal5)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
