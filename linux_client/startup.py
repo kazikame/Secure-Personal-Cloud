@@ -31,7 +31,6 @@ logging.basicConfig(filename='SPC.log',
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
-
 if len(sys.argv) == 1:
     print("Secure Personal Cloud.")
     print("Team name: import teamName")
@@ -47,21 +46,22 @@ class NoHomeDirException(Exception):
     pass
 
 
-def status ():
+def status():
     server_url = get_server_url()
     AuthKey = check_user_pass(server_url)
     home_dir = check_home_dir()
-    [modified, unmodified, cloud,local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
-    print ("You have "+len(modified)+" files on the local directory along with "+len(local)+" new files and "+len(cloud)+" deleted files")
-    print ("Modified: ")
+    [modified, unmodified, cloud, local] = conflicts.status(get_index(server_url, AuthKey), home_dir)
+    print("You have " + len(modified) + " files on the local directory along with " + len(
+        local) + " new files and " + len(cloud) + " deleted files")
+    print("Modified: ")
     for x in modified:
-        print ("\t"+x)
-    print ("Deleted: ")
+        print("\t" + x)
+    print("Deleted: ")
     for x in cloud:
-        print("\t"+x)
-    print ("New: ")
+        print("\t" + x)
+    print("New: ")
     for x in local:
-        print("\t"+x)
+        print("\t" + x)
     pass
 
 
@@ -105,8 +105,8 @@ def sync():
 def check_if_unlocked(server_url, AuthKey):
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-    r = client.post(urlp.urljoin(server_url, 'api/lock_tokens/') ,headers=header)
-    if r.status_code == 404 or r.status_code == 403 or r.status_code==409:
+    r = client.post(urlp.urljoin(server_url, 'api/lock_tokens/'), headers=header)
+    if r.status_code == 404 or r.status_code == 403 or r.status_code == 409:
         raise requests.exceptions.HTTPError
     else:
         return r.json().get('token', 0)
@@ -139,7 +139,7 @@ def get_server_url():
         return data['server_url']
 
 
-def set_url(parameter,url,out):
+def set_url(parameter, url, out):
     regex = re.compile(
         r'^(?:http|ftp)s?://'  # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
@@ -190,7 +190,7 @@ def check_user_pass(server_url):
 def check_home_dir():
     with open(config_file) as f:
         data = json.load(f)
-    if 'home_dir' not in data or data['home_dir']=='':
+    if 'home_dir' not in data or data['home_dir'] == '':
         raise NoHomeDirException
     elif not os.path.isdir(data['home_dir']):
         raise NoHomeDirException
@@ -221,7 +221,7 @@ def get_en_key():
         return [data['encryption_schema'], data['key']]
 
 
-def config_edit(server_url = None):
+def config_edit(server_url=None):
     data = {}
     with open(config_file) as f:
         try:
@@ -233,8 +233,8 @@ def config_edit(server_url = None):
     data['username'] = input('Username : ')
     temp = getpass.getpass(prompt='Password : ', stream=None)
     temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
-    while temp != temp1 :
-        print ("The Passwords didn't match. Kindly try again.")
+    while temp != temp1:
+        print("The Passwords didn't match. Kindly try again.")
         temp = getpass.getpass(prompt='Password : ', stream=None)
         temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
     data['password'] = temp
@@ -363,7 +363,7 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
 
             # Response received
-            r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor,  headers=header)
+            r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor, headers=header)
             if r.status_code == 201:
                 upload_success += 1
                 tqdm.write(filename + ' uploaded')
@@ -379,7 +379,8 @@ def upload_files(server_url, AuthKey, home_dir, files, algorithm="AES", key_file
                 logging.warn(r.text)
             num -= 1
 
-    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
+    tqdm.write('\nUploaded ' + str(upload_success) + ' file(s) successfully. ' + str(
+        upload_failed) + ' upload(s) failed.\nCheck SPC.logs for more details.')
     if md5fail > 0:
         i = input(str(md5fail) + 'files uploaded incorrectly, would you like to retry sync? (MD5 checksum fail) [Y/n]')
         if i == 'y' or i == 'Y':
@@ -414,7 +415,7 @@ def download_files(server_url, AuthKey, file_list, home_dir, algorithm="AES", ke
         for f in file_list:
             split_path = os.path.split(f)
             payLoad = {'file_path': split_path[0], 'name': split_path[1]}
-            r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
+            r = client.post(urlp.urljoin(server_url, 'api/download/'), data=payLoad, headers=header, stream=True)
             values, params = cgi.parse_header(r.headers['Content-Disposition'])
 
             md5 = params['filename']
@@ -478,6 +479,7 @@ def set_key(paramalgo, paramkey):
                 if not os.path.isdir(os.path.dirname(keyFile)):
                     print('Directory not found. Try again')
                     exit(0)
+            # TODO: change of encryption schema. Also when the user knows his key and would like to save it.
             x = generate_key("AES", keyFile)
             if not x:
                 print("Error generating key. Try again")
@@ -554,26 +556,36 @@ def get_status():
 def set_key(paramalgo, paramkey):
     with open(config_file) as fhand:
         data = json.load(fhand)
-    with open(config_file, 'w') as fhand:
-        algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES\n2. TripleDES\n3. (tbd)\n")
-        if '1' in algoselected:
-            data[paramalgo] = "AES"
-            keyFile = input("Enter a valid file path where you want the key to be stored."
-                            "Enter 'print' if you want the key to be printed out to terminal (not recommended)")
-            if keyFile == "print":
-                keyFile = None
-            else:
-                if not os.path.isdir(os.path.dirname(keyFile)):
-                    print('Directory not found. Try again')
-                    exit(0)
-            x = generate_key("AES", keyFile)
-            if not x:
-                print("Error generating key. Try again")
-                exit(1)
-            else:
-                data[paramkey] = keyFile
-        json.dump(data, fhand)
 
+    algoselected = input("Select an encryption schema (enter choice 1, 2, or 3)\n1. AES - The safest encryption we "
+                         "got\n2. TripleDES - Another extremely secure schema\n3. RC4 - Internet tells me I can't "
+                         "trust this for my life\n")
+    if '1' in algoselected:
+        data[paramalgo] = "AES"
+        algoselected = "AES"
+    elif '2' in algoselected:
+        data[paramalgo] = "TripleDES"
+        algoselected = "TripleDES"
+    elif '3' in algoselected:
+        data[paramalgo] = "RC4"
+        algoselected = "RC4"
+    keyFile = input("Enter a valid file path where you want the key to be stored.\n"
+                    "Enter 'print' if you want the key to be printed out to terminal (not recommended)\n")
+    if keyFile == "print":
+        keyFile = None
+    else:
+        if not os.path.isdir(os.path.dirname(keyFile)):
+            print('Directory not found. Try again')
+            exit(0)
+    x = generate_key(algoselected, keyFile)
+    if not x:
+        print("Error generating key. Try again")
+        exit(1)
+    else:
+        data[paramkey] = keyFile
+
+    with open(config_file, 'w') as fhand:
+        json.dump(data, fhand)
     return [data[paramalgo], data[paramkey]]
 
 
