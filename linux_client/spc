@@ -25,8 +25,32 @@ set the directorly to be monitored
 synchronise local and cloud copy. They are identical after this command
 
 .TP
+.B \- print_key
+prints the encryption schema and keys
+
+.TP
 .B \- version
 prints the current version
+
+.TP
+.B \- set_key
+sets an encryption schema and key before, if there isn't one
+
+.TP
+.B \- dump [FILE]
+sets the encryption key to the key in the file
+
+.TP
+.B \- status
+prints the current status of the files
+
+.TP
+.B \- en_de_list 
+prints all the available encryption schemes
+
+.TP
+.B \- en_de_update [FILE]
+update the encryption scheme
 
 .TP
 .B \- help

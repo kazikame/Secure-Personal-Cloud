@@ -32,10 +32,12 @@ logging.basicConfig(filename='SPC.log',
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
+
+paramalgo, paramkey = 'encryption_schema', 'key'
+
 if len(sys.argv) == 1:
     print("Secure Personal Cloud.")
     print("Team name: import teamName")
-    # TODO: Add Argparse
     exit(0)
 
 def change_key():
@@ -48,11 +50,12 @@ def change_key():
     index = input();
     with open(config_file) as fhand:
         data = json.load(fhand)
-    if (index==1):
+    os.remove('key.key')
+    if '1' in index:
         print("Enter the key :")
-        key = input();
+        key = (input()).encode('utf-8');
         print("Enter the IV :")
-        IV = input();
+        IV = (input()).encode('utf-8');
         dict = {}
         dict["key"] = key;
         dict["iv"] = IV;
@@ -60,29 +63,28 @@ def change_key():
         if (data.get(paramkey) != None):
             with open(data[paramkey],'wb') as file:
                 pickle.dump(dict,file);
-    elif (index == 2):
+    elif '2' in index:
         print("Enter the key :")
-        key = input();
+        key = (input()).encode('utf-8')
         print("Enter the IV :")
-        IV = input();
+        IV = (input()).encode('utf-8')
         dict = {}
         dict["key"] = key;
         dict["iv"] = IV;
         data[paramalgo] = "TripleDES"
         if (data.get(paramkey) != None):
             with open(data[paramkey], 'wb') as file:
-                pickle.dump(dict, file);
-    elif (index == 3):
+                pickle.dump(dict, file)
+    elif '3' in index:
         print("Enter the key :")
-        key = input();
+        key = (input()).encode('utf-8')
         data[paramalgo] = "RC4"
         dict = {}
         dict["key"] = key;
-        dict["iv"] = IV;
         if (data.get(paramkey) != None):
             with open(data[paramkey], 'wb') as file:
                 pickle.dump(dict, file);
-    else :
+    else:
         print ("Invalid key. Exiting.")
         return
     with open(config_file, 'w') as fhand:
@@ -92,13 +94,14 @@ def change_key():
     home_dir = check_home_dir()
     [schema, en_key] = get_en_key()
     token = check_if_unlocked(server_url, AuthKey)
-    delete = get_index(server_url, AuthKey).keys()
+    delete = list((get_index(server_url, AuthKey)).keys())
     delete_files(server_url, AuthKey, delete, token)
     upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
     print ("Your new Encryption Scheme is now set")
     pass
 
-def change_file():
+
+def change_file(dump_file):
     print("To change key you first need to sync your files")
     sync()
     with open(config_file) as fhand:
@@ -117,6 +120,7 @@ def change_file():
     else :
         print("Invalid Index. Exiting...")
         return;
+    os.remove('key.key')
     if (data[paramalgo] == "AES" or data[paramalgo] == "TripleDES"):
         print("Kindly verify your dump_file. It should be have 2 attributes, a key and a IV. Press 1 to exit, or anyother key to continue")
         index = input()
@@ -129,19 +133,24 @@ def change_file():
         if (index == "1"):
             print("Exiting...")
             return
-    with open(dump_file,'rwb') as file:
+    with open(dump_file,'rb') as file:
         dict = pickle.load(file)
     if (data.get(paramkey) == None):
-        path = input("No key file specified. Kindly enter a valid file path:")
-        if not os.path.isdir(os.path.dirname(path)):
-            print('Directory not found. Try again')
-            exit(0)
-        data[paramkey] = path;
-    with open(data[paramkey],'rwb') as f:
-        oldkey = pickle.load(f)
+        data[paramkey] = os.path.join(data["home_folder"],'key.key');
+    with open(data[paramkey],'wb') as f:
         pickle.dump(dict,f)
     with open(config_file, 'w') as fhand:
         json.dump(data, fhand)
+
+    server_url = get_server_url()
+    AuthKey = check_user_pass(server_url)
+    home_dir = check_home_dir()
+    [schema, en_key] = get_en_key()
+    token = check_if_unlocked(server_url, AuthKey)
+    delete = list((get_index(server_url, AuthKey)).keys())
+    delete_files(server_url, AuthKey, delete, token)
+    upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
+    print("Your new Encryption Scheme is now set")
     pass
 
 def print_key():
@@ -152,10 +161,10 @@ def print_key():
         exit(0)
     with open(data[paramkey], 'rb') as f:
         oldkey = pickle.load(f)
+        print ("Encryption Schema : "+data["encryption_schema"])
         for x in oldkey.keys():
             print (x)
-            print (oldkeys[x])
-        pickle.dump(oldkey,f);
+            print (oldkey[x])
     pass
 
 class AuthenticationException(Exception):
@@ -577,11 +586,10 @@ def set_home_dir(parameter, dir, out):
 
 
 
-def empty_json():
-    data = {}
+def empty_json(home_folder):
+    data = {"home_folder":home_folder}
     with open(config_file, 'w') as outfile:
         json.dump(data, outfile)
-
 
 def delete_files(server_url, AuthKey, file_list, token):
     if len(file_list) == 0:
@@ -631,7 +639,7 @@ def status ():
     AuthKey = check_user_pass(server_url)
     home_dir = check_home_dir()
     [modified, unmodified, cloud,local] = conflicts.get_status(get_index(server_url, AuthKey), home_dir)
-    print ("You have "+str(len(modified))+" files on the local directory along with "+str(len(local))+" new files and "+str(len(cloud))+" deleted files")
+    print ("You have "+str(len(modified))+" modified files on the local directory along with "+str(len(local))+" new files and "+str(len(cloud))+" deleted files")
     if (len(modified)>0):
         print ("Modified: ")
         for x in modified:
@@ -663,14 +671,15 @@ def set_key(paramalgo, paramkey):
     elif '3' in algoselected:
         data[paramalgo] = "RC4"
         algoselected = "RC4"
-    keyFile = input("Enter a valid file path where you want the key to be stored.\n"
+    inpu = input("Enter 'file' if you want to store the key in a file (recommended).\n"
                     "Enter 'print' if you want the key to be printed out to terminal (not recommended)\n")
-    if keyFile == "print":
+    if inpu == "print":
         keyFile = None
-    else:
-        if not os.path.isdir(os.path.dirname(keyFile)):
-            print('Directory not found. Try again')
-            exit(0)
+    elif inpu == "file":
+        keyFile = os.path.join(data["home_folder"],"key.key")
+    else :
+        print("Invalid Argument. Exiting...")
+        exit(0)
     x = generate_key(algoselected, keyFile)
     if not x:
         print("Error generating key. Try again")
@@ -682,6 +691,48 @@ def set_key(paramalgo, paramkey):
         json.dump(data, fhand)
     return [data[paramalgo], data[paramkey]]
 
+def store_key_file(file):
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    if (data.get("encryption_schema")==None):
+        print ("Specify Encryption :")
+        inp = input();
+        if (inp != "AES" or inp != "TripleDES" or inp != "RC4"):
+            print ("Invalid schema. Exiting ...")
+            exit(0);
+        data["encryption_schema"] = inp
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    with open(file,'rb') as f:
+        key = pickle.load(file)
+    with open(keyFile,'wb') as fi:
+        pickle.dump(key,fi)
+    print("Key stored")
+    pass
+
+def store_key():
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    if (data.get("encryption_schema")==None):
+        print ("Specify Encryption :")
+        inp = input();
+        if (inp != "AES" or inp != "TripleDES" or inp != "RC4"):
+            print ("Invalid schema. Exiting ...")
+            exit(0);
+        data["encryption_schema"] = inp
+    keyFile = os.path.join(data["home_folder"], "key.key")
+    dict = {}
+    print("Enter the key :")
+    keydash = (input()).encode('utf-8');
+    dict["key"] = keydash;
+    if (inp != "RC4"):
+        print("Enter the IV :")
+        IV = (input()).encode('utf-8');
+        dict["iv"] = IV;
+    with open(keyFile,'wb') as fi:
+        pickle.dump(dict,fi)
+    print("Key stored")
+    pass
 
 if len(sys.argv) > 1:
     if sys.argv[1] == 'config':
@@ -692,9 +743,19 @@ if len(sys.argv) > 1:
         set_home_dir('home_dir', sys.argv[2], config_file)
     elif sys.argv[1] == 'sync':
         sync()
+    elif sys.argv[1] == 'print_key':
+        print_key()
+    elif sys.argv[1] == 'store_key_file':
+        store_key_file(sys.argv[2])
+    elif sys.argv[1] == 'store_key':
+        store_key()
     elif sys.argv[1] == 'empty_json':
-        empty_json()
+        empty_json(sys.argv[2])
     elif sys.argv[1] == 'generate_key':
         set_key('encryption_schema', 'key')
+    elif sys.argv[1] == 'change_key':
+        change_key()
+    elif sys.argv[1] == 'change_file':
+        change_file(sys.argv[2])
     elif sys.argv[1] == 'status':
         status()

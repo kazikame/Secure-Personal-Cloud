@@ -18,7 +18,6 @@ cd $SPC_PATH
 
 if [ "$1" == "$server" ]
 then
-    python3.6 startup.py empty_json
     python3.6 startup.py set_server "$2"
 elif [ "$1" == "$config" ]
 then
@@ -67,10 +66,13 @@ elif [ "$1" == "$dump" ]
 then
 if [ "$#" -ne 1 ]
     then
-        python3.6 startup.py store_key "$2"
+        python3.6 startup.py store_key_file "$2"
     else
-        python3.6 startup.py print_key
+        python3.6 startup.py store_key
     fi
+elif [ "$1" == "print_key" ]
+then
+    python3.6 startup.py print_key
 else
     echo "spc $1 -- command not found. For help look at the man page"
 fi
