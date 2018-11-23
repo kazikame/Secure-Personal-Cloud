@@ -67,11 +67,14 @@ def sync():
     except requests.exceptions.ConnectionError as e:
         logging.exception(e)
         print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
-        unlock_sync(server_url, AuthKey, token)
         exit(-1)
     except NoHomeDirException as e:
         logging.exception(e)
         print("You have not set a home directory. Please point to a valid home directory using:\n\nspc observe <home-dir>")
+        exit(-1)
+    except ConnectionRefusedError as e:
+        logging.exception(e)
+        print("error: The server isn't responding. To change/set the server url, use\n\nspc server set_url <url:port>")
         exit(-1)
     del_bool = delete_files(server_url, AuthKey, delete, token)
     down_bool = download_files(server_url, AuthKey, download, home_dir,token,  schema, en_key)
@@ -564,7 +567,7 @@ def set_key(paramalgo, paramkey):
     return [data[paramalgo], data[paramkey]]
 
 
-if len(sys.argv) > 1:
+if len(sys.argv) > 1 and len(sys.argv) < 3:
     if sys.argv[1] == 'config':
         config_edit()
     elif sys.argv[1] == 'set_server':
@@ -579,3 +582,9 @@ if len(sys.argv) > 1:
         set_key('encryption_schema', 'key')
     elif sys.argv[1] == 'status':
         status()
+    elif sys.argv[1] == 'server':
+        print(get_server_url())
+
+else:
+    print('Invalid number of arguments.')
+    exit(-1)

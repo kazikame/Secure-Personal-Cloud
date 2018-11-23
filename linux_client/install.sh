@@ -8,10 +8,10 @@ else
     apt-get install python3
 fi
 
-sudo -H pip3 install tqdm
-sudo -H pip3 install pycrypto
-sudo -H pip3 install requests-toolbelt
-sudo -H pip3 install requests
+pip3 install tqdm
+pip3 install pycrypto
+pip3 install requests-toolbelt
+pip3 install requests
 
 home_folder=$(pwd)
 temp="export SPC_PATH='$home_folder'"
@@ -21,8 +21,6 @@ echo $temp >> ~/.bashrc
 daemon_path=$(echo $home_folder/daemon.py)
 config_path=$(echo $home_folder/config.sh)
 json_path=$(echo $home_folder/conf.json)
-
-python3 startup.py empty_json $home_folder
 
 temp=$(echo "python3 $daemon_path")
 temp="alias start_daemon='$temp'"
