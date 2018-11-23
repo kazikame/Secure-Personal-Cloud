@@ -31,7 +31,6 @@ logging.basicConfig(filename='SPC.log',
                     format='%(asctime)s %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
-
 if len(sys.argv) == 1:
     print("Secure Personal Cloud.")
     print("Team name: import teamName")
@@ -94,8 +93,8 @@ def sync():
 def check_if_unlocked(server_url, AuthKey):
     client = requests.Session()
     header = {'Authorization': 'Token ' + AuthKey.json().get('key', '0')}
-    r = client.post(urlp.urljoin(server_url, 'api/lock_tokens/') ,headers=header)
-    if r.status_code == 404 or r.status_code == 403 or r.status_code==409:
+    r = client.post(urlp.urljoin(server_url, 'api/lock_tokens/'), headers=header)
+    if r.status_code == 404 or r.status_code == 403 or r.status_code == 409:
         raise requests.exceptions.HTTPError
     else:
         return r.json().get('token', 0)
@@ -128,7 +127,7 @@ def get_server_url():
         return data['server_url']
 
 
-def set_url(parameter,url,out):
+def set_url(parameter, url, out):
     regex = re.compile(
         r'^(?:http|ftp)s?://'  # http:// or https://
         r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
@@ -179,7 +178,7 @@ def check_user_pass(server_url):
 def check_home_dir():
     with open(config_file) as f:
         data = json.load(f)
-    if 'home_dir' not in data or data['home_dir']=='':
+    if 'home_dir' not in data or data['home_dir'] == '':
         raise NoHomeDirException
     elif not os.path.isdir(data['home_dir']):
         raise NoHomeDirException
@@ -210,7 +209,7 @@ def get_en_key():
         return [data['encryption_schema'], data['key']]
 
 
-def config_edit(server_url = None):
+def config_edit(server_url=None):
     data = {}
     with open(config_file) as f:
         try:
@@ -222,8 +221,8 @@ def config_edit(server_url = None):
     data['username'] = input('Username : ')
     temp = getpass.getpass(prompt='Password : ', stream=None)
     temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
-    while temp != temp1 :
-        print ("The Passwords didn't match. Kindly try again.")
+    while temp != temp1:
+        print("The Passwords didn't match. Kindly try again.")
         temp = getpass.getpass(prompt='Password : ', stream=None)
         temp1 = getpass.getpass(prompt='Confirm Password : ', stream=None)
     data['password'] = temp
@@ -353,7 +352,7 @@ def upload_files(server_url, AuthKey, home_dir, files, token, algorithm="AES", k
             monitor = MultipartEncoderMonitor(payloadUpload, progress_update)
 
             # Response received
-            r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor,  headers=header)
+            r = client.post(urlp.urljoin(server_url, 'api/upload/'), data=monitor, headers=header)
             if r.status_code == 201:
                 upload_success += 1
                 tqdm.write(filename + ' uploaded')
@@ -405,8 +404,10 @@ def download_files(server_url, AuthKey, file_list, home_dir, token, algorithm="A
     with tempfile.TemporaryDirectory() as tempdir:
         for f in file_list:
             split_path = os.path.split(f)
+
             payLoad = {'file_path': split_path[0], 'name': split_path[1], 'token': token}
             r = client.post(urlp.urljoin(server_url,'api/download/'), data=payLoad, headers=header, stream=True)
+
             values, params = cgi.parse_header(r.headers['Content-Disposition'])
 
             md5 = params['filename']
@@ -453,6 +454,7 @@ def set_home_dir(parameter, dir, out):
     else:
         print("Directory doesn't exist!")
         exit(-1)
+
 
 
 def empty_json():
