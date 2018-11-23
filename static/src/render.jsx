@@ -1,4 +1,7 @@
-
+var aesscript =  "/static/src/aesdecrypt.js";
+var rc4script =  "/static/src/rc4decrypt.js";
+var tdesscript =  "/static/src/tdesdecrypt.js";
+var tjs = "text/javascript";
 var Script = React.createClass({
     getInitialState: function () {
         return {scheme: ""}

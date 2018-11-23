@@ -45,31 +45,26 @@ function base64ToArrayBuffer(base64) {
  }
 
 function decrypt(enmsg, filename = ''){
-
+    var scheme = document.getElementById("encryption_schema").value;
     var fileext = filename.split(".");
     fileext = fileext[fileext.length - 1];
-
+    var finalStr = null;
     enmsg = enmsg.split(/\s/).join('');
+    if(scheme === "AES") {
+        finalStr = aesdecryption(enmsg);
+    }
+    else if(scheme === "TripleDES") {
+        finalStr = tdesdecryption(enmsg);
+    }
+    else if(scheme === "RC4") {
+        finalStr = rc4decryption(enmsg);
+    }
+    else {
+        return;
+    }
+    var decrypted = CryptoJS.enc.Base64.parse(finalStr);
 
-    var key = CryptoJS.enc.Hex.parse(document.getElementById("key").value);
-    var iv = CryptoJS.enc.Hex.parse(document.getElementById("iv").value);
-    console.log(CryptoJS.AES.encrypt(enmsg,key,{
-        iv: iv,
-        mode: CryptoJS.mode.CTR,
-        padding: CryptoJS.pad.NoPadding
-    }).toString());
-    var decrypted = CryptoJS.AES.decrypt(
-        enmsg,
-        key,
-        {
-            iv: iv,
-            mode:CryptoJS.mode.CTR,
-            padding: CryptoJS.pad.NoPadding
-        });
-
-    var finalStr = decrypted.toString(CryptoJS.enc.Base64);
-
-        if (!(['pdf', 'jpeg', 'jpg', 'mp4', 'txt'].includes(fileext)))
+    if (!(['pdf', 'jpeg', 'jpg', 'mp4', 'txt'].includes(fileext)))
     {
         document.getElementById('error').innerHTML= "<h2>Sorry, the file format isn't currently supported for viewing online.</h2>";
         var blob = new Blob([base64ToArrayBuffer(finalStr)], {type: "application/octet-stream"});
