@@ -10,6 +10,9 @@ version_req="version"
 version="version 1.01"
 status="status"
 help="help"
+changekey="en_de_update"
+keys="en_de_list"
+dump="dump"
 
 cd $SPC_PATH
 
@@ -20,6 +23,11 @@ then
 elif [ "$1" == "$config" ]
 then
     python3.6 startup.py config
+elif [ "$1" == "$keys" ]
+then
+    echo 1. AES
+    echo 2. TripleDES
+    echo 3. RC4
 elif [ "$1" == "$observe" ]
 then
     python3.6 startup.py observe "$2"
@@ -44,9 +52,25 @@ then
 elif [ "$1" == "$setkey" ]
 then
     python3.6 startup.py generate_key
+elif [ "$1" == "$changekey" ]
+then
+    if [ "$#" -ne 1 ]
+    then
+        python3.6 startup.py change_file "$2"
+    else
+        python3.6 startup.py change_key
+    fi
 elif [ "$1" == "$status" ]
 then
     python3.6 startup.py status
+elif [ "$1" == "$dump" ]
+then
+if [ "$#" -ne 1 ]
+    then
+        python3.6 startup.py store_key "$2"
+    else
+        python3.6 startup.py print_key
+    fi
 else
     echo "spc $1 -- command not found. For help look at the man page"
 fi

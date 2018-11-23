@@ -37,6 +37,125 @@ if len(sys.argv) == 1:
     # TODO: Add Argparse
     exit(0)
 
+def change_key():
+    print ("To change key you first need to sync your files")
+    sync()
+    print ("Enter the index(1-3) of the new Encryption schema:")
+    print ("1. AES")
+    print ("2. TripleDES")
+    print ("3. RC4")
+    index = input();
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    if (index==1):
+        print("Enter the key :")
+        key = input();
+        print("Enter the IV :")
+        IV = input();
+        dict = {}
+        dict["key"] = key;
+        dict["iv"] = IV;
+        data[paramalgo] = "AES"
+        if (data.get(paramkey) != None):
+            with open(data[paramkey],'wb') as file:
+                pickle.dump(dict,file);
+    elif (index == 2):
+        print("Enter the key :")
+        key = input();
+        print("Enter the IV :")
+        IV = input();
+        dict = {}
+        dict["key"] = key;
+        dict["iv"] = IV;
+        data[paramalgo] = "TripleDES"
+        if (data.get(paramkey) != None):
+            with open(data[paramkey], 'wb') as file:
+                pickle.dump(dict, file);
+    elif (index == 3):
+        print("Enter the key :")
+        key = input();
+        data[paramalgo] = "RC4"
+        dict = {}
+        dict["key"] = key;
+        dict["iv"] = IV;
+        if (data.get(paramkey) != None):
+            with open(data[paramkey], 'wb') as file:
+                pickle.dump(dict, file);
+    else :
+        print ("Invalid key. Exiting.")
+        return
+    with open(config_file, 'w') as fhand:
+        json.dump(data, fhand)
+    server_url = get_server_url()
+    AuthKey = check_user_pass(server_url)
+    home_dir = check_home_dir()
+    [schema, en_key] = get_en_key()
+    token = check_if_unlocked(server_url, AuthKey)
+    delete = get_index(server_url, AuthKey).keys()
+    delete_files(server_url, AuthKey, delete, token)
+    upload_files(server_url, AuthKey, home_dir, delete, token, schema, en_key)
+    print ("Your new Encryption Scheme is now set")
+    pass
+
+def change_file():
+    print("To change key you first need to sync your files")
+    sync()
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    print("Enter the index(1-3) of the new Encryption schema:")
+    print("1. AES")
+    print("2. TripleDES")
+    print("3. RC4")
+    index = input();
+    if (index == 1):
+        data[paramalgo] == "AES"
+    elif (index == 2):
+        data[paramalgo] == "TripleDES"
+    elif (index == 3):
+        data[paramalgo] == "RC4"
+    else :
+        print("Invalid Index. Exiting...")
+        return;
+    if (data[paramalgo] == "AES" or data[paramalgo] == "TripleDES"):
+        print("Kindly verify your dump_file. It should be have 2 attributes, a key and a IV. Press 1 to exit, or anyother key to continue")
+        index = input()
+        if (index == "1"):
+            print("Exiting...")
+            return
+    else:
+        print("Kindly verify your dump_file. It should be have only attribute, a key. Press 1 to exit, or anyother key to continue")
+        index = input()
+        if (index == "1"):
+            print("Exiting...")
+            return
+    with open(dump_file,'rwb') as file:
+        dict = pickle.load(file)
+    if (data.get(paramkey) == None):
+        path = input("No key file specified. Kindly enter a valid file path:")
+        if not os.path.isdir(os.path.dirname(path)):
+            print('Directory not found. Try again')
+            exit(0)
+        data[paramkey] = path;
+    with open(data[paramkey],'rwb') as f:
+        oldkey = pickle.load(f)
+        pickle.dump(dict,f)
+    with open(config_file, 'w') as fhand:
+        json.dump(data, fhand)
+    pass
+
+def print_key():
+    with open(config_file) as fhand:
+        data = json.load(fhand)
+    if (data.get(paramkey) == None):
+        print("No Key file. Exiting...")
+        exit(0)
+    with open(data[paramkey], 'rb') as f:
+        oldkey = pickle.load(f)
+        for x in oldkey.keys():
+            print (x)
+            print (oldkeys[x])
+        pickle.dump(oldkey,f);
+    pass
 
 class AuthenticationException(Exception):
     pass
