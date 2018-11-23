@@ -15,6 +15,7 @@ import re
 import cgi
 import urllib.parse as urlp
 import pathlib
+from encryption import encrypt_files, decrypt_files, generate_key
 import pickle
 
 sys.path.append('.')

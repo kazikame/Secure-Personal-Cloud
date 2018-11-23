@@ -83,7 +83,7 @@ function decrypt(enmsg, filename = ''){
     {
             document.getElementById("text_file").innerHTML = "<h2>" + filename + "</h2><br>" + "<pre>" + decrypted.toString(CryptoJS.enc.Utf8) + "</pre>";
     }
-    if (fileext == "jpeg" || fileext == "jpg")
+    if (fileext == "jpeg" || fileext == "jpg" || fileext == "png")
     {
 
         var objbuilder = ('<img src="data:image/png;base64,' + finalStr +'" alt="Red dot" />')
