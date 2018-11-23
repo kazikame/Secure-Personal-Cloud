@@ -188,7 +188,7 @@ def generate_key(encryption_schema, key_file=None):
         with open(key_file, 'wb') as f:
             aeskey = {"key": randomKeyHex}
             if encryption_schema == AES or encryption_schema == TripleDES:
-                aeskey = {"iv": randomIVHex}
+                aeskey["iv"] = randomIVHex
             pickle.dump(aeskey, f)
         print("Key stored successfully")
         return True
