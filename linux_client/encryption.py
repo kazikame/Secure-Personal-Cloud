@@ -1,8 +1,10 @@
 import os
-import tempfile
 import binascii
 import pickle
 import pathlib
+
+AES = "AES"
+TripleDES = "TripleDES"
 
 
 def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
@@ -18,53 +20,45 @@ def encrypt_files(algorithm, base, encrypted_base, files, key_file=None):
     if os.path.normpath(base) == os.path.normpath(encrypted_base):
         print("There was a problem. Try again.")
         exit(1)
-    if algorithm == "AES":
-        if key_file is None:
-            print("Please enter the key and IV given on generation")
-            while True:
-                key = input("Key: ").upper()
+    if key_file is None:
+        print("Please enter the key and IV given on generation. Encryption schema-", algorithm)
+        while True:
+            key = input("Key: ").upper()
+            if algorithm == AES or algorithm == TripleDES:
                 iv = input("IV: ").upper()
-                try:
-                    x = int(key, 16)
+
+            try:
+                x = int(key, 16)
+                if algorithm == AES or algorithm == TripleDES:
                     x = int(iv, 16)
-                except ValueError:
-                    print("Please enter a valid hexadecimal key/iv")
-                    continue
-                break
-        else:
-            with open(key_file, 'rb') as f:
-                keys = pickle.load(f)
-                key = keys["key"].decode('utf-8').upper()
+            except ValueError:
+                print("Please enter a valid hexadecimal key/iv")
+                continue
+            break
+    else:
+        with open(key_file, 'rb') as f:
+            keys = pickle.load(f)
+            key = keys["key"].decode('utf-8').upper()
+            if algorithm == AES or algorithm == TripleDES:
                 iv = keys["iv"].decode('utf-8').upper()
+    if algorithm == AES:
         command = "openssl enc -aes-256-ctr -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
-        for file in files:
-            inp = os.path.join(base, file)
-            output = os.path.join(encrypted_base, file)
-            if not os.path.isdir(os.path.dirname(output)):
-                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
-            os.system(command.format(inp, output, key, iv))
-    elif algorithm == "TripleDES":
-        if key_file is None:
-            print("Please enter the TripleDES encryption key given on generation")
-            while True:
-                key = input("Key: ").upper()
-                try:
-                    x = int(key, 16)
-                except ValueError:
-                    print("Please enter a valid hexadecimal key")
-                    continue
-                break
+    elif algorithm == TripleDES:
+        command = "openssl enc -des-ede3-cfb -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
+    else:
+        command = "openssl enc -rc4 -in '{0}' -out {1} -base64 -nosalt -K {2}"
+    for file in files:
+        inp = os.path.join(base, file)
+        output = os.path.join(encrypted_base, file)
+        if not os.path.isdir(os.path.dirname(output)):
+            pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
+        if algorithm == AES or algorithm == TripleDES:
+            x = os.system(command.format(inp, output, key, iv))
         else:
-            with open(key_file, 'rb') as f:
-                keys = pickle.load(f)
-                key = keys["key"].decode('utf-8').upper()
-        command = "openssl enc -des-ede3-ecb -in '{0}' -out '{1}' -base64 -nosalt -K {2}"
-        for file in files:
-            inp = os.path.join(base, file)
-            output = os.path.join(encrypted_base, file)
-            if not os.path.isdir(os.path.dirname(output)):
-                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
-            os.system(command.format(inp, output, key))
+            x = os.system(command.format(inp, output, key))
+        if x:
+            print("Something went wrong while encrypting, exiting")
+            return False
     print("Files encrypted successfully.")
     return True
 
@@ -82,53 +76,45 @@ def decrypt_files(algorithm, encrypted_base, decrypted_base, files, key_file=Non
     if os.path.normpath(encrypted_base) == os.path.normpath(decrypted_base):
         print("The path to files given are the same. Please try again")
         exit(1)
-    if algorithm == "AES":
-        if key_file is None:
-            print("Please enter the key and IV given on generation")
-            while True:
-                key = input("Key: ").upper()
+    if key_file is None:
+        print("Please enter the key and IV given on generation")
+        while True:
+            key = input("Key: ").upper()
+            if algorithm == AES or algorithm == TripleDES:
                 iv = input("IV: ").upper()
-                try:
-                    x = int(key, 16)
+            try:
+                x = int(key, 16)
+                if algorithm == AES or algorithm == TripleDES:
                     x = int(iv, 16)
-                except ValueError:
-                    print("Please enter a valid hexadecimal key/iv")
-                    continue
-                break
-        else:
-            with open(key_file, 'rb') as f:
-                keys = pickle.load(f)
-                key = keys["key"].decode('utf-8').upper()
+            except ValueError:
+                print("Please enter a valid hexadecimal key/iv")
+                continue
+            break
+    else:
+        with open(key_file, 'rb') as f:
+            keys = pickle.load(f)
+            key = keys["key"].decode('utf-8').upper()
+            if algorithm == AES or algorithm == TripleDES:
                 iv = keys["iv"].decode('utf-8').upper()
+    if algorithm == AES:
         command = "openssl enc -aes-256-ctr -d -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
-        for file in files:
-            inp = os.path.join(encrypted_base, file)
-            output = os.path.join(decrypted_base, file)
-            if not os.path.isdir(os.path.dirname(output)):
-                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
-            os.system(command.format(inp, output, key, iv))
-    elif algorithm == "TripleDES":
-        if key_file is None:
-            print("Please enter the key and IV given on generation")
-            while True:
-                key = input("Key: ").upper()
-                try:
-                    x = int(key, 16)
-                except ValueError:
-                    print("Please enter a valid hexadecimal key")
-                    continue
-                break
+    elif algorithm == TripleDES:
+        command = "openssl enc -des-ede3-cfb -d -in '{0}' -out '{1}' -base64 -nosalt -K {2} -iv {3}"
+    else:
+        command = "openssl enc -rc4 -d -in '{0}' -out {1} -base64 -nosalt -K {2}"
+    for file in files:
+        inp = os.path.join(encrypted_base, file)
+        output = os.path.join(decrypted_base, file)
+        if not os.path.isdir(os.path.dirname(output)):
+            pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
+        if algorithm == AES or algorithm == TripleDES:
+            x = os.system(command.format(inp, output, key, iv))
         else:
-            with open(key_file, 'rb') as f:
-                keys = pickle.load(f)
-                key = keys["key"].decode('utf-8').upper()
-        command = "openssl enc -des-ede3-ecb -d -in '{0}' -out '{1}' -base64 -nosalt -K {2}"
-        for file in files:
-            inp = os.path.join(encrypted_base, file)
-            output = os.path.join(decrypted_base, file)
-            if not os.path.isdir(os.path.dirname(output)):
-                pathlib.Path(os.path.dirname(output)).mkdir(parents=True, exist_ok=True)
-            os.system(command.format(inp, output, key))
+            x = os.system(command.format(inp, output, key))
+        if x:
+            print("Something went wrong while decrypting, exiting")
+            return False
+
     print("Files decrypted successfully.")
     return True
 
@@ -175,40 +161,34 @@ def generate_key(encryption_schema, key_file=None):
     :param key_file: file path chosen by user, not provided if he/she would like to manually type it on sync
     :return: boolean for success
     """
-    if encryption_schema == "AES":
-        randomKeyHex = binascii.b2a_hex(os.urandom(32))
-        randomIVHex = binascii.b2a_hex(os.urandom(16))
-        if key_file is None:
-            print("Please keep the following following information confidential, for the privacy of your files "
-                  "uploaded on the server.\nWe will not be responsible for any breach of privacy")
-            print("AES schema chosen. Produce this key and the initialization vector when you wish to download, "
-                  "upload or sync.")
-            print("KEY:", randomKeyHex.decode('utf-8').upper())
-            print("IV: ", randomIVHex.decode('utf-8').upper())
-            return True
-        else:
-            print("Please keep the file extremely secure and in the same path as chosen. DO NOT delete or move the "
-                  "file, until a new encryption schema is chose.")
-            with open(key_file, 'wb') as f:
-                aeskey = {"key": randomKeyHex, "iv": randomIVHex}
-                pickle.dump(aeskey, f)
-            print("Key stored successfully")
-            return True
-    elif encryption_schema == "TripleDES":
-        randomKeyHex = binascii.b2a_hex(os.urandom(16))
-        if key_file is None:
-            print("Please keep the following following information confidential, for the privacy of your files "
-                  "uploaded on the server.\nWe will not be responsible for any breach of privacy")
-            print("TripleDES schema chosen. Produce this key and the initialization vector when you wish to download, "
-                  "upload or sync.")
-            print("KEY:", randomKeyHex.decode('utf-8').upper())
-            return True
-        else:
-            print("Please keep the file extremely secure and in the same path as chosen. DO NOT delete or move the "
-                  "file, until a new encryption schema is chose.")
-            with open(key_file, 'wb') as f:
-                aeskey = {'key': randomKeyHex}
-                pickle.dump(aeskey, f)
-            print("Key stored successfully.")
+    if encryption_schema == AES:
+        keylength = 32
+        ivlength = 16
+    elif encryption_schema == TripleDES:
+        keylength = 24
+        ivlength = 8
+    else:
+        keylength = 16
 
-            return True
+    randomKeyHex = binascii.b2a_hex(os.urandom(keylength))
+    if encryption_schema == AES or encryption_schema == TripleDES:
+        randomIVHex = binascii.b2a_hex(os.urandom(ivlength))
+    if key_file is None:
+        print("Please keep the following following information confidential, for the privacy of your files "
+              "uploaded on the server.\nWe will not be responsible for any breach of privacy")
+        print("AES schema chosen. Produce this key and the initialization vector when you wish to download, "
+              "upload or sync.")
+        print("KEY (length -", keylength, "hex characters):", randomKeyHex.decode('utf-8').upper())
+        if encryption_schema == AES or encryption_schema == TripleDES:
+            print("IV (length -", ivlength, "hex characters): ", randomIVHex.decode('utf-8').upper())
+        return True
+    else:
+        print("Please keep the file extremely secure and in the same path as chosen. DO NOT delete or move the "
+              "file, until a new encryption schema is chose.")
+        with open(key_file, 'wb') as f:
+            aeskey = {"key": randomKeyHex}
+            if encryption_schema == AES or encryption_schema == TripleDES:
+                aeskey = {"iv": randomIVHex}
+            pickle.dump(aeskey, f)
+        print("Key stored successfully")
+        return True
