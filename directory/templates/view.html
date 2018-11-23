@@ -9,6 +9,36 @@
 <script src="{% static 'CryptoJS/components/mode-ctr.js' %}"></script>
 <script src="{% static 'CryptoJS/components/mode-ecb.js' %}"></script>
 <script src="{% static 'CryptoJS/components/pad-nopadding.js' %}"></script>
+
+<script type="text/javascript">
+
+    // Call this code when the page is done loading.
+    $(function() {
+
+        // Run a quick encryption/decryption when they click.
+        $('#testme').click(function() {
+
+            // Encrypt with the public key...
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey($('#pubkey').val());
+            var encrypted = encrypt.encrypt($('#input').val());
+            console.log(encrypted);
+            console.log(typeof encrypted);
+            // Decrypt with the private key...
+            var decrypt = new JSEncrypt();
+            decrypt.setPrivateKey($('#privkey').val());
+            var uncrypted = decrypt.decrypt(encrypted);
+
+            // Now a simple check to see if the round-trip worked.
+            if (uncrypted == $('#input').val()) {
+                alert('It works!!!');
+            }
+            else {
+                alert('Something went wrong....');
+            }
+        });
+    });
+</script>
 <!--<script src="{% static 'jsencrypt/bin/jsencrypt.js' %}"></script>-->
 <script src="{% static 'CryptoJS/rollups/rc4.js' %}"></script>
 <!--<script src="{% static 'js/test.js' %}" type="text/javascript"></script>-->

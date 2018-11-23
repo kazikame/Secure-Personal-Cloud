@@ -210,4 +210,5 @@ def generate_key(encryption_schema, key_file=None):
                 aeskey = {'key': randomKeyHex}
                 pickle.dump(aeskey, f)
             print("Key stored successfully.")
+
             return True
